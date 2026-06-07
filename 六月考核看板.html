@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兰新团队 · 6月考核看板</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    padding: 16px;
+  }
+  .container { max-width: 820px; margin: 0 auto; }
+
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff;
+    border-radius: 16px;
+    padding: 24px 20px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: "🦐";
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 48px;
+    opacity: 0.15;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .header p { font-size: 13px; opacity: 0.7; }
+
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #0f3460;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .badge {
+    background: #e8f0fe;
+    color: #0f3460;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  .summary-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .summary-item {
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px 12px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .summary-item .num { font-size: 24px; font-weight: 700; color: #0f3460; }
+  .summary-item .num.green { color: #10b981; }
+  .summary-item .num.orange { color: #f59e0b; }
+  .summary-item .num.red { color: #ef4444; }
+  .summary-item .num.purple { color: #8b5cf6; }
+  .summary-item .label { font-size: 11px; color: #6b7280; margin-top: 2px; }
+
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead th {
+    background: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+    padding: 10px 8px;
+    text-align: center;
+    border-bottom: 2px solid #e2e8f0;
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 10px 8px;
+    text-align: center;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  tbody td:first-child { text-align: left; font-weight: 500; color: #0f3460; }
+  .target { color: #64748b; font-size: 11px; }
+  .done { color: #10b981; font-weight: 600; }
+  .warn { color: #f59e0b; font-weight: 600; }
+  .miss { color: #ef4444; font-weight: 600; }
+
+  .tag-wh { background: #6366f1; color: #fff; font-size: 11px; padding: 1px 6px; border-radius: 6px; }
+  .tag-lx { background: #0f3460; color: #fff; font-size: 11px; padding: 1px 6px; border-radius: 6px; }
+
+  .commission-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .commission-item {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+  }
+  .commission-item .item-label { font-size: 12px; color: #64748b; }
+  .commission-item .item-price { font-size: 18px; font-weight: 700; margin-top: 2px; }
+  .commission-item .item-price.green { color: #10b981; }
+  .commission-item .item-price.red { color: #ef4444; }
+  .commission-item .item-price.blue { color: #0f3460; }
+  .commission-item .item-price.purple { color: #8b5cf6; }
+  .commission-item .item-note { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+
+  .split-bar {
+    display: flex;
+    height: 28px;
+    border-radius: 14px;
+    overflow: hidden;
+    margin: 10px 0;
+  }
+  .split-bar .wh { background: #6366f1; color: #fff; font-size: 12px; line-height: 28px; text-align: center; }
+  .split-bar .lx { background: #0f3460; color: #fff; font-size: 12px; line-height: 28px; text-align: center; }
+
+  .member-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .member-card {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 14px;
+    border-left: 3px solid #0f3460;
+  }
+  .member-card .name { font-weight: 600; font-size: 14px; color: #0f3460; margin-bottom: 6px; }
+  .member-card .stat { font-size: 12px; color: #475569; line-height: 1.6; }
+  .member-card .stat .ok { color: #10b981; }
+  .member-card .stat .no { color: #ef4444; }
+
+  .footer { text-align: center; font-size: 12px; color: #94a3b8; padding: 20px 0 8px; }
+
+  @media (max-width: 480px) {
+    .summary-row { grid-template-columns: repeat(2, 1fr); }
+    .member-grid { grid-template-columns: 1fr; }
+    .commission-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>📊 兰新团队 · 六月考核看板</h1>
+    <p>总考核金 900 元/人 · 总封顶 900 元 · 单项封顶 150 元</p>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-row">
+    <div class="summary-item">
+      <div class="num blue">900</div>
+      <div class="label">总考核金/人</div>
+    </div>
+    <div class="summary-item">
+      <div class="num orange">100</div>
+      <div class="label">预计手机总台数</div>
+    </div>
+    <div class="summary-item">
+      <div class="num green">75~80</div>
+      <div class="label">预计搭载率 %</div>
+    </div>
+    <div class="summary-item">
+      <div class="num purple">55</div>
+      <div class="label">提成比例 外呼:兰新</div>
+    </div>
+  </div>
+
+  <!-- Assessment Table -->
+  <div class="card">
+    <div class="card-title">📋 月度考核指标 <span class="badge">5项 · 900元</span></div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>业务</th>
+            <th>月目标/人</th>
+            <th>考核金</th>
+            <th>未完成扣</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>📱 手机</td>
+            <td><span class="target">25 台</span></td>
+            <td>200 元</td>
+            <td class="miss">8 元/台</td>
+          </tr>
+          <tr>
+            <td>🆔 学生证</td>
+            <td><span class="target">20 笔</span></td>
+            <td>200 元</td>
+            <td class="miss">10 元/笔</td>
+          </tr>
+          <tr>
+            <td>🌐 V网</td>
+            <td><span class="target">12 笔</span></td>
+            <td>150 元</td>
+            <td class="miss">12.5 元/笔</td>
+          </tr>
+          <tr>
+            <td>⭐ 小业务邀评</td>
+            <td><span class="target">≥ 20%</span></td>
+            <td>150 元</td>
+            <td class="miss">7.5 元/%</td>
+          </tr>
+          <tr>
+            <td>🩺 套餐体检</td>
+            <td><span class="target">25 户</span></td>
+            <td>200 元</td>
+            <td class="miss">8 元/户</td>
+          </tr>
+          <tr style="background:#f8fafc; font-weight:600;">
+            <td>合计</td>
+            <td>—</td>
+            <td>900 元</td>
+            <td style="color:#0f3460;">总封顶 900 元</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Commission Split -->
+  <div class="card">
+    <div class="card-title">💰 提成分成方案 <span class="badge">外呼 : 兰新 = 55</span></div>
+
+    <div style="margin-bottom:14px;">
+      <div class="split-bar">
+        <div class="wh" style="width:50%">📞 外呼团队 50%</div>
+        <div class="lx" style="width:50%">🏪 兰新团队 50%</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>销售方式</th>
+            <th>总提成</th>
+            <th><span class="tag-wh">📞 外呼</span></th>
+            <th><span class="tag-lx">🏪 兰新</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>📱 手机+学生证 ✅</td>
+            <td class="done">100 元</td>
+            <td class="done">50 元</td>
+            <td class="done">50 元</td>
+          </tr>
+          <tr>
+            <td>📱 手机单独 ⚠️</td>
+            <td class="warn">40 元</td>
+            <td class="warn">20 元</td>
+            <td class="warn">20 元</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:12px; padding:12px; background:#f8fafc; border-radius:8px;">
+      <div style="font-size:13px; font-weight:600; color:#0f3460; margin-bottom:6px;">🆔 学生证酬金（另计）</div>
+      <table>
+        <thead>
+          <tr><th>方案</th><th>总酬金</th><th><span class="tag-wh">📞 外呼</span></th><th><span class="tag-lx">🏪 兰新</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><td>垫付200话费</td><td class="done">20 元</td><td>10 元</td><td>10 元</td></tr>
+          <tr><td>不垫付</td><td class="done">40 元</td><td>20 元</td><td>20 元</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 100 Phones Projection -->
+  <div class="card">
+    <div class="card-title">📈 100台预估收益 <span class="badge">75% 搭载率</span></div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>项目</th>
+            <th>数量</th>
+            <th>总金额</th>
+            <th><span class="tag-wh">外呼</span></th>
+            <th><span class="tag-lx">兰新</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>捆绑手机提成 (100元)</td>
+            <td>75台</td>
+            <td class="done">7,500</td>
+            <td>3,750</td>
+            <td>3,750</td>
+          </tr>
+          <tr>
+            <td>未捆绑手机提成 (40元)</td>
+            <td>25台</td>
+            <td class="warn">1,000</td>
+            <td>500</td>
+            <td>500</td>
+          </tr>
+          <tr>
+            <td>学生证收入 (380元)</td>
+            <td>75台</td>
+            <td class="done">28,500</td>
+            <td>—</td>
+            <td>28,500</td>
+          </tr>
+          <tr>
+            <td>学生证垫资 (-200元)</td>
+            <td>75台</td>
+            <td class="miss">-15,000</td>
+            <td>—</td>
+            <td>-15,000</td>
+          </tr>
+          <tr>
+            <td>学生证酬金 (20元,垫付)</td>
+            <td>75台</td>
+            <td class="done">1,500</td>
+            <td>750</td>
+            <td>750</td>
+          </tr>
+          <tr style="background:#f0fdf4; font-weight:600;">
+            <td>提成合计</td>
+            <td>—</td>
+            <td class="done">10,000</td>
+            <td class="done">5,000</td>
+            <td class="done">5,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Team Members -->
+  <div class="card">
+    <div class="card-title">👥 团队成员 <span class="badge">兰新 · 4人</span></div>
+    <div class="member-grid">
+      <div class="member-card">
+        <div class="name">舒捷</div>
+        <div class="stat">📱 开14 <span class="ok">✓</span> | 🌐 宽29</div>
+      </div>
+      <div class="member-card">
+        <div class="name">董梦晶</div>
+        <div class="stat">📱 开5 <span class="no">⬇</span> | 🌐 宽33</div>
+      </div>
+      <div class="member-card">
+        <div class="name">美红</div>
+        <div class="stat">📱 开8 | 🌐 宽53 <span class="ok">✓</span></div>
+      </div>
+      <div class="member-card">
+        <div class="name">穆艳梅</div>
+        <div class="stat">📱 开4 <span class="no">⬇</span> | 🌐 宽42</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    虾 🦐 · 数据更新于 2026-06-07
+  </div>
+
+</div>
+</body>
+</html>
