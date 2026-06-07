@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐯 金虎团队 · 六月作战看板</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    padding: 16px;
+  }
+  .container { max-width: 860px; margin: 0 auto; }
+
+  .header {
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    color: #fff;
+    border-radius: 16px;
+    padding: 24px 20px;
+    margin-bottom: 16px;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; }
+  .header p { font-size: 13px; opacity: 0.7; margin-top: 4px; }
+
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #4f46e5;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .badge {
+    background: #eef2ff;
+    color: #4f46e5;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  /* Summary */
+  .summary-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .summary-item {
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px 10px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .summary-item .num { font-size: 22px; font-weight: 700; color: #4f46e5; }
+  .summary-item .num.green { color: #10b981; }
+  .summary-item .num.orange { color: #f59e0b; }
+  .summary-item .num.red { color: #ef4444; }
+  .summary-item .label { font-size: 11px; color: #6b7280; margin-top: 2px; }
+
+  /* Progress bar */
+  .progress-wrap {
+    background: #e5e7eb;
+    border-radius: 10px;
+    height: 24px;
+    overflow: hidden;
+    margin: 10px 0;
+    position: relative;
+  }
+  .progress-bar {
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #4f46e5, #7c3aed);
+    transition: width 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    min-width: 50px;
+  }
+
+  /* Calendar */
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+  .cal-header {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: #6b7280;
+    padding: 6px 0;
+  }
+  .cal-day {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    padding: 4px;
+    font-size: 12px;
+    position: relative;
+    background: #f9fafb;
+    border: 1px solid #f3f4f6;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cal-day .date {
+    font-weight: 600;
+    color: #374151;
+    font-size: 13px;
+  }
+  .cal-day .market {
+    font-size: 9px;
+    margin-top: 2px;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .cal-day .task-label {
+    font-size: 8px;
+    padding: 1px 4px;
+    border-radius: 4px;
+    margin-top: 2px;
+    width: 100%;
+    text-align: center;
+  }
+  .cal-day.tadian { background: #fef3c7; border-color: #f59e0b; }
+  .cal-day.huanian { background: #dbeafe; border-color: #3b82f6; }
+  .cal-day.xiaojie { background: #d1fae5; border-color: #10b981; }
+  .cal-day.xiancheng { background: #ede9fe; border-color: #8b5cf6; }
+  .cal-day.off { background: #f3f4f6; border-color: #d1d5db; }
+  .cal-day.off .date { color: #9ca3af; }
+  .cal-day.today { box-shadow: 0 0 0 2px #ef4444; }
+
+  .cal-day .tt { background: #7c3aed; color: #fff; }
+  .cal-day .td { background: #f59e0b; color: #fff; }
+  .cal-day .lx { background: #10b981; color: #fff; }
+  .cal-day .hc { background: #3b82f6; color: #fff; }
+  .cal-day .off-label { background: #9ca3af; color: #fff; }
+
+  /* Team & Stats */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .team-card {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .team-card .name { font-weight: 600; font-size: 14px; color: #4f46e5; }
+  .team-card .role { font-size: 12px; color: #6b7280; }
+  .team-card .task { font-size: 12px; color: #374151; margin-top: 6px; }
+
+  .task-flow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .flow-step {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 10px 8px;
+    text-align: center;
+    font-size: 12px;
+  }
+  .flow-step .step-num {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 50%;
+    background: #4f46e5;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead th {
+    background: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+    padding: 8px 6px;
+    text-align: center;
+    border-bottom: 2px solid #e2e8f0;
+    font-size: 12px;
+  }
+  tbody td {
+    padding: 8px 6px;
+    text-align: center;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 12px;
+  }
+
+  .footer { text-align: center; font-size: 12px; color: #94a3b8; padding: 20px 0 8px; }
+
+  @media (max-width: 480px) {
+    .summary-row { grid-template-columns: repeat(2, 1fr); }
+    .team-grid { grid-template-columns: 1fr; }
+    .task-flow { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>🐯 金虎团队 · 六月作战看板</h1>
+    <p>赶集安排 · 任务分工 · 目标追踪</p>
+  </div>
+
+  <!-- Summary Stats -->
+  <div class="summary-row">
+    <div class="summary-item">
+      <div class="num red">11,200</div>
+      <div class="label">月总支出(含油费)</div>
+    </div>
+    <div class="summary-item">
+      <div class="num green">53</div>
+      <div class="label">月目标台数(19元档)</div>
+    </div>
+    <div class="summary-item">
+      <div class="num orange">24</div>
+      <div class="label">本月赶集天数</div>
+    </div>
+    <div class="summary-item">
+      <div class="num blue">~5</div>
+      <div class="label">日均目标台数</div>
+    </div>
+  </div>
+
+  <!-- Progress -->
+  <div class="card">
+    <div class="card-title">📈 本月进度 <span class="badge">目标 102台</span></div>
+    <div class="progress-wrap">
+      <div class="progress-bar" style="width: 0%;">0 台</div>
+    </div>
+    <div style="display:flex; justify-content:space-between; font-size:12px; color:#6b7280;">
+      <span>已办：0 台</span>
+      <span>剩余：102 台</span>
+      <span>剩余天数：23 天</span>
+    </div>
+  </div>
+
+  <!-- Team -->
+  <div class="card">
+    <div class="card-title">👥 金虎团队 <span class="badge">4人</span></div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="name">👨‍🦱 男队员 × 3</div>
+        <div class="role">赶集主力</div>
+        <div class="task">📋 赶集当天摆摊办理<br>🎯 每日目标：2~3台</div>
+      </div>
+      <div class="team-card">
+        <div class="name">👩 女队员 × 1</div>
+        <div class="role">电话预约</div>
+        <div class="task">📞 赶集前一天打电话预约<br>📍 确认赶集地点和路线</div>
+      </div>
+    </div>
+    <div style="margin-top:10px; font-size:13px; background:#fef3c7; border-radius:8px; padding:10px;">
+      📞 <b>外呼支援</b>：可调店里人员赶集前协助外呼预约
+    </div>
+  </div>
+
+  <!-- Daily Flow -->
+  <div class="card">
+    <div class="card-title">⏱️ 每日作战流程</div>
+    <div class="task-flow">
+      <div class="flow-step">
+        <div class="step-num">1</div>
+        <div>📞 外呼预约</div>
+        <div style="color:#6b7280; font-size:10px;">赶集前一天</div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">2</div>
+        <div>📍 确认路线</div>
+        <div style="color:#6b7280; font-size:10px;">赶集当天 8:00</div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">3</div>
+        <div>🏪 赶集摆摊</div>
+        <div style="color:#6b7280; font-size:10px;">9:00~16:00</div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">4</div>
+        <div>📊 复盘通报</div>
+        <div style="color:#6b7280; font-size:10px;">17:00</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calendar -->
+  <div class="card">
+    <div class="card-title">📅 六月赶集日历 <span class="badge">峨山</span></div>
+    <div class="cal-grid">
+      <div class="cal-header">一</div>
+      <div class="cal-header">二</div>
+      <div class="cal-header">三</div>
+      <div class="cal-header">四</div>
+      <div class="cal-header">五</div>
+      <div class="cal-header">六</div>
+      <div class="cal-header">日</div>
+
+      <!-- 6/1 周一 -->
+      <div class="cal-day tadian today">
+        <div class="date">1</div>
+        <div class="market">🏪 塔甸</div>
+        <div class="task-label tt">目标 5台</div>
+      </div>
+      <!-- 6/2 周二 -->
+      <div class="cal-day huanian">
+        <div class="date">2</div>
+        <div class="market">🏪 化念</div>
+        <div class="task-label hc">目标 5台</div>
+      </div>
+      <!-- 6/3 周三 -->
+      <div class="cal-day off">
+        <div class="date">3</div>
+        <div class="market">🛌 休整</div>
+        <div class="task-label off-label">休</div>
+      </div>
+      <!-- 6/4 周四 -->
+      <div class="cal-day xiaojie">
+        <div class="date">4</div>
+        <div class="market">🏪 小街/岔河/大龙潭</div>
+        <div class="task-label lx">目标 5台</div>
+      </div>
+      <!-- 6/5 周五 -->
+      <div class="cal-day xiancheng">
+        <div class="date">5</div>
+        <div class="market">🏪 县城/富良棚</div>
+        <div class="task-label tt">目标 5台</div>
+      </div>
+      <!-- 6/6 周六 -->
+      <div class="cal-day tadian">
+        <div class="date">6</div>
+        <div class="market">🏪 塔甸</div>
+        <div class="task-label tt">目标 5台</div>
+      </div>
+      <!-- 6/7 周日 -->
+      <div class="cal-day huanian today">
+        <div class="date">7</div>
+        <div class="market">🏪 化念</div>
+        <div class="task-label hc">目标 5台</div>
+      </div>
+
+      <!-- Week 2 -->
+      <div class="cal-day off">
+        <div class="date">8</div>
+        <div class="market">🛌 休整</div>
+        <div class="task-label off-label">休</div>
+      </div>
+      <div class="cal-day xiaojie">
+        <div class="date">9</div>
+        <div class="market">🏪 小街/岔河/大龙潭</div>
+        <div class="task-label lx">目标 5台</div>
+      </div>
+      <div class="cal-day xiancheng">
+        <div class="date">10</div>
+        <div class="market">🏪 县城/富良棚</div>
+        <div class="task-label tt">目标 5台</div>
+      </div>
+      <div class="cal-day tadian">
+        <div class="date">11</div>
+        <div class="market">🏪 塔甸</div>
+        <div class="task-label tt">目标 5台</div>
+      </div>
+      <div class="cal-day huanian">
+        <div class="date">12</div>
+        <div class="market">🏪 化念</div>
+        <div class="task-label hc">目标 5台</div>
+      </div>
+      <div class="cal-day off">
+        <div class="date">13</div>
+        <div class="market">🛌 休整</div>
+        <div class="task-label off-label">休</div>
+      </div>
+      <div class="cal-day xiaojie">
+        <div class="date">14</div>
+        <div class="market">🏪 小街/岔河/大龙潭</div>
+        <div class="task-label lx">目标 5台</div>
+      </div>
+
+      <!-- Week 3 -->
+      <div class="cal-day xiancheng">
+        <div class="date">15</div>
+        <div class="market">🏪 县城/富良棚</div>
+        <div class="task-label tt">目标 5台</div>
+      </div>
+      <div class="cal-day tadian">
+        <div class="date">16</div>
+        <div class="market">🏪 塔甸</div>
+        <div class="task-label tt">目标 5台</div>
+      </div>
+      <div class="cal-day huanian">
+        <div class="date">17</div>
+        <div class="market">🏪 化念</div>
+        <div class="task-label hc">目标 5台</div>
+      </div>
+      <div class="cal-day off">
+        <div class="date">18</div>
+        <div class="market">🛌 休整</div>
+        <div class="task-label off-label">休</div>
+      </div>
+      <div class="cal-day xiaojie">
+        <div class="date">19</div>
+        <div class="market">🏪 小街/岔河/大龙潭</div>
+        <div class="task-label lx">目标 5台</div>
+      </div>
+      <div class="cal-day xiancheng">
+        <div class="date">20</div>
+        <div class="market">🏪 县城/富良棚</div>
+        <div class="task-label tt">目标 5台</div>
+      </div>
+      <div class="cal-day tadian">
+        <div class="date">21</div>
+        <div class="market">🏪 塔甸</div>
+        <div class="task-label tt">目标 5台</div>
+      </div>
+
+      <!-- Week 4 -->
+      <div class="cal-day huanian">
+        <div class="date">22</div>
+        <div class="market">🏪 化念</div>
+        <div class="task-label hc">目标 5台</div>
+      </div>
+      <div class="cal-day off">
+        <div class="date">23</div>
+        <div class="market">🛌 休整</div>
+        <div class="task-label off-label">休</div>
+      </div>
+      <div class="cal-day xiaojie">
+        <div class="date">24</div>
+        <div class="market">🏪 小街/岔河/大龙潭</div>
+        <div class="task-label lx">目标 5台</div>
+      </div>
+      <div class="cal-day xiancheng">
+        <div class="date">25</div>
+        <div class="market">🏪 县城/富良棚</div>
+        <div class="task-label tt">目标 5台</div>
+      </div>
+      <div class="cal-day tadian">
+        <div class="date">26</div>
+        <div class="market">🏪 塔甸</div>
+        <div class="task-label tt">目标 5台</div>
+      </div>
+      <div class="cal-day huanian">
+        <div class="date">27</div>
+        <div class="market">🏪 化念</div>
+        <div class="task-label hc">目标 5台</div>
+      </div>
+      <div class="cal-day off">
+        <div class="date">28</div>
+        <div class="market">🛌 休整</div>
+        <div class="task-label off-label">休</div>
+      </div>
+
+      <!-- Week 5 -->
+      <div class="cal-day xiaojie">
+        <div class="date">29</div>
+        <div class="market">🏪 小街/岔河/大龙潭</div>
+        <div class="task-label lx">目标 5台</div>
+      </div>
+      <div class="cal-day xiancheng">
+        <div class="date">30</div>
+        <div class="market">🏪 县城/富良棚</div>
+        <div class="task-label tt">目标 5台</div>
+      </div>
+      <div class="cal-day" style="visibility:hidden;"></div>
+      <div class="cal-day" style="visibility:hidden;"></div>
+      <div class="cal-day" style="visibility:hidden;"></div>
+      <div class="cal-day" style="visibility:hidden;"></div>
+      <div class="cal-day" style="visibility:hidden;"></div>
+    </div>
+    <div style="margin-top:10px; font-size:11px; color:#6b7280; display:flex; gap:10px; flex-wrap:wrap;">
+      <span>🟡 塔甸</span>
+      <span>🔵 化念</span>
+      <span>🟢 小街/岔河/大龙潭</span>
+      <span>🟣 县城/富良棚</span>
+      <span>⚪ 休整日</span>
+      <span>🔴 今日</span>
+    </div>
+  </div>
+
+  <!-- Summary Table -->
+  <div class="card">
+    <div class="card-title">📊 月汇总</div>
+    <table>
+      <thead>
+        <tr>
+          <th>赶集点</th>
+          <th>本月天数</th>
+          <th>日均目标</th>
+          <th>月目标</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>塔甸</td><td>6天</td><td>2台</td><td>22台</td></tr>
+        <tr><td>化念</td><td>6天</td><td>2台</td><td>22台</td></tr>
+        <tr><td>小街/岔河/大龙潭</td><td>6天</td><td>2台</td><td>22台</td></tr>
+        <tr><td>县城/富良棚</td><td>6天</td><td>2台</td><td>22台</td></tr>
+        <tr><td>休整</td><td>6天</td><td>—</td><td>—</td></tr>
+        <tr style="background:#f0fdf4; font-weight:600;">
+          <td>合计</td>
+          <td>24天赶集</td>
+          <td>~5台/天</td>
+          <td>48~53台</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">虾 🦐 · 生成于 2026-06-07 · 每日更新</div>
+
+</div>
+</body>
+</html>
