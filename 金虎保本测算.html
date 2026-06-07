@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金虎团队保本测算</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    padding: 16px;
+  }
+  .container { max-width: 800px; margin: 0 auto; }
+  .header {
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    color: #fff;
+    border-radius: 16px;
+    padding: 24px 20px;
+    margin-bottom: 16px;
+  }
+  .header h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .header p { font-size: 13px; opacity: 0.7; }
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #4f46e5;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .badge {
+    background: #eef2ff;
+    color: #4f46e5;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+  .summary-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .summary-item {
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px 12px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .summary-item .num { font-size: 24px; font-weight: 700; color: #4f46e5; }
+  .summary-item .num.red { color: #ef4444; }
+  .summary-item .num.green { color: #10b981; }
+  .summary-item .num.orange { color: #f59e0b; }
+  .summary-item .label { font-size: 11px; color: #6b7280; margin-top: 2px; }
+  .highlight {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .highlight .big { font-size: 22px; font-weight: 700; color: #dc2626; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead th {
+    background: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+    padding: 10px 8px;
+    text-align: center;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  tbody td {
+    padding: 10px 8px;
+    text-align: center;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  tbody td:first-child { text-align: left; font-weight: 500; }
+  .green { color: #10b981; font-weight: 600; }
+  .red { color: #ef4444; font-weight: 600; }
+  .footer { text-align: center; font-size: 12px; color: #94a3b8; padding: 20px 0 8px; }
+  @media (max-width: 480px) {
+    .summary-row { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>🐯 金虎团队 · 保本测算</h1>
+    <p>仅按19元档计算 · 含加油费</p>
+  </div>
+
+  <div class="summary-row">
+    <div class="summary-item"><div class="num red">10,000</div><div class="label">月底薪</div></div>
+    <div class="summary-item"><div class="num orange">1,200</div><div class="label">月油费</div></div>
+    <div class="summary-item"><div class="num red">11,200</div><div class="label">月总支出</div></div>
+    <div class="summary-item"><div class="num green">102</div><div class="label">月需台数</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧮 核心计算</div>
+    <div class="highlight">
+      📱 <b>19元档</b> 每笔渠道激励 <b>147元</b><br>
+      🙋 你到手 <b>75%</b> = <b>110.25元/笔</b><br><br>
+      总支出 = 10,000底薪 + 1,200油费 = <b>11,200元/月</b><br>
+      需总渠道激励 = 11,200 ÷ 75% = <b>14,933元/月</b><br>
+      月需台数 = 14,933 ÷ 147 = <span class="big">102台/月</span><br><br>
+      📅 本月赶集 <b>24天</b>，日均需 <b>4.2台 ≈ 5台/天</b>（含余量）
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💰 支出明细</div>
+    <table>
+      <thead><tr><th>项目</th><th>金额</th></tr></thead>
+      <tbody>
+        <tr><td>人员1底薪</td><td>3,000元</td></tr>
+        <tr><td>人员2底薪</td><td>3,200元</td></tr>
+        <tr><td>人员3底薪</td><td>2,000元</td></tr>
+        <tr><td>人员4底薪</td><td>1,800元</td></tr>
+        <tr><td>🚗 加油费</td><td class="orange">1,200元</td></tr>
+        <tr style="background:#fef2f2; font-weight:600;">
+          <td class="red">合计</td><td class="red">11,200元</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:8px; font-size:12px; color:#94a3b8;">外呼3人：不计成本</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 赶集目标分解</div>
+    <table>
+      <thead><tr><th>地点</th><th>天数</th><th>日均目标</th><th>月目标</th></tr></thead>
+      <tbody>
+        <tr><td>塔甸</td><td>6天</td><td>5台</td><td>30台</td></tr>
+        <tr><td>化念</td><td>6天</td><td>5台</td><td>30台</td></tr>
+        <tr><td>小街/岔河/大龙潭</td><td>6天</td><td>5台</td><td>30台</td></tr>
+        <tr><td>县城/富良棚</td><td>6天</td><td>5台</td><td>30台</td></tr>
+        <tr style="background:#fef3c7;">
+          <td>合计</td><td>24天</td><td>5台/天</td><td><b>120台</b></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:10px; font-size:12px; color:#64748b;">目标120台，保本102台，预留18台余量空间</div>
+  </div>
+
+  <div class="footer">虾 🦐 · 2026-06-07 · 19元档 + 含油费</div>
+</div>
+</body>
+</html>
