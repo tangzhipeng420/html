@@ -8,18 +8,15 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, 'Microsoft YaHei', sans-serif; background: #f0f2f5; color: #333; padding: 20px; }
   .container { max-width: 1200px; margin: 0 auto; }
-
-  .header { background: linear-gradient(135deg, #1a73e8, #0d47a1); color: #fff; padding: 24px 32px; border-radius: 16px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+  .header { background: linear-gradient(135deg, #1a73e8, #0d47a1); color: #fff; padding: 24px 32px; border-radius: 16px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap:wrap; gap:10px; }
   .header h1 { font-size: 26px; font-weight: 700; }
-  .header .date { font-size: 14px; opacity: .85; }
-  .header .badge { background: rgba(255,255,255,.2); padding: 6px 14px; border-radius: 20px; font-size: 13px; }
+  .header .sub { font-size: 13px; opacity: .8; margin-top:4px; }
+  .header .badge { background: rgba(255,255,255,.2); padding: 6px 14px; border-radius: 20px; font-size: 13px; white-space:nowrap; }
 
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
   .card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
   .card.full { grid-column: 1 / -1; }
-
   .card h2 { font-size: 17px; font-weight: 600; color: #1a73e8; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #e8edf2; }
-  .card h3 { font-size: 15px; font-weight: 600; color: #555; margin: 12px 0 8px; }
 
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   th, td { padding: 8px 10px; text-align: center; border-bottom: 1px solid #eee; }
@@ -29,14 +26,9 @@
   .ok { color: #43a047; }
   .highlight { background: #fff8e1; font-weight: 600; }
 
-  .member-name { font-weight: 600; text-align: left; }
-  .member-other { font-size: 12px; color: #666; margin-top: 4px; }
-
   .alert { padding: 10px 14px; border-radius: 8px; margin-bottom: 10px; font-size: 13px; }
   .alert-red { background: #ffebee; border-left: 4px solid #e53935; }
   .alert-yellow { background: #fff8e1; border-left: 4px solid #ffa000; }
-  .alert-green { background: #e8f5e9; border-left: 4px solid #43a047; }
-  .alert-blue { background: #e3f2fd; border-left: 4px solid #1e88e5; }
   .alert h4 { font-size: 14px; margin-bottom: 4px; }
 
   .tv-card { background: linear-gradient(135deg, #f57c00, #e65100); color: #fff; border-radius: 12px; padding: 20px; grid-column: 1 / -1; }
@@ -56,41 +48,33 @@
   .todo-dot.yellow { background: #ffa000; }
   .todo-dot.green { background: #43a047; }
 
-  @media (max-width: 768px) {
-    .grid { grid-template-columns: 1fr; }
-    body { padding: 10px; }
-    .header { flex-direction: column; text-align: center; gap: 8px; }
-    .tv-card .stat { flex-direction: column; gap: 10px; }
-  }
+  @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } body { padding: 10px; } .header { flex-direction: column; } .tv-card .stat { flex-direction: column; } }
 
   .section-title { font-size: 14px; font-weight: 700; color: #1a73e8; margin: 14px 0 8px; padding: 6px 10px; background: #e3f2fd; border-radius: 6px; }
   .tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin: 1px; }
   .tag-blue { background: #e3f2fd; color: #1565c0; }
   .tag-orange { background: #fff3e0; color: #e65100; }
   .tag-green { background: #e8f5e9; color: #2e7d32; }
-  .tag-red { background: #ffebee; color: #c62828; }
 
-  .day-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .day-box { background: #fafbfc; border-radius: 10px; padding: 14px; }
-  .day-box h4 { font-size: 14px; color: #1a73e8; margin-bottom: 10px; }
-  .day-box .person { margin-bottom: 10px; }
-  .day-box .person .name { font-weight: 600; font-size: 13px; margin-bottom: 2px; }
-  .day-box .person .items { font-size: 12px; line-height: 1.6; color: #555; }
+  .day-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .day-box { background: #fafbfc; border-radius: 10px; padding: 12px; }
+  .day-box h4 { font-size: 13px; color: #1a73e8; margin-bottom: 8px; padding-bottom:4px; border-bottom:1px solid #e0e0e0; }
+  .day-box .person { margin-bottom: 8px; }
+  .day-box .person .name { font-weight: 600; font-size: 12px; margin-bottom: 2px; }
+  .day-box .person .items { font-size: 11px; line-height: 1.5; color: #555; }
 
-  .total-table { margin-bottom: 16px; }
-  .total-table .person-row { border: 1px solid #e0e0e0; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
-  .total-table .person-header { padding: 10px 14px; font-weight: 700; font-size: 14px; background: #f7f9fc; border-bottom: 1px solid #e0e0e0; display: flex; justify-content: space-between; align-items: center; }
-  .total-table .person-body { padding: 10px 14px; }
-  .total-table .kpi-row { display: flex; gap: 8px; flex-wrap: wrap; }
-  .total-table .kpi-item { padding: 4px 10px; border-radius: 6px; font-size: 13px; }
-  .total-table .kpi-item.ok { background: #e8f5e9; }
-  .total-table .kpi-item.warn { background: #ffebee; }
-  .total-table .kpi-item.mid { background: #fff8e1; }
-  .total-table .other-items { font-size: 12px; color: #666; margin-top: 6px; line-height: 1.6; }
+  .person-card { border:1px solid #e0e0e0; border-radius:10px; margin-bottom:10px; overflow:hidden; }
+  .person-card .ph { padding:8px 12px; font-weight:700; font-size:14px; background:#f7f9fc; border-bottom:1px solid #e0e0e0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:4px; }
+  .person-card .ph .sum { font-size:11px; font-weight:400; color:#888; }
+  .person-card .pb { padding:8px 12px; }
+  .kpi-row { display:flex; gap:4px; flex-wrap:wrap; }
+  .kpi-item { padding:3px 8px; border-radius:5px; font-size:12px; background:#f0f0f0; }
+  .kpi-item.ok { background:#e8f5e9; }
+  .kpi-item.warn { background:#ffebee; }
+  .kpi-item.mid { background:#fff8e1; }
+  .other-items { font-size: 11px; color: #666; margin-top: 5px; line-height: 1.5; }
 
-  @media (max-width: 768px) {
-    .day-cols { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 768px) { .day-cols { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -99,9 +83,9 @@
   <div class="header">
     <div>
       <h1>📊 兰新团队 · 6月报量看板</h1>
-      <div class="date">🔄 更新于 2026年6月12日（周五）</div>
+      <div class="sub">统计周期：6月1日-12日 · 🔄 更新于 2026-06-12</div>
     </div>
-    <span class="badge">考核进度</span>
+    <span class="badge">💰 TV包年592元/笔 · 目标60笔</span>
   </div>
 
   <div class="alert alert-red">
@@ -122,8 +106,7 @@
         <tr><td style="text-align:left">🩺 套餐体检</td><td class="num">25户</td><td>200元</td><td class="warn">8元/户</td></tr>
         <tr class="highlight"><td style="text-align:left"><strong>合计</strong></td><td>—</td><td><strong>900元</strong></td><td>封顶900元</td></tr>
       </table>
-
-      <div style="margin-top:14px">
+      <div style="margin-top:12px">
         <div class="section-title">💰 提成分成（外呼:兰新=5:5）</div>
         <table>
           <tr><th>业务</th><th>总提成</th><th>外呼</th><th>兰新</th></tr>
@@ -132,187 +115,129 @@
           <tr><td style="text-align:left">学生证提成(垫付)</td><td>20元</td><td>10元</td><td>10元</td></tr>
           <tr><td style="text-align:left">学生证提成(不垫付)</td><td>40元</td><td>20元</td><td>20元</td></tr>
         </table>
-        <div style="font-size:12px;color:#888;margin-top:6px">ℹ️ 学生证总酬金=360元/笔（此为团队内提成分配）</div>
+        <div style="font-size:12px;color:#888;margin-top:4px">ℹ️ 学生证总酬金=360元/笔（此为团队内提成分配）</div>
       </div>
     </div>
 
     <!-- 团队动态 -->
     <div class="card">
-      <h2>🔔 团队动态</h2>
-      <div class="alert alert-yellow" style="margin:0">
+      <h2>🔔 团队动态 · 考核口径</h2>
+      <div class="alert alert-yellow" style="margin:0;margin-bottom:10px">
         <strong>外呼团队</strong>：6月10日起放假7天，重新招聘新人<br>
-        <span style="font-size:12px">放假期间外呼:兰新分成暂停，兰新按新方案执行</span>
+        <span style="font-size:12px">放假期间外呼:兰新分成暂停</span>
       </div>
-      <div style="margin-top:12px">
-        <div class="section-title">📋 考核口径</div>
-        <div style="font-size:13px;line-height:1.7">
-          <span class="tag tag-blue">📱 手机：含手机/AI手机/老年机（手表不计）</span>
-          <span class="tag tag-green">🌐 V网：商铺V网 / 惠农网</span>
-          <span class="tag tag-orange">⭐ 邀评：用后即评，参评率≥20%</span>
+      <div><span class="tag tag-blue">📱 手机：含手机/AI手机/老年机（手表不计）</span></div>
+      <div><span class="tag tag-green">🌐 V网：商铺V网 / 惠农网</span></div>
+      <div><span class="tag tag-orange">⭐ 邀评：用后即评，参评率≥20%</span></div>
+      <div style="margin-top:8px"><span class="tag tag-blue">舒捷</span> <span class="tag tag-green">美红</span> <span class="tag tag-orange">穆艳梅 🍒</span> <span class="tag tag-blue">董梦晶</span></div>
+    </div>
+
+  </div>
+
+  <!-- 📊 累计总量（全月1-12日） -->
+  <div class="card full" style="margin-bottom:16px">
+    <h2>📊 累计总量（6月1日-12日）</h2>
+
+    <div class="person-card">
+      <div class="ph"><span>舒捷（舒蓝莹）</span><span class="sum">📱3 🆔4 🌐3 🩺24 ⭐17</span></div>
+      <div class="pb">
+        <div class="kpi-row">
+          <span class="kpi-item warn">📱 3/25 (12%)</span>
+          <span class="kpi-item mid">🆔 4/20 (20%)</span>
+          <span class="kpi-item mid">🌐 3/12 (25%)</span>
+          <span class="kpi-item ok">🩺 24/25 (96% ✅)</span>
+          <span class="kpi-item mid">⭐ 17笔</span>
         </div>
-      </div>
-      <div style="margin-top:12px">
-        <div class="section-title">🧑‍🤝‍🧑 团队成员</div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;">
-          <span class="tag tag-blue">舒捷（舒蓝莹）</span>
-          <span class="tag tag-green">美红</span>
-          <span class="tag tag-orange">穆艳梅 🍒</span>
-          <span class="tag tag-blue">董梦晶 ：）</span>
-        </div>
+        <div class="other-items">📌 开户6、宽带6、路由器4、视频彩铃Plus17、19小福袋3、58畅享包升级版4、机顶盒2、和校园4、88会员11、政企V网2、118畅享包升级版1、空气炸锅1、电饭煲1</div>
       </div>
     </div>
 
-  </div><!-- /grid -->
+    <div class="person-card">
+      <div class="ph"><span>美红</span><span class="sum">📱9 🆔9 🌐7 🩺33 ⭐25</span></div>
+      <div class="pb">
+        <div class="kpi-row">
+          <span class="kpi-item mid">📱 9/25 (36%)</span>
+          <span class="kpi-item mid">🆔 9/20 (45%)</span>
+          <span class="kpi-item mid">🌐 7/12 (58%)</span>
+          <span class="kpi-item ok">🩺 33/25 (132% ✅✅)</span>
+          <span class="kpi-item ok">⭐ 25笔 ✅</span>
+        </div>
+        <div class="other-items">📌 开户12、宽带14、路由器13、视频彩铃Plus17、19小福袋8、高频烦扰12、短信免打扰14、和校园6、58畅享包4、畅享包升级版6、空气炸锅3、电饭煲2、携转1、138畅享包1、88会员4、机顶盒2、29小福袋1、29流量包1、套餐升档1</div>
+      </div>
+    </div>
 
-  <!-- 📊 累计总量 -->
+    <div class="person-card">
+      <div class="ph"><span>穆艳梅 🍒</span><span class="sum">📱2 🆔2 🌐0 🩺33 ⭐0</span></div>
+      <div class="pb">
+        <div class="kpi-row">
+          <span class="kpi-item warn">📱 2/25 (8%)</span>
+          <span class="kpi-item warn">🆔 2/20 (10%)</span>
+          <span class="kpi-item warn">🌐 0/12 (0% ⚠️)</span>
+          <span class="kpi-item ok">🩺 33/25 (132% ✅✅)</span>
+          <span class="kpi-item warn">⭐ 0笔 ⚠️</span>
+        </div>
+        <div class="other-items">📌 开户6、宽带18、路由器18、视频彩铃Plus20、19小福袋2、88会员21、58畅享包升级版1、机顶盒包年1、空气炸锅1、手表1</div>
+      </div>
+    </div>
+
+    <div class="person-card">
+      <div class="ph"><span>董梦晶 ：）</span><span class="sum">📱2 🆔0 🌐0 🩺0 ⭐0</span></div>
+      <div class="pb">
+        <div class="kpi-row">
+          <span class="kpi-item warn">📱 2/25 (8%)</span>
+          <span class="kpi-item warn">🆔 0/20 (0% ⚠️)</span>
+          <span class="kpi-item warn">🌐 0/12 (0% ⚠️)</span>
+          <span class="kpi-item warn">🩺 0/25 (0% ⚠️)</span>
+          <span class="kpi-item warn">⭐ 0笔 ⚠️</span>
+        </div>
+        <div class="other-items">📌 宽带8、路由器8、视频彩铃Plus14、FTTR11、19小福袋2、爱家畅享包2、58爱家畅享包升级版1、流量包1</div>
+      </div>
+    </div>
+
+    <div class="person-card" style="border:1px dashed #bbb">
+      <div class="ph" style="background:#fafafa"><span>亿尚DF（非考核成员）</span></div>
+      <div class="pb">
+        <div class="other-items">📱6 🆔6 🩺15 ⭐8 | 📌 开户10、19小福袋6、宽带6、路由器6、视频彩铃Plus11、和校园5、58畅享包升级版2、118畅享包2、118畅享包升级版2、158畅享包升级版1、千兆2、高频防护13、短信免打扰13</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 报量明细 -->
   <div class="card full" style="margin-bottom:16px">
-    <h2>📊 累计总量（6月1日-12日）</h2>
-    <div class="total-table">
+    <h2>📅 报量明细（分时段）</h2>
+    <div class="day-cols">
 
-      <div class="person-row">
-        <div class="person-header">
-          <span>舒捷（舒蓝莹）</span>
-          <span style="font-size:12px;font-weight:400;color:#888">手机2 | 学生证4 | V网1 | 体检20 | 邀评13</span>
-        </div>
-        <div class="person-body">
-          <div class="kpi-row">
-            <span class="kpi-item warn">📱 手机 2/25 (8%) ⚠️</span>
-            <span class="kpi-item mid">🆔 学生证 4/20 (20%)</span>
-            <span class="kpi-item warn">🌐 V网 1/12 (8%) ⚠️</span>
-            <span class="kpi-item ok">🩺 体检 20/25 (80%) ✅</span>
-            <span class="kpi-item mid">⭐ 邀评 13笔</span>
-          </div>
-          <div class="other-items">其他：开户5、58畅享包升级版3、19小福袋2、宽带4、路由器3、视频彩铃plus13、机顶盒1、和校园4、88会员11、政企V网1</div>
-        </div>
+      <div class="day-box">
+        <h4>6月1日-7日</h4>
+        <div class="person"><div class="name">舒捷</div><div class="items">📱1 🩺4 ⭐4</div><div class="items" style="color:#888">开户1、宽带2、路由器1、机顶盒1、19小福袋1、58畅享包升级版1、118畅享包升级版1、视频彩铃Plus4、空气炸锅1、电饭煲1、政企V网2</div></div>
+        <div class="person"><div class="name">美红</div><div class="items">📱5 🆔5 🌐3 🩺20 ⭐12</div><div class="items" style="color:#888">开户7、宽带9、路由器9、19小福袋5、畅享包升级版6、58畅享包2、和校园2、视频彩铃Plus10、空气炸锅2、电饭煲2</div></div>
+        <div class="person"><div class="name">穆艳梅 🍒</div><div class="items">📱1 🆔2 🩺17</div><div class="items" style="color:#888">开户3、宽带9、路由器9、19小福袋1、58畅享包升级版1、机顶盒包年1、视频彩铃Plus9、空气炸锅1</div></div>
+        <div class="person"><div class="name">董梦晶</div><div class="items">📱1</div><div class="items" style="color:#888">宽带5、路由器5、视频彩铃Plus12、FTTR9、19小福袋1、爱家畅享包2、58爱家畅享包升级版1、流量包1</div></div>
+        <div class="person"><div class="name">亿尚DF</div><div class="items">📱4 🆔4 🩺12 ⭐7</div><div class="items" style="color:#888">开户7、宽带6、路由器6、19小福袋4、58畅享包升级版1、118畅享包2、118畅享包升级版2、158畅享包升级版1、和校园3、视频彩铃Plus9、千兆2、高频防护10、短信免打扰10</div></div>
       </div>
 
-      <div class="person-row">
-        <div class="person-header">
-          <span>美红</span>
-          <span style="font-size:12px;font-weight:400;color:#888">手机4 | 学生证4 | V网4 | 体检13 | 邀评13</span>
-        </div>
-        <div class="person-body">
-          <div class="kpi-row">
-            <span class="kpi-item warn">📱 手机 4/25 (16%) ⚠️</span>
-            <span class="kpi-item mid">🆔 学生证 4/20 (20%)</span>
-            <span class="kpi-item mid">🌐 V网 4/12 (33%)</span>
-            <span class="kpi-item mid">🩺 体检 13/25 (52%)</span>
-            <span class="kpi-item mid">⭐ 邀评 13笔</span>
-          </div>
-          <div class="other-items">其他：开户5、19小福袋3、宽带5、路由器4、视频彩铃PLUS7、高频烦扰12、短信免打扰14、和校园4、携转1、138畅享包1、空气炸锅1、88会员4、机顶盒2、29小福袋1、29流量包1、58畅享包2、套餐升档1、畅享包升级版1</div>
-        </div>
+      <div class="day-box">
+        <h4>6月8日（周一）</h4>
+        <div class="person"><div class="name">舒捷</div><div class="items">📱1 🆔2 🌐1 🩺4 ⭐4</div><div class="items" style="color:#888">开户2、58畅享包升级版2、19小福袋1、宽带1、路由器1、视频彩铃plus2、政企V网1</div></div>
+        <div class="person"><div class="name">美红</div><div class="items">📱2 🆔2 🌐3 🩺6 ⭐5</div><div class="items" style="color:#888">携转1、和校园2、开户3、19小福袋2、宽带2、路由器2、138畅享包1、空气炸锅1、88会员1、视频彩铃PLUS2、高频烦扰5、短信免打扰6</div></div>
+        <div class="person"><div class="name">穆艳梅 🍒</div><div class="items">🩺4</div><div class="items" style="color:#888">开户1、手表1、宽带2、路由器2、视频彩铃Plus2</div></div>
       </div>
 
-      <div class="person-row">
-        <div class="person-header">
-          <span>穆艳梅 🍒</span>
-          <span style="font-size:12px;font-weight:400;color:#888">手机1 | 学生证0 | V网0 | 体检16 | 邀评0</span>
-        </div>
-        <div class="person-body">
-          <div class="kpi-row">
-            <span class="kpi-item warn">📱 手机 1/25 (4%) ⚠️</span>
-            <span class="kpi-item warn">🆔 学生证 0/20 (0%) ⚠️</span>
-            <span class="kpi-item warn">🌐 V网 0/12 (0%) ⚠️</span>
-            <span class="kpi-item">🩺 体检 16/25 (64%) ✅</span>
-            <span class="kpi-item warn">⭐ 邀评 0笔 ⚠️</span>
-          </div>
-          <div class="other-items">其他：开户3、宽带9、路由器9、视频彩铃Plus11、19小福袋1、88会员21、手表1</div>
-        </div>
-      </div>
-
-      <div class="person-row">
-        <div class="person-header">
-          <span>董梦晶 ：）</span>
-          <span style="font-size:12px;font-weight:400;color:#888">手机1 | 学生证0 | V网0 | 体检0 | 邀评0</span>
-        </div>
-        <div class="person-body">
-          <div class="kpi-row">
-            <span class="kpi-item warn">📱 手机 1/25 (4%) ⚠️</span>
-            <span class="kpi-item warn">🆔 学生证 0/20 (0%) ⚠️</span>
-            <span class="kpi-item warn">🌐 V网 0/12 (0%) ⚠️</span>
-            <span class="kpi-item warn">🩺 体检 0/25 (0%) ⚠️</span>
-            <span class="kpi-item warn">⭐ 邀评 0笔 ⚠️</span>
-          </div>
-          <div class="other-items">其他：宽带3、路由器3、19小福袋1、fttr2、视频彩铃Plus2</div>
-        </div>
-      </div>
-
-      <div class="person-row" style="border:1px dashed #ccc">
-        <div class="person-header" style="background:#fafafa">
-          <span>亿尚DF（非考核成员）</span>
-        </div>
-        <div class="person-body">
-          <div class="other-items">📱手机2 🆔学生证2 🩺套餐体检3 ⭐邀评1 | 开户3、19小福袋2、和校园2、58畅享包升级版1、高频防护3、短信免打扰3、视频彩铃PLUS2</div>
-        </div>
+      <div class="day-box">
+        <h4>6月9日-12日</h4>
+        <div class="person"><div class="name">舒捷</div><div class="items">📱1 🆔2 🩺16 ⭐9</div><div class="items" style="color:#888">开户3、宽带3、机顶盒1、路由器2、和校园4、88会员11、视频彩铃plus11、58畅享包升级版1、19小福袋1</div></div>
+        <div class="person"><div class="name">美红</div><div class="items">📱2 🆔2 🌐1 🩺7 ⭐8</div><div class="items" style="color:#888">开户2、宽带3、机顶盒2、路由器2、29小福袋1、29流量包1、19小福袋1、和校园2、58畅享包2、套餐升档1、畅享包升级版1、88会员3、视频彩铃PLUS5、高频烦扰7、短信免打扰8</div></div>
+        <div class="person"><div class="name">穆艳梅 🍒</div><div class="items">📱1 🩺12</div><div class="items" style="color:#888">开户2、宽带7、路由器7、19小福袋1、88会员21、视频彩玲Plus9</div></div>
+        <div class="person"><div class="name">董梦晶</div><div class="items">📱1</div><div class="items" style="color:#888">宽带3、路由器3、19小福袋1、fttr2、视频彩铃Plus2</div></div>
+        <div class="person"><div class="name">亿尚DF</div><div class="items">📱2 🆔2 🩺3 ⭐1</div><div class="items" style="color:#888">开户3、19小福袋2、和校园2、58畅享包升级版1、高频防护3、短信免打扰3、视频彩铃PLUS2</div></div>
       </div>
 
     </div>
   </div>
 
-  <!-- 报量明细 -->
+  <!-- TV包年 + 其他 -->
   <div class="grid">
-    <div class="card full">
-      <h2>📅 报量明细</h2>
-      <div class="day-cols">
-        <div class="day-box">
-          <h4>6月8日（周一）</h4>
-
-          <div class="person">
-            <div class="name">舒捷</div>
-            <div class="items">📱1 🆔2 🌐1 🩺4 ⭐4</div>
-            <div class="items" style="color:#888">开户2、58畅享包升级版2、19小福袋1、宽带1、路由器1、视频彩铃plus2、政企V网1</div>
-          </div>
-
-          <div class="person">
-            <div class="name">美红</div>
-            <div class="items">📱2 🆔2 🌐3 🩺6 ⭐5</div>
-            <div class="items" style="color:#888">携转1、和校园2、开户3、19小福袋2、宽带2、路由器2、138畅享包1、空气炸锅1、88会员1、视频彩铃PLUS2、高频烦扰5、短信免打扰6</div>
-          </div>
-
-          <div class="person">
-            <div class="name">穆艳梅 🍒</div>
-            <div class="items">🩺4</div>
-            <div class="items" style="color:#888">开户1、手表1、宽带2、路由器2、视频彩铃Plus2</div>
-          </div>
-        </div>
-
-        <div class="day-box">
-          <h4>6月9日-12日（汇总）</h4>
-
-          <div class="person">
-            <div class="name">舒捷</div>
-            <div class="items">📱1 🆔2 🩺16 ⭐9</div>
-            <div class="items" style="color:#888">开户3、宽带3、机顶盒1、路由器2、和校园4、88会员11、视频彩铃plus11、58畅享包升级版1、19小福袋1</div>
-          </div>
-
-          <div class="person">
-            <div class="name">美红</div>
-            <div class="items">📱2 🆔2 🌐1 🩺7 ⭐8</div>
-            <div class="items" style="color:#888">开户2、宽带3、机顶盒2、路由器2、29小福袋1、29流量包1、19小福袋1、和校园2、58畅享包2、套餐升档1、畅享包升级版1、88会员3、视频彩铃PLUS5、高频烦扰7、短信免打扰8</div>
-          </div>
-
-          <div class="person">
-            <div class="name">穆艳梅 🍒</div>
-            <div class="items">📱1 🩺12</div>
-            <div class="items" style="color:#888">开户2、宽带7、路由器7、19小福袋1、88会员21、视频彩玲Plus9</div>
-          </div>
-
-          <div class="person">
-            <div class="name">董梦晶</div>
-            <div class="items">📱1</div>
-            <div class="items" style="color:#888">宽带3、路由器3、19小福袋1、fttr2、视频彩铃Plus2</div>
-          </div>
-
-          <div class="person">
-            <div class="name">亿尚DF</div>
-            <div class="items">📱2 🆔2 🩺3 ⭐1</div>
-            <div class="items" style="color:#888">开户3、19小福袋2、和校园2、58畅享包升级版1、高频防护3、短信免打扰3、视频彩铃PLUS2</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- TV包年 -->
     <div class="tv-card">
       <h2>📺 TV包年酬金专项（por500元包年）</h2>
       <table>
@@ -329,20 +254,17 @@
         <div class="stat-item"><div class="num">—</div><div class="lbl">缺口</div></div>
         <div class="stat-item"><div class="num">92</div><div class="lbl">剩余酬金（元/笔）</div></div>
       </div>
-      <div style="font-size:12px;opacity:.8;margin-top:10px">💡 宽带升级奖拿不到补发 · 不稳定激励另算</div>
+      <div style="font-size:12px;opacity:.8;margin-top:8px">💡 宽带升级奖拿不到补发 · 不稳定激励另算</div>
     </div>
 
-    <!-- 大卖场+京东 -->
     <div class="card">
       <h2>🏪 大卖场+京东 · 轻合约缺口</h2>
       <div class="alert alert-red" style="margin:0">
-        <strong>大卖场</strong>：差 <strong>4笔</strong><br>
-        <strong>京东</strong>：差 <strong>1笔</strong><br>
+        <strong>大卖场</strong>：差 <strong>4笔</strong><br><strong>京东</strong>：差 <strong>1笔</strong><br>
         <span style="font-size:12px">需每日店长群通报直至达标</span>
       </div>
     </div>
 
-    <!-- 待办 -->
     <div class="card">
       <h2>📌 待办事项</h2>
       <div class="todo-item"><div class="todo-dot red"></div><div>💼 <strong>催普江林</strong> — 工资报表发给财务</div></div>
@@ -350,7 +272,6 @@
       <div class="todo-item"><div class="todo-dot yellow"></div><div>📺 <strong>TV包年60笔</strong> — 报量时统计缺口</div></div>
     </div>
 
-    <!-- 星级协同 -->
     <div class="card full">
       <h2>⭐ 星级协同 & 认筹（截至5月29日）</h2>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
@@ -379,13 +300,10 @@
           </table>
         </div>
       </div>
-      <div style="font-size:12px;color:#888;margin-top:12px;line-height:1.6">⚠️ 兰新：泛升档（88会员月包、爱家畅享包升级版、移动安全管家防诈基础版）<br>⚠️ 鑫盛：终端合约率不达标预估会被5折</div>
     </div>
   </div>
 
-  <div style="text-align:center;padding:20px;color:#999;font-size:12px">
-    🦐 兰新团队报量看板 · 2026-06-12
-  </div>
+  <div style="text-align:center;padding:16px;color:#999;font-size:12px">🦐 兰新团队报量看板 · 2026-06-12 · 含6月1日-12日全部数据</div>
 
 </div>
 </body>
