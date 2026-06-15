@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>六月三项重点冲刺</title>
+<title>六月两项重点冲刺</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, 'Microsoft YaHei', sans-serif; background: #f0f2f5; color: #333; padding: 20px; }
@@ -16,7 +16,7 @@
   .card { background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
   .card h2 { font-size: 18px; font-weight: 700; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #e8edf2; }
 
-  .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
   .stat-card { border-radius: 12px; padding: 20px; text-align: center; color: #fff; }
   .stat-card .icon { font-size: 36px; margin-bottom: 6px; }
   .stat-card .lbl { font-size: 14px; opacity: .9; margin-bottom: 6px; }
@@ -26,6 +26,7 @@
   .stat-red { background: linear-gradient(135deg, #e53935, #b71c1c); }
   .stat-orange { background: linear-gradient(135deg, #fb8c00, #e65100); }
   .stat-blue { background: linear-gradient(135deg, #1e88e5, #0d47a1); }
+  .stat-green { background: linear-gradient(135deg, #43a047, #2e7d32); }
 
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   th, td { padding: 8px 10px; text-align: center; border-bottom: 1px solid #eee; }
@@ -37,6 +38,7 @@
 
   .alert { padding: 10px 14px; border-radius: 8px; margin-bottom: 10px; font-size: 13px; }
   .alert-red { background: #ffebee; border-left: 4px solid #e53935; }
+  .alert-green { background: #e8f5e9; border-left: 4px solid #43a047; }
 
   .person-card { border:1px solid #e0e0e0; border-radius:10px; margin-bottom:8px; overflow:hidden; }
   .person-card .ph { padding:8px 12px; font-weight:700; font-size:14px; border-bottom:1px solid #e0e0e0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:4px; }
@@ -50,8 +52,8 @@
 
   <div class="header">
     <div>
-      <h1>🚀 六月三项冲刺</h1>
-      <div class="sub">电视pro · 灵犀屏 · 88会员 · 更新于 2026-06-14 · 考核方案已调整</div>
+      <h1>🚀 六月两项冲刺</h1>
+      <div class="sub">电视pro · 灵犀屏 · 更新于 2026-06-15</div>
     </div>
     <span class="badge">目标追踪 · 每日缺口</span>
   </div>
@@ -67,44 +69,43 @@
     <div class="stat-card stat-orange">
       <div class="icon">🖥️</div>
       <div class="lbl">灵犀屏</div>
-      <div class="num">0</div>
+      <div class="num">7</div>
       <div class="sub-num">/ 50 目标</div>
-      <div class="gap warn" style="color:#ffcc80">缺口：50 ⚠️</div>
-    </div>
-    <div class="stat-card stat-blue">
-      <div class="icon">🏅</div>
-      <div class="lbl">88会员</div>
-      <div class="num">15</div>
-      <div class="sub-num">/ 200 目标</div>
-      <div class="gap">缺口：185</div>
+      <div class="gap" style="color:#ffcc80">缺口：43 ⚠️</div>
     </div>
   </div>
 
-  <div class="alert" style="background:#ffebee;border-left:4px solid #e53935;padding:14px 18px;margin-bottom:16px;border-radius:10px;font-size:14px">
-    <strong>🚨 灵犀屏今明两天突击（6/14-6/15）</strong><br>
-    <span style="font-size:13px">50个目标要在两天内搞定！每天报量重点通报灵犀屏进度</span>
-  </div>  <div class="card">
+  <div class="alert alert-green" style="padding:14px 18px;margin-bottom:16px;border-radius:10px;font-size:14px">
+    ✅ <strong>88会员</strong>：6月已做 <strong>900笔</strong>，县区公司单价 <strong>17元/笔</strong>，不再纳入冲刺追踪。
+  </div>
+
+  <div class="alert" style="background:#fff8e1;border-left:4px solid #ffa000;padding:14px 18px;margin-bottom:16px;border-radius:10px;font-size:14px">
+    <strong>🚨 灵犀屏今天（6/15）最后一天突击！</strong><br>
+    <span style="font-size:13px">已做7个，缺口43个。今天内完成！</span>
+  </div>
+
+  <div class="card">
     <h2>📋 每日缺口追踪</h2>
     <table>
-      <tr><th>日期</th><th>📺 电视pro</th><th>📺 累计</th><th>🖥️ 灵犀屏</th><th>🖥️ 累计</th><th>🏅 88会员</th><th>🏅 累计</th></tr>
-      <tr><td>6/12-13</td><td>3</td><td class="num">3</td><td class="warn">0</td><td class="num warn">0</td><td>15</td><td class="num">15</td></tr>
-      <tr><td>6/14</td><td>—</td><td>3</td><td>—</td><td>0</td><td>—</td><td>15</td></tr>
-      <tr><td>6/15</td><td>—</td><td>3</td><td>—</td><td>0</td><td>—</td><td>15</td></tr>
-      <tr><td>6/16</td><td>—</td><td>3</td><td>—</td><td>0</td><td>—</td><td>15</td></tr>
-      <tr><td>6/17</td><td>—</td><td>3</td><td>—</td><td>0</td><td>—</td><td>15</td></tr>
-      <tr><td>6/18</td><td>—</td><td>3</td><td>—</td><td>0</td><td>—</td><td>15</td></tr>
-      <tr><td>6/19</td><td>—</td><td>3</td><td>—</td><td>0</td><td>—</td><td>15</td></tr>
-      <tr><td>6/20</td><td>—</td><td>3</td><td>—</td><td>0</td><td>—</td><td>15</td></tr>
-      <tr><td>6/21</td><td>—</td><td>3</td><td>—</td><td>0</td><td>—</td><td>15</td></tr>
-      <tr><td>6/22</td><td>—</td><td>3</td><td>—</td><td>0</td><td>—</td><td>15</td></tr>
-      <tr><td>6/23</td><td>—</td><td>3</td><td>—</td><td>0</td><td>—</td><td>15</td></tr>
-      <tr><td>6/24</td><td>—</td><td>3</td><td>—</td><td>0</td><td>—</td><td>15</td></tr>
-      <tr><td>6/25</td><td>—</td><td>3</td><td>—</td><td>0</td><td>—</td><td>15</td></tr>
-      <tr><td>6/26</td><td>—</td><td>3</td><td>—</td><td>0</td><td>—</td><td>15</td></tr>
-      <tr><td>6/27</td><td>—</td><td>3</td><td>—</td><td>0</td><td>—</td><td>15</td></tr>
-      <tr><td>6/28</td><td>—</td><td>3</td><td>—</td><td>0</td><td>—</td><td>15</td></tr>
-      <tr><td>6/29</td><td>—</td><td>3</td><td>—</td><td>0</td><td>—</td><td>15</td></tr>
-      <tr><td>6/30</td><td>—</td><td>3</td><td>—</td><td>0</td><td>—</td><td>15</td></tr>
+      <tr><th>日期</th><th>📺 电视pro</th><th>📺 累计</th><th>🖥️ 灵犀屏</th><th>🖥️ 累计</th></tr>
+      <tr><td>6/12-13</td><td>3</td><td class="num">3</td><td class="warn">0</td><td class="num warn">0</td></tr>
+      <tr><td>6/14</td><td>0</td><td>3</td><td class="num">7</td><td class="num">7</td></tr>
+      <tr><td>6/15</td><td>—</td><td>3</td><td>—</td><td>7</td></tr>
+      <tr><td>6/16</td><td>—</td><td>3</td><td>—</td><td>7</td></tr>
+      <tr><td>6/17</td><td>—</td><td>3</td><td>—</td><td>7</td></tr>
+      <tr><td>6/18</td><td>—</td><td>3</td><td>—</td><td>7</td></tr>
+      <tr><td>6/19</td><td>—</td><td>3</td><td>—</td><td>7</td></tr>
+      <tr><td>6/20</td><td>—</td><td>3</td><td>—</td><td>7</td></tr>
+      <tr><td>6/21</td><td>—</td><td>3</td><td>—</td><td>7</td></tr>
+      <tr><td>6/22</td><td>—</td><td>3</td><td>—</td><td>7</td></tr>
+      <tr><td>6/23</td><td>—</td><td>3</td><td>—</td><td>7</td></tr>
+      <tr><td>6/24</td><td>—</td><td>3</td><td>—</td><td>7</td></tr>
+      <tr><td>6/25</td><td>—</td><td>3</td><td>—</td><td>7</td></tr>
+      <tr><td>6/26</td><td>—</td><td>3</td><td>—</td><td>7</td></tr>
+      <tr><td>6/27</td><td>—</td><td>3</td><td>—</td><td>7</td></tr>
+      <tr><td>6/28</td><td>—</td><td>3</td><td>—</td><td>7</td></tr>
+      <tr><td>6/29</td><td>—</td><td>3</td><td>—</td><td>7</td></tr>
+      <tr><td>6/30</td><td>—</td><td>3</td><td>—</td><td>7</td></tr>
     </table>
   </div>
 
@@ -112,13 +113,15 @@
     <h2>👥 个人目标分配（均分）</h2>
     <table>
       <tr><th>成员</th><th>📺 电视pro</th><th>🖥️ 灵犀屏</th></tr>
-      <tr><td>美红 🏅</td><td class="num">15笔</td><td class="num">13个</td></tr>
-      <tr><td>舒蓝莹 🏅</td><td class="num">15笔</td><td class="num">13个</td></tr>
-      <tr><td>董梦晶 🏅</td><td class="num">15笔</td><td class="num">12个</td></tr>
-      <tr><td>穆艳梅 🍒 🏅</td><td class="num">15笔</td><td class="num">12个</td></tr>
-      <tr class="highlight"><td><strong>团队合计</strong></td><td><strong>60笔</strong></td><td><strong>50个</strong></td></tr>
+      <tr><td>美红 🏅</td><td class="num">15笔</td><td class="num">13个（已做5）</td></tr>
+      <tr><td>舒蓝莹 🏅</td><td class="num">15笔</td><td class="num">13个（已做0）</td></tr>
+      <tr><td>董梦晶 🏅</td><td class="num">15笔</td><td class="num">12个（已做1）</td></tr>
+      <tr><td>穆艳梅 🍒 🏅</td><td class="num">15笔</td><td class="num">12个（已做1）</td></tr>
+      <tr style="background:#fff8e1"><td><strong>团队合计</strong></td><td><strong>60笔</strong>（已做3）</td><td><strong>50个</strong>（已做7）</td></tr>
     </table>
-  </div>  <div class="card">
+  </div>
+
+  <div class="card">
     <h2>📺 电视pro（TV包年·por500）明细</h2>
     <div class="person-card" style="border-color:#f57c00">
       <div class="ph" style="background:#fff3e0"><span>完成明细</span><span class="sub">3笔 / 60笔</span></div>
@@ -134,30 +137,35 @@
   </div>
 
   <div class="card">
-    <h2>🏅 88会员 — 2元/笔</h2>
-    <div class="person-card" style="border-color:#1e88e5">
-      <div class="ph" style="background:#e3f2fd"><span>完成明细</span><span class="sub">15笔 / 200笔</span></div>
-      <div class="pb">
-        <strong>6/12-13：</strong><br>
-        · 舒蓝莹：12笔<br>
-        · 美红：3笔（第1批1笔 + 第2批2笔）
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
     <h2>🖥️ 灵犀屏 — 326.4元/台</h2>
     <div style="background:#e8f5e9;border-left:4px solid #43a047;padding:12px 16px;border-radius:8px;margin-bottom:12px;font-size:13px">
       <strong>💰 渠道激励：326.4元/台</strong><br>
       积分+3产能+宽带认筹计1(86.4元) · 生效第3-8个月平均发放（约54.4元/月）<br>
       <strong>提成：</strong>50~60元/台（待定）
     </div>
-    <div class="alert alert-red">
-      暂无报量，缺口 50 个 ⚠️ · 今明两天突击！
+    <div class="person-card" style="border-color:#fb8c00">
+      <div class="ph" style="background:#fff8e1"><span>6月14日报量</span><span class="sub">7个</span></div>
+      <div class="pb">
+        · 美红：5个<br>
+        · 董梦晶（亿尚DF）：1个<br>
+        · 穆艳梅🍒：1个<br>
+        <br>
+        <strong>今天（6/15）最后一天突击，缺口43个！</strong>
+      </div>
     </div>
   </div>
 
-  <div style="text-align:center;padding:16px;color:#999;font-size:12px">🦐 三项重点冲刺看板 · 永久链接 · 每日自动更新</div>
+  <div class="card">
+    <h2>🏅 88会员</h2>
+    <div class="alert alert-green" style="margin:0">
+      ✅ 6月已完成 <strong>900笔</strong>，县区公司单价 <strong>17元/笔</strong>，不再纳入冲刺追踪。
+    </div>
+    <div style="font-size:13px;color:#555;margin-top:10px">
+      总金额：900 × 17 = <strong>15,300元</strong>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:16px;color:#999;font-size:12px">🦐 六月重点冲刺看板 · 2026-06-15更新</div>
 
 </div>
 </body>
