@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新平 — AI鼠标追踪</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'Microsoft YaHei', sans-serif; background: #f0f2f5; color: #333; padding: 20px; }
+  .container { max-width: 800px; margin: 0 auto; }
+  .header { background: linear-gradient(135deg, #6a1b9a, #4a148c); color: #fff; padding: 24px 32px; border-radius: 16px; margin-bottom: 20px; }
+  .header h1 { font-size: 24px; font-weight: 700; }
+  .header .sub { font-size: 13px; opacity: .8; margin-top: 4px; }
+  .card { background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+  .card h2 { font-size: 17px; font-weight: 600; color: #6a1b9a; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #e8edf2; }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .stat-card { border-radius: 12px; padding: 20px; text-align: center; color: #fff; }
+  .stat-card .icon { font-size: 32px; margin-bottom: 4px; }
+  .stat-card .lbl { font-size: 13px; opacity: .9; margin-bottom: 4px; }
+  .stat-card .num { font-size: 36px; font-weight: 800; }
+  .stat-purple { background: linear-gradient(135deg, #7b1fa2, #4a148c); }
+  .stat-grey { background: linear-gradient(135deg, #78909c, #455a64); }
+  .alert { padding: 12px 16px; border-radius: 8px; font-size: 13px; }
+  .alert-yellow { background: #fff8e1; border-left: 4px solid #ffa000; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 8px 10px; text-align: center; border-bottom: 1px solid #eee; }
+  th { background: #f3e5f5; font-weight: 600; color: #555; font-size: 12px; }
+  td:first-child { text-align: left; }
+  .todo-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 8px; flex-shrink: 0; }
+  .todo-dot.yellow { background: #ffa000; }
+  .todo-dot.purple { background: #7b1fa2; }
+  .todo-item { display: flex; align-items: center; gap: 8px; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 13px; }
+  .todo-item:last-child { border: none; }
+  @media (max-width: 768px) { .stat-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>🖱️ 新平 · AI鼠标任务</h1>
+    <div class="sub">建立于 2026-06-19 · 收益30元/笔 · 🟡 尚未落实</div>
+  </div>
+
+  <div class="alert alert-yellow" style="margin-bottom:16px">
+    <strong>⚠️ 注意：</strong>收益30元/笔尚未落实，待确认
+  </div>
+
+  <div class="stat-grid" style="margin-bottom:16px">
+    <div class="stat-card stat-purple">
+      <div class="icon">🎯</div>
+      <div class="lbl">目标</div>
+      <div class="num">150</div>
+      <div style="font-size:13px;opacity:.85;margin-top:4px">笔</div>
+    </div>
+    <div class="stat-card stat-grey">
+      <div class="icon">💰</div>
+      <div class="lbl">预估收益</div>
+      <div class="num">30</div>
+      <div style="font-size:13px;opacity:.85;margin-top:4px">元/笔</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📋 任务概览</h2>
+    <table>
+      <tr><th style="width:30%">项目</th><th>内容</th></tr>
+      <tr><td>业务名称</td><td>AI鼠标</td></tr>
+      <tr><td>目标量</td><td>150笔</td></tr>
+      <tr><td>收益</td><td>30元/笔（🟡未落实）</td></tr>
+      <tr><td>落实状态</td><td><span style="color:#ffa000;font-weight:600">待确认</span></td></tr>
+      <tr><td>开始时间</td><td>2026-06-19</td></tr>
+      <tr><td>进度</td><td>0 / 150（0%）</td></tr>
+      <tr><td style="color:#888">备注</td><td style="color:#888">收益确认后更新</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>📌 待办</h2>
+    <div class="todo-item"><div class="todo-dot yellow"></div>确认AI鼠标收益30元/笔是否落实</div>
+    <div class="todo-item"><div class="todo-dot purple"></div>制定新平团队AI鼠标推进计划</div>
+    <div class="todo-item"><div class="todo-dot purple"></div>跟踪报量，每日更新进度</div>
+  </div>
+
+  <div class="card">
+    <h2>📅 报量明细</h2>
+    <div style="text-align:center;padding:20px;color:#999;font-size:14px">
+      📭 暂无报量数据<br>
+      <span style="font-size:12px">首日报量日期：2026-06-19</span>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:16px;color:#999;font-size:12px">🦐 新平 · AI鼠标任务看板 · 2026-06-19 · 状态：待落实</div>
+
+</div>
+</body>
+</html>
