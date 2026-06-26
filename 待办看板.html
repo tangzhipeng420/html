@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>待办看板 · 智能排程</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f0f2f5;color:#333;padding:16px}
+  .container{max-width:800px;margin:0 auto}
+  .header{background:linear-gradient(135deg,#1a237e,#283593);color:#fff;padding:20px 24px;border-radius:14px;margin-bottom:16px}
+  .header h1{font-size:22px;font-weight:700}
+  .header .sub{font-size:13px;opacity:.8;margin-top:4px}
+  .header .time{font-size:12px;opacity:.6;margin-top:4px}
+
+  .section{margin-bottom:14px}
+  .section-title{font-size:14px;font-weight:700;padding:8px 12px;border-radius:8px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+  .section-title .count{font-size:12px;font-weight:400;opacity:.7}
+  .section-urgent{background:#ffebee;color:#c62828}
+  .section-normal{background:#fff8e1;color:#e65100}
+  .section-done{background:#e8f5e9;color:#2e7d32}
+
+  .card{background:#fff;border-radius:10px;padding:14px 16px;margin-bottom:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-left:4px solid}
+  .card.urgent{border-color:#e53935}
+  .card.normal{border-color:#ffa000}
+  .card.done{border-color:#43a047;opacity:.7}
+  
+  .card .title{font-size:15px;font-weight:600;margin-bottom:4px}
+  .card .title .days{font-size:12px;font-weight:400;padding:1px 8px;border-radius:10px;margin-left:8px}
+  .card .title .days.danger{background:#ffebee;color:#c62828}
+  .card .title .days.warn{background:#fff8e1;color:#e65100}
+  .card .title .days.ok{background:#e8f5e9;color:#2e7d32}
+  
+  .card .detail{font-size:12px;color:#888;line-height:1.6}
+  .card .detail .tag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;margin-right:4px}
+  .card .detail .tag.t-red{background:#ffebee;color:#c62828}
+  .card .detail .tag.t-yellow{background:#fff8e1;color:#e65100}
+  .card .detail .tag.t-green{background:#e8f5e9;color:#2e7d32}
+  .card .detail .tag.t-blue{background:#e3f2fd;color:#1565c0}
+
+  .footer{text-align:center;padding:12px;color:#999;font-size:12px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>📋 待办看板</h1>
+  <div class="sub">自动分级 · 智能排程 · 到期提醒</div>
+  <div class="time">🔄 更新于 2026-06-26 16:20</div>
+</div>
+
+<!-- 🔴 紧急 -->
+<div class="section">
+<div class="section-title section-urgent">
+  🔴 紧急 <span class="count">2项</span>
+</div>
+
+<div class="card urgent">
+  <div class="title">🏪 鑫盛终端缺口11台 <span class="days danger">⚠️ 6月底截止</span></div>
+  <div class="detail">目标60台，已录49台，缺口11台 · 剩4天</div>
+</div>
+
+<div class="card urgent">
+  <div class="title">🖨️ 打印机清库 <span class="days danger">⚠️ 7月内</span></div>
+  <div class="detail">剩4台 · 编码1001391405 · 5折活动 · 客户自取+装维安装</div>
+</div>
+</div>
+
+<!-- 🟡 正常 -->
+<div class="section">
+<div class="section-title section-normal">
+  🟡 进行中 <span class="count">3项</span>
+</div>
+
+<div class="card normal">
+  <div class="title">💻 云电脑+token内部员工活动 <span class="days warn">🔄 推进中</span></div>
+  <div class="detail">方案一：云电脑25元+token36元=61元/月 · 减免4个月</div>
+</div>
+
+<div class="card normal">
+  <div class="title">📡 FTTR每天8个 <span class="days warn">📈 已超53笔</span></div>
+  <div class="detail">6月已累计53笔（超额23笔）· 持续推进</div>
+</div>
+
+<div class="card normal">
+  <div class="title">🍒 穆艳梅灵犀屏 <span class="days warn">差1个达标</span></div>
+  <div class="detail">11/12(92%) · 再做1个灵犀屏就达标了</div>
+</div>
+</div>
+
+<!-- 🟢 已归档 -->
+<div class="section">
+<div class="section-title section-done">
+  🟢 已完成 <span class="count">5项</span>
+</div>
+
+<div class="card done">
+  <div class="title">🌐 全球通宽带</div>
+  <div class="detail">累计88条 · ✅ 已完成</div>
+</div>
+
+<div class="card done">
+  <div class="title">🖥️ 灵犀屏冲刺</div>
+  <div class="detail">累计87/50(174%) · ✅ 超额完成</div>
+</div>
+
+<div class="card done">
+  <div class="title">🏅 88会员</div>
+  <div class="detail">900笔 · ✅ 已完成</div>
+</div>
+</div>
+
+<div class="footer">🦐 智能待办排程 · 每日自动更新</div>
+
+</div>
+</body>
+</html>
