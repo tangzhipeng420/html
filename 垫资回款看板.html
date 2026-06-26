@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>垫资与回款记录</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f0f2f5;color:#333;padding:16px}
+  .container{max-width:800px;margin:0 auto}
+  .header{background:linear-gradient(135deg,#e65100,#bf360c);color:#fff;padding:20px 24px;border-radius:14px;margin-bottom:16px}
+  .header h1{font-size:22px;font-weight:700}
+  .header .sub{font-size:13px;opacity:.8;margin-top:4px}
+
+  .card{background:#fff;border-radius:12px;padding:20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  .card h2{font-size:17px;font-weight:600;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #e8edf2}
+  .card h2 .tag{font-size:12px;font-weight:400;padding:2px 8px;border-radius:10px;margin-left:8px}
+
+  .row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:14px}
+  .row:last-child{border:none}
+  .row .label{color:#666}
+  .row .value{font-weight:600}
+  .row .value.warn{color:#e53935}
+  .row .value.ok{color:#43a047}
+  .row .value.highlight{color:#e65100;font-size:16px}
+
+  .alert{padding:10px 14px;border-radius:8px;margin-bottom:12px;font-size:13px;border-left:4px solid}
+  .alert-orange{background:#fff3e0;border-color:#e65100}
+  .alert-green{background:#e8f5e9;border-color:#43a047}
+  .alert-red{background:#ffebee;border-color:#e53935}
+
+  .small{font-size:12px;color:#999;margin-top:4px}
+  .footer{text-align:center;padding:12px;color:#999;font-size:12px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>💰 垫资与回款记录</h1>
+  <div class="sub">需要记得哪些业务垫了钱、周期多长 · 更新于 2026-06-26</div>
+</div>
+
+<div class="alert alert-orange">
+  <strong>⚠️ 不是算酬金，是记垫资业务和回款周期，方便几个月后回头查</strong>
+</div>
+
+<div class="card">
+  <h2>📡 FTTR 360元年包 <span class="tag" style="background:#fff3e0;color:#e65100">已做53笔</span></h2>
+  <div class="row"><span class="label">总收益</span><span class="value">460元/笔</span></div>
+  <div class="row"><span class="label">垫资</span><span class="value warn">360元/笔</span></div>
+  <div class="row"><span class="label">净得</span><span class="value highlight">100元/笔</span></div>
+  <div class="row"><span class="label">6月累计</span><span class="value ok">53笔 ✅（超额23笔）</span></div>
+  <div class="small">季度否决项，已完成</div>
+</div>
+
+<div class="card">
+  <h2>🏅 88会员 <span class="tag" style="background:#e8f5e9;color:#2e7d32">已完成</span></h2>
+  <div class="row"><span class="label">垫资</span><span class="value warn">88元/笔</span></div>
+  <div class="row"><span class="label">收益</span><span class="value">17元/笔</span></div>
+  <div class="row"><span class="label">6月累计</span><span class="value ok">900笔 ✅</span></div>
+</div>
+
+<div class="card">
+  <h2>🎁 轻合约+购机礼包（铂金会员版）</h2>
+  <div class="row"><span class="label">渠道垫付</span><span class="value warn">130元</span></div>
+  <div class="row"><span class="label">净得</span><span class="value highlight">89元</span></div>
+  <div class="row"><span class="label">认筹计</span><span class="value">泛升档3</span></div>
+</div>
+
+<div class="card">
+  <h2>🖥️ 灵犀屏 <span class="tag" style="background:#e3f2fd;color:#1565c0">周期长</span></h2>
+  <div class="row"><span class="label">渠道激励</span><span class="value">326.4元/台</span></div>
+  <div class="row"><span class="label">发放方式</span><span class="value warn">生效第3-8个月平均发放</span></div>
+  <div class="row" style="border:none"><span class="label">约</span><span class="value">54.4元/月 × 6个月</span></div>
+  <div class="row"><span class="label">提成（待定）</span><span class="value">50-60元/台</span></div>
+  <div class="row"><span class="label">累计</span><span class="value ok">87个（6月）✅</span></div>
+  <div class="small">⚠️ 3个月后才开始回款</div>
+</div>
+
+<div class="card">
+  <h2>📺 电视pro（TV包年） <span class="tag" style="background:#fff3e0;color:#e65100">累计12笔</span></h2>
+  <div class="row"><span class="label">合计到手</span><span class="value highlight">592元/笔</span></div>
+  <div class="row"><span class="label">宽带升级奖</span><span class="value warn">30元（客户拿不到由我们补）</span></div>
+  <div class="row"><span class="label">答应的60笔后剩余</span><span class="value">92元/笔</span></div>
+</div>
+
+<div class="card">
+  <h2>📱 AI定制手机小福袋</h2>
+  <div class="row"><span class="label">1档（19元/36月）</span><span class="value">首付300元 · 渠道激励147元</span></div>
+  <div class="row"><span class="label">5档（59元/36月）</span><span class="value">首付300元 · 渠道激励363元</span></div>
+  <div class="small">⚠️ 合约36个月，首付客户出</div>
+</div>
+
+<div class="card">
+  <h2>🖨️ 打印机清库</h2>
+  <div class="row"><span class="label">活动价</span><span class="value">25元（5折）</span></div>
+  <div class="row"><span class="label">剩余</span><span class="value warn">4台，7月内清完</span></div>
+  <div class="small">编码: 1001391405 · 客户自取+装维安装</div>
+</div>
+
+<div class="footer">🦐 垫资与回款看板 · 2026-06-26</div>
+
+</div>
+</body>
+</html>
