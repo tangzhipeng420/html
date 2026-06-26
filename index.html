@@ -3,140 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>金虎团队 · 作战看板</title>
+<title>数据看板 · 导航</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: #f0f2f5;
-    color: #1a1a2e;
-    padding: 24px 16px;
-  }
-  .container { max-width: 700px; margin: 0 auto; }
-  .header {
-    background: linear-gradient(135deg, #1a1a2e, #0f3460);
-    color: #fff;
-    border-radius: 16px;
-    padding: 28px 24px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  .header h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
-  .header p { font-size: 14px; opacity: 0.7; }
-  .card {
-    background: #fff;
-    border-radius: 14px;
-    padding: 18px 20px;
-    margin-bottom: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    text-decoration: none;
-    color: #1a1a2e;
-    transition: transform 0.15s, box-shadow 0.15s;
-  }
-  .card:active { transform: scale(0.98); }
-  .card .icon { font-size: 32px; width: 48px; text-align: center; }
-  .card .info { flex: 1; }
-  .card .info .title { font-size: 16px; font-weight: 600; }
-  .card .info .desc { font-size: 13px; color: #6b7280; margin-top: 2px; }
-  .card .arrow { font-size: 20px; color: #9ca3af; }
-  .footer { text-align: center; font-size: 12px; color: #94a3b8; padding: 20px 0; }
-
-  .badge-new {
-    display: inline-block;
-    background: #e53935;
-    color: #fff;
-    font-size: 10px;
-    padding: 1px 6px;
-    border-radius: 8px;
-    margin-left: 6px;
-    vertical-align: top;
-    font-weight: 600;
-  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f0f2f5;color:#333;padding:16px}
+  .container{max-width:600px;margin:0 auto}
+  .header{background:linear-gradient(135deg,#0d47a1,#1a237e);color:#fff;padding:24px;border-radius:14px;margin-bottom:20px;text-align:center}
+  .header h1{font-size:24px;font-weight:700;margin-bottom:4px}
+  .header p{font-size:13px;opacity:.7}
+  
+  .card{background:#fff;border-radius:12px;padding:16px 18px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.06);display:flex;align-items:center;gap:14px;cursor:pointer;text-decoration:none;color:#333;transition:.15s}
+  .card:hover{box-shadow:0 2px 8px rgba(0,0,0,.12);transform:translateY(-1px)}
+  .card .icon{font-size:28px;width:44px;text-align:center}
+  .card .info{flex:1}
+  .card .info .title{font-size:15px;font-weight:600}
+  .card .info .desc{font-size:12px;color:#888;margin-top:2px}
+  .card .arrow{color:#bbb;font-size:18px}
+  
+  .footer{text-align:center;padding:16px;color:#999;font-size:12px}
 </style>
 </head>
 <body>
 <div class="container">
-  <div class="header">
-    <h1>📊 金虎团队 · 作战看板</h1>
-    <p>由虾 🦐 自动生成 · 永久链接</p>
+
+<div class="header">
+  <h1>📊 数据看板</h1>
+  <p>点选以下看板查看数据</p>
+</div>
+
+<a class="card" href="各门店报量看板.html">
+  <div class="icon">🏪</div>
+  <div class="info">
+    <div class="title">各门店报量看板</div>
+    <div class="desc">峨山 · 新平 · 京东 · 加盟厅 · 逐日明细</div>
   </div>
+  <div class="arrow">›</div>
+</a>
 
-  <a class="card" href="六月重点冲刺.html">
-    <div class="icon">🚀</div>
-    <div class="info">
-      <div class="title">六月三项重点冲刺 <span class="badge-new">NEW</span></div>
-      <div class="desc">电视pro · 灵犀屏 · 88会员 · 每日缺口</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
+<a class="card" href="六月考核看板.html">
+  <div class="icon">🎯</div>
+  <div class="info">
+    <div class="title">六月考核看板</div>
+    <div class="desc">兰新团队 · 考核缺口 · 扣款实得</div>
+  </div>
+  <div class="arrow">›</div>
+</a>
 
-  <a class="card" href="新平.html">
-    <div class="icon">🖱️</div>
-    <div class="info">
-      <div class="title">新平 · AI鼠标 <span class="badge-new">NEW</span></div>
-      <div class="desc">目标150笔 · 30元/笔 · 2026-06-19建立</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
+<a class="card" href="垫资回款看板.html">
+  <div class="icon">💰</div>
+  <div class="info">
+    <div class="title">垫资与回款记录</div>
+    <div class="desc">FTTR · 88会员 · 灵犀屏 · 电视pro · 小福袋</div>
+  </div>
+  <div class="arrow">›</div>
+</a>
 
-  <a class="card" href="各门店报量看板.html">
-    <div class="icon">🏪</div>
-    <div class="info">
-      <div class="title">各门店六月报量看板 <span class="badge-new">NEW</span></div>
-      <div class="desc">峨山店 · 新平外呼组 · 京东店 · 加盟厅 · 6月1日-18日</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
+<a class="card" href="待办看板.html">
+  <div class="icon">📋</div>
+  <div class="info">
+    <div class="title">待办看板</div>
+    <div class="desc">自动分级 · 智能排程 · 到期提醒</div>
+  </div>
+  <div class="arrow">›</div>
+</a>
 
-  <a class="card" href="兰新六月报量看板.html">
-    <div class="icon">📋</div>
-    <div class="info">
-      <div class="title">兰新六月报量看板</div>
-      <div class="desc">业绩看板 · 报量明细 · 考核进度 · 更新至6/13</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
+<a class="card" href="六月重点冲刺.html">
+  <div class="icon">⚡</div>
+  <div class="info">
+    <div class="title">六月重点冲刺</div>
+    <div class="desc">电视pro · 灵犀屏 · 每日追踪</div>
+  </div>
+  <div class="arrow">›</div>
+</a>
 
-  <a class="card" href="金虎六月作战看板.html">
-    <div class="icon">🐯</div>
-    <div class="info">
-      <div class="title">金虎六月作战看板</div>
-      <div class="desc">赶集安排 · 目标追踪 · 每日进度</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
+<a class="card" href="2026新套餐体系.html">
+  <div class="icon">📄</div>
+  <div class="info">
+    <div class="title">2026新套餐体系</div>
+    <div class="desc">套餐对比 · 精简版</div>
+  </div>
+  <div class="arrow">›</div>
+</a>
 
-  <a class="card" href="金虎保本测算.html">
-    <div class="icon">💰</div>
-    <div class="info">
-      <div class="title">金虎保本测算</div>
-      <div class="desc">底薪+油费 · 19元档 · 月需台数</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
+<div class="footer">🦐 数据看板 · 更新于 2026-06-26</div>
 
-  <a class="card" href="六月考核看板.html">
-    <div class="icon">📋</div>
-    <div class="info">
-      <div class="title">六月考核看板</div>
-      <div class="desc">兰新考核 · 提成方案 · 100台预估</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-
-  <a class="card" href="千兆提速活动.html">
-    <div class="icon">📶</div>
-    <div class="info">
-      <div class="title">千兆提速活动</div>
-      <div class="desc">家宽千兆 · 1元/月 · 24月合约</div>
-    </div>
-    <div class="arrow">›</div>
-  </a>
-
-  <div class="footer">🦐 更新于 2026-06-14</div>
 </div>
 </body>
 </html>
