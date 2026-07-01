@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📋 每日支持简报 · 2026-07</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f0f2f5;color:#333;padding:16px}
+  .container{max-width:800px;margin:0 auto}
+  .header{background:linear-gradient(135deg,#1a237e,#0d47a1);color:#fff;padding:18px 22px;border-radius:14px;margin-bottom:14px}
+  .header h1{font-size:20px;font-weight:700}
+  .header .sub{font-size:12px;opacity:.7;margin-top:2px}
+  
+  .card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:12px}
+  .card h2{font-size:15px;font-weight:600;color:#1a237e;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #e8edf2}
+
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th,td{padding:6px 8px;text-align:center;border-bottom:1px solid #eee}
+  th{background:#e8eaf6;font-weight:600;color:#555;font-size:11px}
+  .num{font-weight:600}
+  .warn{color:#e53935}
+  .ok{color:#43a047}
+  .mid{color:#e65100}
+  .tot{background:#e8eaf6;font-weight:600}
+
+  .kpi-box{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
+  .kpi{background:#e8eaf6;border-radius:8px;padding:10px;text-align:center}
+  .kpi .n{font-size:22px;font-weight:700;color:#1a237e}
+  .kpi .l{font-size:11px;color:#555;margin-top:2px}
+
+  .person-card{border:1px solid #e0e0e0;border-radius:8px;padding:10px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+  .person-card .name{font-weight:600;font-size:13px}
+  .person-card .nums{font-size:12px;color:#555}
+  .person-card .status{font-size:11px;padding:2px 8px;border-radius:8px}
+  .status.ok{background:#e8f5e9;color:#2e7d32}
+  .status.warn{background:#fff8e1;color:#e65100}
+  .status.fail{background:#ffebee;color:#c62828}
+
+  .tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:6px;margin:1px}
+  .tag-blue{background:#e3f2fd;color:#1565c0}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-orange{background:#fff3e0;color:#e65100}
+
+  .notice{background:#fff8e1;border-left:4px solid #e65100;padding:10px 12px;border-radius:6px;font-size:12px;line-height:1.6;margin-bottom:8px}
+  .empty{text-align:center;padding:20px;color:#bbb;font-size:12px}
+  .footer{text-align:center;padding:12px;color:#999;font-size:11px}
+
+  @media(max-width:600px){.kpi-box{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>📋 每日支持简报</h1>
+  <div class="sub">2026年7月 · 兰新团队 · 自动生成</div>
+</div>
+
+<div class="card" style="background:#e8f5e9;border-left:4px solid #2e7d32">
+  <h2 style="color:#2e7d32">✅ 报量汇总 · 7月X日</h2>
+  <div class="kpi-box">
+    <div class="kpi"><div class="n">—/100</div><div class="l">📱 手机累计</div></div>
+    <div class="kpi"><div class="n">—/90</div><div class="l">🆔 学生证累计</div></div>
+    <div class="kpi"><div class="n">—/-</div><div class="l">📞 外呼量</div></div>
+  </div>
+
+  <div class="person-card"><div class="name">舒捷</div><div class="nums">📱 — | 🆔 — | 📞 —</div><span class="status warn">🟡 待数据</span></div>
+  <div class="person-card"><div class="name">美红</div><div class="nums">📱 — | 🆔 — | 📞 —</div><span class="status warn">🟡 待数据</span></div>
+  <div class="person-card"><div class="name">穆艳梅🍒</div><div class="nums">📱 — | 🆔 — | 📞 —</div><span class="status warn">🟡 待数据</span></div>
+  <div class="person-card"><div class="name">董梦晶</div><div class="nums">📱 — | 🆔 — | 📞 —</div><span class="status warn">🟡 待数据</span></div>
+  <div class="person-card" style="border-color:#1565c0"><div class="name">🐯普江林</div><div class="nums">📱 — | 🆔 — | 📞 —</div><span class="status warn">🟡 待数据</span></div>
+
+  <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <div class="notice" style="border-color:#2e7d32;background:#e8f5e9">
+      <strong>✅ 今日达标：</strong><br>无数据
+    </div>
+    <div class="notice" style="border-color:#c62828;background:#ffebee">
+      <strong>⚠️ 需补量：</strong><br>无数据
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>📞 外呼名单分配</h2>
+  <div class="empty">等待龙虾查号数据 → 按人分配名单 → 标注客户特征</div>
+</div>
+
+<div class="card">
+  <h2>📅 明日重点关注</h2>
+  <div class="empty">自动根据今日缺口生成明日任务</div>
+</div>
+
+<div class="card">
+  <h2>💡 话术提示</h2>
+  <div style="font-size:12px;line-height:1.8">
+    <strong>🎙️ 学生证+手机捆绑开口：</strong><br>
+    "今天有个暑期特价，学生证+手机一起办，一个月才49块，首付300，孩子能用定位能打电话，你自己也用上新手机……"
+  </div>
+</div>
+
+<div class="footer">🦐 生成于 2026-07-X · 数据来自每日报量</div>
+</div>
+</body>
+</html>
