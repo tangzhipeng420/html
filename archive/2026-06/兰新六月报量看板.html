@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兰新团队 — 6月报量统计</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'Microsoft YaHei', sans-serif; background: #f0f2f5; color: #333; padding: 20px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .header { background: linear-gradient(135deg, #1a73e8, #0d47a1); color: #fff; padding: 24px 32px; border-radius: 16px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap:wrap; gap:10px; }
+  .header h1 { font-size: 26px; font-weight: 700; }
+  .header .sub { font-size: 13px; opacity: .8; margin-top:4px; }
+  .header .badge { background: rgba(255,255,255,.2); padding: 6px 14px; border-radius: 20px; font-size: 13px; white-space:nowrap; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+  .card.full { grid-column: 1 / -1; }
+  .card h2 { font-size: 17px; font-weight: 600; color: #1a73e8; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #e8edf2; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 8px 10px; text-align: center; border-bottom: 1px solid #eee; }
+  th { background: #f7f9fc; font-weight: 600; color: #555; font-size: 12px; }
+  td.num { font-weight: 600; }
+  .warn { color: #e53935; }
+  .ok { color: #43a047; }
+  .highlight { background: #fff8e1; font-weight: 600; }
+
+  .alert { padding: 10px 14px; border-radius: 8px; margin-bottom: 10px; font-size: 13px; }
+  .alert-red { background: #ffebee; border-left: 4px solid #e53935; }
+  .alert-yellow { background: #fff8e1; border-left: 4px solid #ffa000; }
+  .alert h4 { font-size: 14px; margin-bottom: 4px; }
+
+  .tv-card { background: linear-gradient(135deg, #f57c00, #e65100); color: #fff; border-radius: 12px; padding: 20px; grid-column: 1 / -1; }
+  .tv-card h2 { color: #fff; border-bottom-color: rgba(255,255,255,.3); }
+  .tv-card .stat { display: flex; gap: 20px; margin-top: 10px; }
+  .tv-card .stat-item { flex: 1; text-align: center; }
+  .tv-card .stat-item .num { font-size: 28px; font-weight: 700; }
+  .tv-card .stat-item .lbl { font-size: 13px; opacity: .85; }
+  .tv-card table { color: #fff; }
+  .tv-card th { background: rgba(255,255,255,.15); color: #fff; }
+  .tv-card td { border-color: rgba(255,255,255,.15); }
+
+  .todo-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #eee; }
+  .todo-item:last-child { border: none; }
+  .todo-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .todo-dot.red { background: #e53935; }
+  .todo-dot.yellow { background: #ffa000; }
+
+  @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } body { padding: 10px; } .header { flex-direction: column; } .tv-card .stat { flex-direction: column; } }
+
+  .section-title { font-size: 14px; font-weight: 700; color: #1a73e8; margin: 14px 0 8px; padding: 6px 10px; background: #e3f2fd; border-radius: 6px; }
+  .tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin: 1px; }
+  .tag-blue { background: #e3f2fd; color: #1565c0; }
+  .tag-orange { background: #fff3e0; color: #e65100; }
+  .tag-green { background: #e8f5e9; color: #2e7d32; }
+
+  .day-cols { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; }
+  .day-box { background: #fafbfc; border-radius: 10px; padding: 12px; }
+  .day-box h4 { font-size: 12px; color: #1a73e8; margin-bottom: 8px; padding-bottom:4px; border-bottom:1px solid #e0e0e0; }
+  .day-box .person { margin-bottom: 8px; }
+  .day-box .person .name { font-weight: 600; font-size: 11px; margin-bottom: 2px; }
+  .day-box .person .name .note { font-weight:400; font-size:10px; color:#888; }
+  .day-box .person .items { font-size: 10px; line-height: 1.5; color: #555; }
+  .day-box .person .extra { font-size: 9px; line-height: 1.4; color: #888; margin-top:1px; }
+
+  .person-card { border:1px solid #e0e0e0; border-radius:10px; margin-bottom:10px; overflow:hidden; }
+  .person-card .ph { padding:8px 12px; font-weight:700; font-size:14px; background:#f7f9fc; border-bottom:1px solid #e0e0e0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:4px; }
+  .person-card .ph .sum { font-size:11px; font-weight:400; color:#888; }
+  .person-card .pb { padding:8px 12px; }
+  .kpi-row { display:flex; gap:4px; flex-wrap:wrap; }
+  .kpi-item { padding:3px 8px; border-radius:5px; font-size:12px; background:#f0f0f0; }
+  .kpi-item.ok { background:#e8f5e9; }
+  .kpi-item.warn { background:#ffebee; }
+  .kpi-item.mid { background:#fff8e1; }
+  .other-items { font-size: 11px; color: #666; margin-top: 5px; line-height: 1.5; }
+
+  @media (max-width: 1024px) { .day-cols { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 768px) { .day-cols { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div>
+      <h1>📊 兰新团队 · 6月报量看板</h1>
+      <div class="sub">统计周期：6月1日-30日 · 🔄 更新于 2026-07-01</div>
+    </div>
+    <span class="badge">考核成员：舒捷 · 美红 · 🍒 · 董梦晶</span>
+  </div>
+
+  <div class="alert alert-red">
+    <h4>🔔 📊 6月报量已全部补全 · FTTR兰新98笔 ✅ · 打印机4台7月清 · 电视pro12笔(缺口48)</h4>
+  </div>
+
+  <div class="grid">
+
+    <!-- 考核指标 -->
+    <div class="card">
+      <h2>🎯 月度考核指标（4项 · 900元/人）</h2>
+      <table>
+        <tr><th>业务</th><th>月目标/人</th><th>考核金</th><th>未完成扣</th></tr>
+        <tr><td style="text-align:left">📱 手机</td><td class="num">25台</td><td>200元</td><td class="warn">8元/台</td></tr>
+        <tr><td style="text-align:left">🆔 学生证</td><td class="num">20笔</td><td>200元</td><td class="warn">10元/笔</td></tr>
+        <tr><td style="text-align:left">📺 电视pro</td><td class="num">15笔</td><td>250元</td><td class="warn">17元/笔</td></tr>
+        <tr><td style="text-align:left">🖥️ 灵犀屏</td><td class="num">12~13个</td><td>250元</td><td class="warn">20元/个</td></tr>
+        <tr class="highlight"><td style="text-align:left"><strong>合计</strong></td><td>—</td><td><strong>900元</strong></td><td>封顶900元</td></tr>
+      </table>
+      <div style="margin-top:14px;background:#fff8e1;border-left:4px solid #e65100;padding:10px 12px;border-radius:8px;font-size:12px">
+        <strong>📊 考核缺口（截至6/30）：</strong>
+        <table style="margin-top:6px;font-size:11px">
+          <tr><th style="text-align:left">成员</th><th>📱缺</th><th>🆔缺</th><th>📺缺</th><th>🖥️缺</th><th style="background:#e65100;color:#fff">💸扣款</th><th style="background:#2e7d32;color:#fff">💰实得</th></tr>
+          <tr><td style="text-align:left">舒捷</td><td class="warn">22</td><td class="warn">16</td><td class="warn">11</td><td class="warn">5</td><td style="color:#e65100;font-weight:700">640元</td><td style="color:#2e7d32;font-weight:700">260元🔶</td></tr>
+          <tr><td style="text-align:left">美红</td><td class="warn">8</td><td class="mid">9</td><td class="warn">13</td><td style="background:#c8e6c9;font-weight:700;color:#2e7d32">0 ✅</td><td style="color:#e65100;font-weight:700">375元</td><td style="color:#2e7d32;font-weight:700">525元🔶</td></tr>
+          <tr><td style="text-align:left">穆艳梅🍒</td><td class="warn">21</td><td class="warn">17</td><td class="warn">12</td><td class="ok">1</td><td style="color:#e65100;font-weight:700">562元</td><td style="color:#2e7d32;font-weight:700">338元🔶</td></tr>
+          <tr><td style="text-align:left">董梦晶</td><td class="warn">16</td><td class="warn">14</td><td class="warn">12</td><td class="warn">5</td><td style="color:#e65100;font-weight:700">572元</td><td style="color:#2e7d32;font-weight:700">328元🔶</td></tr>
+        </table>
+        <div style="margin-top:6px;color:#888;line-height:1.5">
+          ⚠️ 每项扣款不超考核金（手机200/学生证200/电视pro250/灵犀屏250），总封顶900元<br>
+          💡 电视pro最大缺口，做够每人挽回250元
+        </div>
+      </div>
+      <div style="margin-top:12px">
+        <div class="section-title">💰 手机提成（国补取消·最新）</div>
+        <table>
+          <tr><th>业务</th><th>总提成</th><th>外呼</th><th>兰新</th></tr>
+          <tr><td style="text-align:left">手机+学生证捆绑</td><td>180元</td><td>90元</td><td>90元</td></tr>
+          <tr><td style="text-align:left">手机单独</td><td>80元</td><td>40元</td><td>40元</td></tr>
+          <tr><td style="text-align:left">学生证单独</td><td>100元</td><td>50元</td><td>50元</td></tr>
+        </table>
+        <div style="font-size:12px;color:#888;margin-top:4px">💡 客户出：手机福袋29+学生证10=39元/月 + 手机首付300元 · 学生证不要可单独做手机</div>
+      </div>
+    </div>
+
+    <!-- 团队动态 -->
+    <div class="card">
+      <h2>🔔 团队动态 · 考核口径</h2>
+      <div><span class="tag tag-blue">📱 手机：含手机/AI手机/老年机（手表不计）</span></div>
+      <div><span class="tag" style="background:#fff3e0;color:#e65100">📺 电视pro 15笔/人</span></div>
+      <div><span class="tag" style="background:#e3f2fd;color:#1565c0">🖥️ 灵犀屏 12~13个/人 · 团队目标50个</span></div>
+      <div><span class="tag" style="background:#e8f5e9;color:#2e7d32">📦 FTTR 360元年包 · 季度否决项30笔</span></div>
+      <div style="margin-top:8px">
+        <span class="tag tag-blue">舒捷（考核）</span>
+        <span class="tag tag-green">美红（考核）</span>
+        <span class="tag tag-orange">🍒穆艳梅（考核）</span>
+        <span class="tag" style="background:#fce4ec;color:#c62828">董梦晶（考核·鑫盛工号）</span>
+        <span class="tag" style="background:#f3e5f5;color:#7b1fa2">普江林（不考核）🔥20个灵犀屏</span>
+      </div>
+      <div class="alert alert-green" style="margin-top:8px;padding:8px 12px;background:#e8f5e9;border-left:4px solid #43a047;font-size:12px">
+        🎉 6/30报量已更新 · 灵犀屏累计72/50个（144% ✅目标达成！）普江林33个🔥· 电视pro累计12笔
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- 📊 累计总量 -->
+
+  <div class="card full" style="margin-bottom:16px">
+    <h2>📊 累计总量（6月1日-28日）</h2>
+
+    <div class="person-card" style="border-color:#1a73e8">
+      <div class="ph" style="background:#e3f2fd"><span>舒捷（舒蓝莹）🏅</span><span class="sum">📱3 🆔4 🖥️8 📺3 📡FTTR5</span></div>
+      <div class="pb">
+        <div class="kpi-row">
+          <span class="kpi-item warn">📱 3/25 (12%)</span>
+          <span class="kpi-item mid">🆔 4/20 (20%)</span>
+          <span class="kpi-item warn">📺电视pro 4/15 (27%)</span>
+          <span class="kpi-item mid">🖥️灵犀屏 8/13 (62%)</span>
+        </div>
+        <div class="other-items">📌 开户10、宽带10、路由器9、视频彩铃Plus28、19小福袋3、58畅享包升级版9、机顶盒4、机顶盒包年2、高清盒pro1、和校园4、88会员33、政企V网6、118畅享包升级版2、空气炸锅3、电饭煲2、138畅享包升级版2、套餐体检26、邀评24</div>
+      </div>
+    </div>
+
+    <div class="person-card" style="border-color:#43a047">
+      <div class="ph" style="background:#e8f5e9"><span>美红 🏅 ✅</span><span class="sum">📱17 🆔11 🖥️13 📺2 📡FTTR10</span></div>
+      <div class="pb">
+        <div class="kpi-row">
+          <span class="kpi-item mid">📱 17/25 (68%)</span>
+          <span class="kpi-item mid">🆔 11/20 (55%)</span>
+          <span class="kpi-item warn">📺电视pro 2/15 (13%)</span>
+          <span class="kpi-item ok" style="background:#c8e6c9;font-weight:700">🖥️灵犀屏 13/13 (100% ✅)</span>
+        </div>
+        <div class="other-items">📌 开户26、宽带28、路由器21、视频彩铃Plus41、19小福袋10、高频烦扰23、短信免打扰27、和校园8、58畅享包9、畅享包升级版11、空气炸锅6、电饭煲6、携转3、138畅享包2、118畅享包1、88会员36、机顶盒6、29小福袋7、29流量包7、套餐升档1、监控1、高清盒包年3、高清盒Pro版6、V网3、套餐体检73、邀评57</div>
+      </div>
+    </div>
+
+    <div class="person-card" style="border-color:#ff9800">
+      <div class="ph" style="background:#fff8e1"><span>穆艳梅 🍒 🏅</span><span class="sum">📱4 🆔3 🖥️11 📺3 📡FTTR2</span></div>
+      <div class="pb">
+        <div class="kpi-row">
+          <span class="kpi-item warn">📱 4/25 (16%)</span>
+          <span class="kpi-item warn">🆔 3/20 (15%)</span>
+          <span class="kpi-item warn">📺电视pro 4/15 (27%)</span>
+          <span class="kpi-item ok">🖥️灵犀屏 11/12 (92%)</span>
+        </div>
+        <div class="other-items">📌 开户9、宽带27、路由器23、视频彩铃Plus37、19小福袋2、88会员59、58畅享包升级版2、机顶盒包年4、机顶盒2、高清盒Pro版1、FTTR2、空气炸锅1、手表2、电饭煲1、套餐体检77、高频防护3</div>
+      </div>
+    </div>
+
+    <div class="person-card" style="border:1px dashed #bdbdbd">
+      <div class="ph" style="background:#f3e5f5"><span>普江林（：））· 不考核</span><span class="sum">📱14 🆔3 🖥️33 🔥🔥🔥</span></div>
+      <div class="pb">
+        <div class="other-items">📌 开户11、宽带14、路由器14、视频彩铃Plus35、FTTR41、19小福袋4、29小福袋6、爱家畅享包2、58爱家畅享包升级版1、流量包1、灵犀屏33、电饭煲24、88会员19、空气炸锅1、携转5、机顶盒1</div>
+      </div>
+    </div>
+
+    <div class="person-card" style="border:1px dashed #bdbdbd">
+      <div class="ph" style="background:#fce4ec"><span>董梦晶（亿尚DF）🏅</span><span class="sum">📱8 🆔6 🖥️7 📺3</span></div>
+      <div class="pb">
+        <div class="kpi-row">
+          <span class="kpi-item mid">📱 8/25 (32%)</span>
+          <span class="kpi-item mid">🆔 6/20 (30%)</span>
+          <span class="kpi-item warn">📺电视pro 4/15 (27%)</span>
+          <span class="kpi-item mid">🖥️灵犀屏 7/12 (58%)</span>
+        </div>
+        <div class="other-items">📌 开户12、19小福袋8、宽带15、路由器12、视频彩铃Plus21、和校园5、58畅享包3、58畅享包升级版3、118畅享包4、118畅享包升级版3、158畅享包升级版1、138畅享包升级版1、千兆2、29小福袋1、29流量包1、高频防护24、短信免打扰24、套餐体检46、88会员7、V网4、空气炸锅1、机顶盒pro2、机顶盒1、高清盒续费2、邀评1</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 团队总合计 -->
+  <div class="card full" style="margin-bottom:16px;background:#e3f2fd;border:2px solid #1a73e8">
+    <h2 style="color:#0d47a1;border-bottom-color:#90caf9">🔥 团队总合计（6月1日-30日）</h2>
+    <table>
+      <tr>
+        <th style="text-align:left">业务</th>
+        <th>舒捷 🏅</th><th>美红 🏅</th><th>🍒 🏅</th><th>董梦晶 🏅</th>
+        <th>普江林</th>
+        <th style="background:#0d47a1;color:#fff">🔥 总合计</th>
+      </tr>
+      <tr><td style="text-align:left;font-weight:600">📱 手机</td><td>3</td><td>17</td><td>4</td><td>8</td><td>14</td><td style="background:#fff8e1;font-weight:700;font-size:16px">46台</td></tr>
+      <tr><td style="text-align:left;font-weight:600">🆔 学生证</td><td>4</td><td>11</td><td>3</td><td>6</td><td>3</td><td style="background:#fff8e1;font-weight:700">27笔</td></tr>
+      <tr><td style="text-align:left;font-weight:600">🖥️ 灵犀屏</td><td>8</td><td>13</td><td>11</td><td>7</td><td>33</td><td style="background:#fff8e1;font-weight:700;font-size:16px;color:#2e7d32">72个 ✅ 目标达成！</td></tr>
+      <tr><td style="text-align:left;font-weight:600">📺 电视Pro</td><td>3</td><td>2</td><td>3</td><td>3</td><td>0</td><td style="background:#fff8e1;font-weight:700">12笔</td></tr>
+      <tr><td style="text-align:left;font-weight:600">🏅 88会员</td><td>33</td><td>36</td><td>59</td><td>7</td><td>19</td><td style="background:#fff8e1;font-weight:700;font-size:15px">154笔</td></tr>
+    </table>
+  </div>
+
+  <!-- 报量明细 -->
+  <div class="card full" style="margin-bottom:16px">
+    <h2>📅 报量明细（分时段）</h2>
+    <div class="day-cols">
+
+      <div class="day-box">
+        <h4>6月1日-7日</h4>
+        <div class="person"><div class="name">舒捷 <span class="note">🏅</span></div><div class="items">📱1 🩺4 ⭐4</div><div class="extra">开户1、宽带2、路由器1、机顶盒1、19小福袋1、58畅享包升级版1、118畅享包升级版1、视频彩铃Plus4、空气炸锅1、电饭煲1、政企V网2</div></div>
+        <div class="person"><div class="name">美红 <span class="note">🏅</span></div><div class="items">📱5 🆔5 🌐3 🩺20 ⭐12</div><div class="extra">开户7、宽带9、路由器9、19小福袋5、畅享包升级版6、58畅享包2、和校园2、视频彩铃Plus10、空气炸锅2、电饭煲2</div></div>
+        <div class="person"><div class="name">穆艳梅 🍒 <span class="note">🏅</span></div><div class="items">📱1 🆔2 🩺17</div><div class="extra">开户3、宽带9、路由器9、19小福袋1、58畅享包升级版1、机顶盒包年1、视频彩铃Plus9、空气炸锅1</div></div>
+        <div class="person"><div class="name">普江林 <span class="note">不考核</span></div><div class="items">📱1</div><div class="extra">宽带5、路由器5、视频彩铃Plus12、FTTR9、19小福袋1、爱家畅享包2、58爱家畅享包升级版1、流量包1</div></div>
+        <div class="person"><div class="name">董梦晶 <span class="note">🏅</span></div><div class="items">📱4 🆔4 🩺12 ⭐7</div><div class="extra">开户7、宽带6、路由器6、19小福袋4、58畅享包升级版1、118畅享包2、118畅享包升级版2、158畅享包升级版1、和校园3、视频彩铃Plus9、千兆2、高频防护10、短信免打扰10</div></div>
+      </div>
+
+      <div class="day-box">
+        <h4>6月8日（周一）</h4>
+        <div class="person"><div class="name">舒捷 <span class="note">🏅</span></div><div class="items">📱1 🆔2 🌐1 🩺4 ⭐4</div><div class="extra">开户2、58畅享包升级版2、19小福袋1、宽带1、路由器1、视频彩铃plus2、政企V网1</div></div>
+        <div class="person"><div class="name">美红 <span class="note">🏅</span></div><div class="items">📱2 🆔2 🌐3 🩺6 ⭐5</div><div class="extra">携转1、和校园2、开户3、19小福袋2、宽带2、路由器2、138畅享包1、空气炸锅1、88会员1、视频彩铃PLUS2、高频烦扰5、短信免打扰6</div></div>
+        <div class="person"><div class="name">穆艳梅 🍒 <span class="note">🏅</span></div><div class="items">🩺4</div><div class="extra">开户1、手表1、宽带2、路由器2、视频彩铃Plus2</div></div>
+      </div>
+
+      <div class="day-box">
+        <h4>6月9日-12日</h4>
+        <div class="person"><div class="name">舒捷 <span class="note">🏅</span></div><div class="items">📱1 🆔2 🩺16 ⭐9</div><div class="extra">开户3、宽带3、机顶盒1、路由器2、和校园4、88会员11、视频彩铃plus11、58畅享包升级版1、19小福袋1</div></div>
+        <div class="person"><div class="name">美红 <span class="note">🏅</span></div><div class="items">📱2 🆔2 🌐1 🩺7 ⭐8</div><div class="extra">开户2、宽带3、机顶盒2、路由器2、29小福袋1、29流量包1、19小福袋1、和校园2、58畅享包2、套餐升档1、畅享包升级版1、88会员3、视频彩铃PLUS5、高频烦扰7、短信免打扰8</div></div>
+        <div class="person"><div class="name">穆艳梅 🍒 <span class="note">🏅</span></div><div class="items">📱1 🩺12</div><div class="extra">开户2、宽带7、路由器7、19小福袋1、88会员21、视频彩玲Plus9</div></div>
+        <div class="person"><div class="name">普江林 <span class="note">不考核</span></div><div class="items">📱1</div><div class="extra">宽带3、路由器3、19小福袋1、fttr2、视频彩铃Plus2</div></div>
+        <div class="person"><div class="name">董梦晶 <span class="note">🏅</span></div><div class="items">📱2 🆔2 🩺3 ⭐1</div><div class="extra">开户3、19小福袋2、和校园2、58畅享包升级版1、高频防护3、短信免打扰3、视频彩铃PLUS2</div></div>
+      </div>
+
+      <div class="day-box">
+        <h4>6月14日（周日）</h4>
+        <div class="person"><div class="name">美红 <span class="note">🏅</span></div><div class="items">🖥️灵犀屏5</div><div class="extra">宽带1、路由器1、畅享包升级版1、视频彩铃plus2、高频烦扰2、短信免打扰2、套餐体检2、邀评2</div></div>
+        <div class="person"><div class="name">董梦晶 <span class="note">🏅</span></div><div class="items">🖥️灵犀屏1</div><div class="extra">宽带1、路由器1、视频彩铃plus1、高频防护1、短信免打扰1、套餐体检4</div></div>
+        <div class="person"><div class="name">穆艳梅 🍒 <span class="note">🏅</span></div><div class="items">📱1 🖥️灵犀屏1</div><div class="extra">电饭煲1、宽带2、路由器2、88会员7、视频彩铃plus3、套餐体检5</div></div>
+      </div>
+      <div class="day-box">
+        <h4>6月15日-16日</h4>
+        <div class="person"><div class="name">美红 <span class="note">🏅</span></div><div class="items">🖥️灵犀屏3</div><div class="extra">开户2、88会员16、视频彩铃plus6、高频烦扰4、短信免打扰4、套餐体检8、邀评4、高清盒pro版1、空气炸锅2、V网1、高清盒包年1</div></div>
+        <div class="person"><div class="name">穆艳梅 🍒 <span class="note">🏅</span></div><div class="items">🖥️灵犀屏4</div><div class="extra">88会员10、视频彩铃plus6、58畅享包升级版1、高频防护3、套餐体检10、高清盒pro版1、机顶盒包年1</div></div>
+        <div class="person"><div class="name">舒蓝莹 <span class="note">🏅</span></div><div class="items">🖥️灵犀屏1</div><div class="extra">88会员7、视频彩铃plus2、套餐体检3、邀评3</div></div>
+        <div class="person"><div class="name">董梦晶 <span class="note">🏅</span></div><div class="items"></div><div class="extra">空气炸锅1、58畅享包1、118畅享包1、88会员2、V网1、视频彩铃Plus2、高频防护2、短信免打扰2、套餐体检4</div></div>
+        <div class="person"><div class="name">普江林 <span class="note">不考核</span></div><div class="items">📱3 🆔1</div><div class="extra">开户2、29小福袋2、宽带1、路由器1</div></div>
+      </div>
+      <div class="day-box">
+        <h4>6月12日-13日（新增）</h4>
+        <div class="person"><div class="name">舒蓝莹 <span class="note">🏅</span></div><div class="items">🩺6 ⭐6</div><div class="extra">宽带2、路由器2、机顶盒pro版2、88会员12、视频彩铃plus4、58畅享包升级版1、118畅享包升级版1</div></div>
+        <div class="person"><div class="name">美红 <span class="note">🏅</span></div><div class="items">📱3 🆔2 🌐1 🩺7 ⭐5</div><div class="extra">开户3、宽带1、路由器1、机顶盒2、高清盒包年1、监控1、29小福袋2、29流量包2、19小福袋1、和校园2、空气炸锅1、58畅享包1、118畅享包1、畅享包升级版1、88会员3、视频彩铃PLUS4、高频烦扰5、短信免打扰7</div></div>
+        <div class="person"><div class="name">穆艳梅 🍒 <span class="note">🏅</span></div><div class="items">🩺3</div><div class="extra">宽带1、机顶盒1</div></div>
+        <div class="person"><div class="name">董梦晶 <span class="note">🏅</span></div><div class="items">📱1 🩺5 ⭐2</div><div class="extra">开户1、宽带1、机顶盒Pro版1、19小福袋1、118畅享包1、高频防护2、短信免打扰2</div></div>
+      </div>
+      <div class="day-box">
+        <h4>6月17日（周三）</h4>
+        <div class="person"><div class="name">舒蓝莹 <span class="note">🏅</span></div><div class="items">🖥️灵犀屏1</div><div class="extra">宽带1、高清盒pro1、58畅享包升级版1、88会员4、V网2、空气炸锅1、视频彩铃plus3、套餐体检3、邀评3</div></div>
+        <div class="person"><div class="name">董梦晶 <span class="note">🏅</span></div><div class="items">🖥️灵犀屏3</div><div class="extra">宽带2、路由器1、机顶盒pro1、高清盒续费2、V网1、88会员2、视频彩铃plus2、高频防护2、短信免打扰2、套餐体检4</div></div>
+        <div class="person"><div class="name">穆艳梅 🍒 <span class="note">🏅</span></div><div class="items">🖥️灵犀屏4</div><div class="extra">宽带1、路由器1、高清盒包年1、88会员9、视频彩铃plus4、套餐体检4</div></div>
+        <div class="person"><div class="name">普江林 <span class="note">不考核</span></div><div class="items">🖥️灵犀屏3</div><div class="extra">宽带1、路由器1、电饭煲1、88会员1</div></div>
+      </div>
+      <div class="day-box">
+        <h4>6月18日（周四）🔥</h4>
+        <div class="person"><div class="name">美红 <span class="note">🏅</span></div><div class="items">🖥️灵犀屏3</div><div class="extra">开户1、畅享包升级版1、视频彩铃plus1、套餐体检2、邀评2</div></div>
+        <div class="person"><div class="name">董梦晶 <span class="note">🏅</span></div><div class="items">🖥️灵犀屏1</div><div class="extra">宽带1、机顶盒1、视频彩铃plus2、套餐体检2</div></div>
+        <div class="person"><div class="name">舒蓝莹 <span class="note">🏅</span></div><div class="items">🖥️灵犀屏3</div><div class="extra">畅享包升级版1、V网1、88会员1、视频彩铃plus1、套餐体检2、邀评2</div></div>
+        <div class="person"><div class="name">穆艳梅🍒 <span class="note">🏅</span></div><div class="items">🖥️灵犀屏2</div><div class="extra">开户1、宽带1、机顶盒1、套餐体检3</div></div>
+        <div class="person"><div class="name">普江林 <span class="note">不考核</span></div><div class="items">🖥️灵犀屏3 📱1</div><div class="extra">宽带1、FTTR2、电饭煲2、88会员3、29小福袋1、视频彩铃plus1</div></div>
+      </div>
+      <div class="day-box">
+        <h4>6月20日（周六）✅</h4>
+        <div class="person"><div class="name">美红 <span class="note">🏅 ✅</span></div><div class="items">🖥️灵犀屏2 📱1</div><div class="extra">宽带3、路由器3、电饭煲1、开户1、29小福袋1、29流量包1、88会员3、58畅享包1、视频彩铃plus3、套餐体检2、邀评2</div></div>
+        <div class="person"><div class="name">舒蓝莹 <span class="note">🏅</span></div><div class="items">🖥️灵犀屏1</div><div class="extra">电饭煲1、开户1、机顶盒包年2、138畅享包升级版1、58畅享包升级版1、视频彩铃plus1、套餐体检4、邀评4</div></div>
+      </div>
+      <div class="day-box">
+        <h4>6月19日（周五）🔥</h4>
+        <div class="person"><div class="name">亿尚DF（董梦晶）<span class="note">🏅</span></div><div class="items">🖥️灵犀屏1</div><div class="extra">宽带1、路由器1、高频防护1、短信免打扰1、套餐体检3</div></div>
+        <div class="person"><div class="name">舒蓝莹 <span class="note">🏅</span></div><div class="items">🖥️灵犀屏2</div><div class="extra">路由器1、开户1、套餐体检3、邀评3</div></div>
+        <div class="person"><div class="name">穆艳梅🍒 <span class="note">🏅</span></div><div class="items"></div><div class="extra">宽带1、机顶盒1、套餐体检3</div></div>
+        <div class="person"><div class="name">美红 <span class="note">🏅</span></div><div class="items"></div><div class="extra">宽带1、路由器1、88会员4、高清盒包年1、视频彩铃plus3、套餐体检2、邀评2</div></div>
+        <div class="person"><div class="name">普江林 <span class="note">不考核</span></div><div class="items">🖥️灵犀屏7 📱1</div><div class="extra">FTTR3、电饭煲6、空气炸锅1、88会员7、视频彩铃plus3</div></div>
+      </div>
+      <div class="day-box">
+        <h4>6月21日-22日 🆕</h4>
+        <div class="person"><div class="name">美红 <span class="note">🏅</span></div><div class="items">📱手机1</div><div class="extra">开户3、宽带1、路由器1、29小福袋1、29流量包1、88会员2、畅享包升级版2、视频彩铃plus1、V网1、套餐体检4、邀评4</div></div>
+        <div class="person"><div class="name">亿尚DF（董梦晶）<span class="note">🏅</span></div><div class="items">🖥️灵犀屏1</div><div class="extra">宽带1、路由器1、58畅享包升级版1、118畅享包升级版1、视频彩铃plus1、高频防护1、短信免打扰1、套餐体检4</div></div>
+        <div class="person"><div class="name">普江林 <span class="note">🔥</span></div><div class="items">🖥️灵犀屏5 📱1 🆔2</div><div class="extra">开户3、宽带2、路由器2、电饭煲6、88会员3、29小福袋1</div></div>
+        <div class="person"><div class="name">穆艳梅🍒 <span class="note">🏅</span></div><div class="items"></div><div class="extra">宽带1、路由器1、套餐体检3</div></div>
+      </div>
+      <div class="day-box">
+        <h4>6月23日（周三）🆕</h4>
+        <div class="person"><div class="name">美红 <span class="note">🏅</span></div><div class="items">📺高清盒pro版1</div><div class="extra">宽带1、V网1、套餐体检2、邀评2</div></div>
+        <div class="person"><div class="name">亿尚DF（董梦晶）<span class="note">🏅</span></div><div class="items">📺机顶盒pro版1</div><div class="extra">宽带2、路由器2、138畅享包升级版1、视频彩铃plus2、高频防护1、短信免打扰1、套餐体检2</div></div>
+        <div class="person"><div class="name">穆艳梅🍒 <span class="note">🏅</span></div><div class="items">📺机顶盒pro2 🎉88会员6</div><div class="extra">宽带2、路由器1、FTTR2、视频彩铃plus3、套餐体检5</div></div>
+        <div class="person"><div class="name">舒蓝莹 <span class="note">🏅</span></div><div class="items"></div><div class="extra">宽带1、路由器1、138畅享包升级版1、套餐体检3、邀评3</div></div>
+        <div class="person"><div class="name">普江林 <span class="note">🔥</span></div><div class="items">🖥️灵犀屏2</div><div class="extra">宽带1、路由器1、FTTR2、电饭煲2、88会员3、视频彩铃plus2</div></div>
+      </div>
+
+      <div class="day-box">
+        <h4>6月24日（周四）🆕</h4>
+        <div class="person"><div class="name">董梦晶（亿尚DF）<span class="note">🏅</span></div><div class="items">📱手机1</div><div class="extra">开户1、29小福袋1、29流量包1、88会员1、V网1、高频防护1、短信免打扰1、邀评1、套餐体检3</div></div>
+        <div class="person"><div class="name">舒蓝莹 <span class="note">🏅</span></div><div class="items">📺机顶盒pro版1</div><div class="extra">路由器1、套餐体检2、邀评2</div></div>
+        <div class="person"><div class="name">普江林 <span class="note">🔥</span></div><div class="items">📱手机2 🖥️灵犀屏2</div><div class="extra">携转2、路由器1、机顶盒1</div></div>
+      </div>
+
+      <div class="day-box">
+        <h4>6月25日（周五）🆕</h4>
+        <div class="person"><div class="name">美红 <span class="note">🏅</span></div><div class="items">📱手机2</div><div class="extra">开户2、29小福袋1、29流量包1、19小福袋1、电饭煲1、高清盒pro版1、58畅享包1、138畅享包1、视频彩铃plus2、88会员1、套餐体检2、邀评2</div></div>
+        <div class="person"><div class="name">普江林 <span class="note">🔥</span></div><div class="items">📱手机2 🖥️灵犀屏4</div><div class="extra">携转3、FTTR2、88会员3、电饭煲6、视频彩铃PLUS2</div></div>
+      </div>
+
+      <div class="day-box" style="background:#fff8e1;border:2px solid #ffa000">
+        <h4>6月26日（周六）🔥 <span style="background:#e53935;color:#fff;padding:1px 6px;border-radius:4px;font-size:10px">今日更新</span></h4>
+        <div class="person"><div class="name">美红 <span class="note">🏅</span></div><div class="items">携转2、开户2、宽带1、高清盒1、路由器1</div><div class="extra">58畅享包1、视频彩铃plus2、88会员1、套餐体检2、邀评2</div></div>
+        <div class="person"><div class="name">亿尚DF（董梦晶）<span class="note">🏅</span></div><div class="items">V网1</div></div>
+        <div class="person"><div class="name">普江林 <span class="note">🔥</span></div><div class="items">🖥️灵犀屏3 📱手机1 FTTR3</div><div class="extra">88会员1、电饭煲3、29小福袋1、视频彩铃PLUS3</div></div>
+      </div>
+
+      <div class="day-box" style="background:#fce4ec;border:2px solid #e53935">
+        <h4>6月27日（周日）🔥 <span style="background:#e53935;color:#fff;padding:1px 6px;border-radius:4px;font-size:10px">最新</span></h4>
+        <div class="person"><div class="name">亿尚DF美甲工作室15808775691（董梦晶）<span class="note">🏅</span></div><div class="items">📱手机1 开户1 29小福袋1 29流量包1</div><div class="extra">88会员1、高频防护1、短信免打扰1、邀评1</div></div>
+        <div class="person"><div class="name">美红 <span class="note">🏅<span style="color:#e53935;font-size:10px">FTTR开张！🔥</span></span></div><div class="items">📡FTTR2 宽带1 高清盒pro版1</div><div class="extra">158畅享包1、电饭煲1、88会员2、套餐体检2、邀评2</div></div>
+        <div class="person"><div class="name">舒蓝莹（舒捷）<span class="note">🏅<span style="color:#e53935;font-size:10px">FTTR开张！🔥</span></span></div><div class="items">📡FTTR2 开户1 政企V网1</div><div class="extra">空气炸锅1、高清防骚扰2、套餐体检2、邀评2</div></div>
+        <div class="person"><div class="name">普江林 <span class="note">🔥</span></div><div class="items">🖥️灵犀屏1 📱手机1 📡FTTR3</div><div class="extra">电饭煲1、29小福袋1、视频彩铃PLUS3</div></div>
+      </div>
+
+      <!-- 6/28 -->
+      <h4>6月28日（周日）🆕</h4>
+        <div class="person"><div class="name">美红 <span class="note">🏅</span></div><div class="items">📡FTTR1 电饭煲1</div></div>
+        <div class="person"><div class="name">亿尚DF美甲工作室15808775691（董梦晶）<span class="note">🏅</span></div><div class="items">电饭煲1 88会员1</div></div>
+        <div class="person"><div class="name">普江林 <span class="note">🔥</span></div><div class="items">🖥️灵犀屏2 📡FTTR1</div></div>
+      </div>
+
+      <!-- 6/29 -->
+      <div class="day-box" style="background:#fce4ec;border:2px solid #e53935">
+        <h4>6月29日（周一）📝 <span style="background:#e53935;color:#fff;padding:1px 6px;border-radius:4px;font-size:10px">补录</span></h4>
+        <div class="person"><div class="name">美红 <span class="note">🏅</span></div><div class="items">📡FTTR2 📺高清盒pro版1 118畅享包1</div><div class="extra">宽带1</div></div>
+        <div class="person"><div class="name">穆艳梅🍒 <span class="note">🏅</span></div><div class="items">📱老年机1 📡FTTR1</div><div class="extra">高清盒包年1、88会员4、套餐体检4</div></div>
+        <div class="person"><div class="name">普江林 <span class="note">🔥</span></div><div class="items">🖥️灵犀屏1 📡FTTR4</div><div class="extra">电饭煲1、视频彩铃4</div></div>
+      </div>
+
+      <div class="day-box" style="background:#fce4ec;border:2px solid #e53935">
+        <h4>6月30日（周二）📝 <span style="background:#e53935;color:#fff;padding:1px 6px;border-radius:4px;font-size:10px">补录</span></h4>
+        <div class="person"><div class="name">美红 <span class="note">🏅</span></div><div class="items">📱手机1 📡FTTR6</div><div class="extra">宽带3、机顶盒3、58畅享包1、29小福袋1、29流量包1、套餐体检5、邀评3</div></div>
+        <div class="person"><div class="name">舒蓝莹（舒捷）<span class="note">🏅</span></div><div class="items">📡FTTR4</div><div class="extra">58畅享包升级版1、开户1、套餐体检4、邀评2</div></div>
+        <div class="person"><div class="name">穆艳梅🍒 <span class="note">🏅</span></div><div class="items">🆔学生证1</div><div class="extra">开户2、手表1、88会员4、视频彩铃plus1、套餐体检4</div></div>
+        <div class="person"><div class="name">普江林 <span class="note">🔥</span></div><div class="items">📡FTTR11</div><div class="extra">视频彩铃3</div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TV包年 + 其他 -->
+  <div class="grid">
+    <div class="tv-card">
+      <h2>📺 TV包年酬金专项（por500元包年）</h2>
+      <table>
+        <tr><th>项目</th><th>金额</th></tr>
+        <tr><td style="text-align:left">基础酬金（8积分+6产能）</td><td class="num">420元</td></tr>
+        <tr><td style="text-align:left">宽带升级奖</td><td class="num">30元</td></tr>
+        <tr><td style="text-align:left">认筹（未算叠加项）</td><td class="num">42元</td></tr>
+        <tr><td style="text-align:left">补贴</td><td class="num">100元</td></tr>
+        <tr style="background:rgba(255,255,255,.15)"><td style="text-align:left"><strong>合计到手</strong></td><td class="num" style="font-size:18px"><strong>592元/笔</strong></td></tr>
+      </table>
+      <div class="stat">
+        <div class="stat-item"><div class="num">60</div><div class="lbl">目标（笔）</div></div>
+        <div class="stat-item"><div class="num" style="color:#ffcc80">12</div><div class="lbl">✅ 已完成（电视pro）</div></div>
+        <div class="stat-item"><div class="num" style="color:#ff8a80">48</div><div class="lbl">⚠️ 缺口（电视pro）</div></div>
+        <div class="stat-item"><div class="num" style="color:#43a047;font-size:32px">72</div><div class="lbl">✅ 灵犀屏累计 ✅（144%）🎉</div></div>
+        <div class="stat-item"><div class="num" style="color:#43a047">0</div><div class="lbl">✅ 灵犀屏缺口 ✅</div></div>
+        <div class="stat-item"><div class="num">92</div><div class="lbl">剩余酬金（元/笔）</div></div>
+      </div>
+      <div style="margin-top:8px;font-size:12px;opacity:.85">
+        提成：电视pro 10元/笔 · 88会员 2元/笔 · 灵犀屏 50~60元/台（待定）
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📌 待办事项</h2>
+      <div class="todo-item"><div class="todo-dot red"></div><div>💼 <strong>催普江林</strong> — 工资报表发给财务</div></div>
+      <div class="todo-item"><div class="todo-dot" style="background:#9e9e9e"></div><div><s>🐯 金虎团队 — 已停止</s></div></div>
+      <div class="todo-item"><div class="todo-dot yellow"></div><div>📞 <strong>舒捷</strong> — 灵犀屏8/13（62%），继续加油</div></div>
+      <div class="todo-item"><div class="todo-dot ok"></div><div>🍒穆艳梅 灵犀屏11/12（92%）就差1个了！</div></div>
+      <div class="todo-item"><div class="todo-dot" style="background:#43a047"></div><div>美红 灵犀屏13/13（100% ✅）+手机17/25(68%) 🎉</div></div>
+      <div class="todo-item"><div class="todo-dot" style="background:#43a047"></div><div>🖥️ <strong>灵犀屏 — 累计72/50（144% ✅目标达成！）普江林33个🔥🔥🔥</div></div>
+      <div class="todo-item"><div class="todo-dot" style="background:#43a047"></div><div>📦 <strong>FTTR 360元年包 — 兰新已做98笔 ✅ 超额完成！</div></div>
+      <div class="todo-item"><div class="todo-dot red"></div><div>🖨️ <strong>打印机清库</strong> — 编码1001391405，剩4台，5折活动客户自取+装维安装，7月内清完</div></div>
+    </div>
+
+    <div class="card full">
+      <h2>⭐ 星级协同 & 认筹（截至5月29日）</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div>
+          <div class="section-title">🏪 兰新（2星）</div>
+          <table>
+            <tr><th style="text-align:left">指标</th><th>数值</th></tr>
+            <tr><td style="text-align:left">产能目标</td><td>1600</td></tr>
+            <tr><td style="text-align:left">预估产能</td><td>366（22%）</td></tr>
+            <tr><td style="text-align:left">协同系数</td><td>0.505</td></tr>
+            <tr><td style="text-align:left">认筹-新增</td><td>81%</td></tr>
+            <tr><td style="text-align:left">认筹-泛升档</td><td class="warn">15%</td></tr>
+            <tr><td style="text-align:left">终端合约率</td><td class="ok">100%</td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="section-title">🏪 鑫盛（4星）</div>
+          <table>
+            <tr><th style="text-align:left">指标</th><th>数值</th></tr>
+            <tr><td style="text-align:left">产能目标</td><td>800</td></tr>
+            <tr><td style="text-align:left">预估产能</td><td>211（20%）</td></tr>
+            <tr><td style="text-align:left">协同系数</td><td>0.505</td></tr>
+            <tr><td style="text-align:left">认筹-新增</td><td class="warn">11%</td></tr>
+            <tr><td style="text-align:left">认筹-泛升档</td><td class="warn">3%</td></tr>
+            <tr><td style="text-align:left">终端合约率</td><td class="warn">82%</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:16px;color:#999;font-size:12px">🦐 2026-07-01 10:30
+
+</div>
+</body>
+</html>
