@@ -22,10 +22,12 @@
   .warn{color:#e53935}
   .ok{color:#43a047}
   .highlight{background:#fff8e1;font-weight:600}
+  .highlight td{background:#fff8e1;font-weight:600}
   .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;margin:1px}
   .tag-red{background:#ffebee;color:#c62828}
   .tag-orange{background:#fff3e0;color:#e65100}
   .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-blue{background:#e3f2fd;color:#1565c0}
 
   .alert{background:#fff8e1;border-left:4px solid #e65100;padding:12px 16px;border-radius:8px;font-size:13px;margin-bottom:12px;line-height:1.7}
   .empty-state{padding:30px;text-align:center;color:#999}
@@ -36,6 +38,17 @@
   .focus .lbl{font-size:13px;color:#666;margin-top:2px}
   .footer{text-align:center;padding:16px;color:#999;font-size:12px}
 
+  .person-card{border:1px solid #e0e0e0;border-radius:10px;margin-bottom:10px;overflow:hidden}
+  .person-card .ph{padding:10px 14px;font-weight:700;font-size:15px;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px}
+  .person-card .ph .sum{font-size:12px;font-weight:400;color:#888}
+  .person-card .pb{padding:10px 14px}
+  .kpi-row{display:flex;gap:5px;flex-wrap:wrap}
+  .kpi-item{padding:4px 10px;border-radius:5px;font-size:12px;background:#f0f0f0}
+  .kpi-item.ok{background:#e8f5e9}
+  .kpi-item.warn{background:#ffebee}
+  .kpi-item.mid{background:#fff8e1}
+  .other-items{font-size:11px;color:#666;margin-top:5px;line-height:1.5}
+
   @media(max-width:768px){body{padding:10px}}
 </style>
 </head>
@@ -44,24 +57,25 @@
   <div class="header">
     <div>
       <h1>📊 兰新团队 · 7月报量看板</h1>
-      <div class="sub">统计周期：7月1日起 · 🔄 更新于 2026-07-01</div>
+      <div class="sub">兰新4人+普江林（金虎） · 🔄 更新于 2026-07-01</div>
     </div>
     <span class="badge">🔥 学生证重点 · 手机起量</span>
   </div>
 
   <div class="alert">
-    <strong>🎯 7月团队目标已定：</strong><br>
-    📱 手机 <strong>100台</strong> · 🆔 学生证 <strong>80~90笔</strong> ⭐本月重点<br>
-    🟡 考核金/扣款标准及其他考核项目待唐确认
+    <strong>🎯 7月团队目标：</strong><br>
+    📱 手机 <strong>100台</strong>（兰新） · 🆔 学生证 <strong>80~90笔</strong> ⭐本月重点<br>
+    🐯 金虎团队目标：手机至少125台（普江林核心）<br>
+    🟡 考核金/扣款标准及其他项目待唐确认
   </div>
 
   <!-- 目标 -->
   <div class="card">
     <h2>🎯 月度目标</h2>
     <table>
-      <tr><th>业务</th><th>团队目标</th><th>人均目标</th><th>考核金</th><th>未完成扣</th></tr>
-      <tr><td style="text-align:left;font-weight:600">📱 手机</td><td class="num">100台</td><td>25台</td><td>🟡待定</td><td>🟡待定</td></tr>
-      <tr><td style="text-align:left;font-weight:600">🆔 学生证 ⭐</td><td class="num">80~90笔</td><td>20~22笔</td><td>🟡待定</td><td>🟡待定</td></tr>
+      <tr><th>业务</th><th>兰新团队目标</th><th>🐯金虎团队</th><th>考核金</th><th>未完成扣</th></tr>
+      <tr><td style="text-align:left;font-weight:600">📱 手机</td><td class="num">100台</td><td>至少125台</td><td>🟡待定</td><td>🟡待定</td></tr>
+      <tr><td style="text-align:left;font-weight:600">🆔 学生证 ⭐</td><td class="num">80~90笔</td><td>🟡待定</td><td>🟡待定</td><td>🟡待定</td></tr>
       <tr><td style="text-align:left">其他项目</td><td colspan="4">🟡 待唐确认</td></tr>
     </table>
   </div>
@@ -72,46 +86,118 @@
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
       <div class="focus">
         <div class="num">80~90</div>
-        <div class="lbl">📝 学生证目标笔数</div>
+        <div class="lbl">📝 学生证目标（兰新）</div>
       </div>
       <div class="focus">
         <div class="num">100</div>
-        <div class="lbl">📱 手机目标台数</div>
+        <div class="lbl">📱 手机目标（兰新）</div>
       </div>
     </div>
-    <div style="font-size:13px;line-height:1.8;padding:8px 0">
-      <strong>为什么是学生证？</strong><br>
-      6月学生证总共才24笔（舒捷4、美红11、🍒2、董梦晶6、普江林3），太低了。<br>
-      7月人均要做到20笔以上，每天至少1笔才追得上。<br><br>
+    <div style="font-size:13px;line-height:1.8">
       <strong>配合策略：</strong><br>
-      • 学生证+手机捆绑提成180元（外呼:兰新=90:90）<br>
+      • 学生证+手机捆绑提成180元<br>
       • 客户出29+10=39元/月 + 首付300元<br>
-      • 学生证不要可单独做手机（80元/台）
+      • 金虎看板见 🐯
     </div>
   </div>
 
-  <!-- 个人目标框架 -->
+  <!-- 兰新4人 -->
   <div class="card">
-    <h2>🏅 个人目标（框架）</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-      <div style="border:1px solid #e0e0e0;border-radius:10px;padding:12px;text-align:center">
-        <div style="font-weight:700;font-size:14px;margin-bottom:6px">舒捷</div>
-        <div>📱 25台 | 🆔 20~22笔</div>
-      </div>
-      <div style="border:1px solid #e0e0e0;border-radius:10px;padding:12px;text-align:center">
-        <div style="font-weight:700;font-size:14px;margin-bottom:6px">美红</div>
-        <div>📱 25台 | 🆔 20~22笔</div>
-      </div>
-      <div style="border:1px solid #e0e0e0;border-radius:10px;padding:12px;text-align:center">
-        <div style="font-weight:700;font-size:14px;margin-bottom:6px">穆艳梅 🍒</div>
-        <div>📱 25台 | 🆔 20~22笔</div>
-      </div>
-      <div style="border:1px solid #e0e0e0;border-radius:10px;padding:12px;text-align:center">
-        <div style="font-weight:700;font-size:14px;margin-bottom:6px">董梦晶</div>
-        <div>📱 25台 | 🆔 20~22笔</div>
+    <h2>🏅 兰新考核成员</h2>
+
+    <div class="person-card" style="border-color:#1a73e8">
+      <div class="ph" style="background:#e3f2fd"><span>舒捷（舒蓝莹）🏅</span><span class="sum">6月：📱3台 🆔4笔</span></div>
+      <div class="pb">
+        <div class="kpi-row">
+          <span class="kpi-item warn">📱 手机：0/25</span>
+          <span class="kpi-item warn">🆔 学生证：0/20~22</span>
+        </div>
+        <div class="other-items">📌 待报量数据</div>
       </div>
     </div>
-    <div style="margin-top:10px;font-size:12px;color:#888;text-align:center">普江林（不考核）</div>
+
+    <div class="person-card" style="border-color:#43a047">
+      <div class="ph" style="background:#e8f5e9"><span>美红 🏅</span><span class="sum">6月：📱17台 🆔11笔</span></div>
+      <div class="pb">
+        <div class="kpi-row">
+          <span class="kpi-item warn">📱 手机：0/25</span>
+          <span class="kpi-item mid">🆔 学生证：0/20~22</span>
+        </div>
+        <div class="other-items">📌 待报量数据</div>
+      </div>
+    </div>
+
+    <div class="person-card" style="border-color:#ff9800">
+      <div class="ph" style="background:#fff8e1"><span>穆艳梅 🍒 🏅</span><span class="sum">6月：📱4台 🆔3笔</span></div>
+      <div class="pb">
+        <div class="kpi-row">
+          <span class="kpi-item warn">📱 手机：0/25</span>
+          <span class="kpi-item warn">🆔 学生证：0/20~22</span>
+        </div>
+        <div class="other-items">📌 待报量数据</div>
+      </div>
+    </div>
+
+    <div class="person-card" style="border-color:#c62828">
+      <div class="ph" style="background:#fce4ec"><span>董梦晶（亿尚DF）🏅</span><span class="sum">6月：📱8台 🆔6笔</span></div>
+      <div class="pb">
+        <div class="kpi-row">
+          <span class="kpi-item warn">📱 手机：0/25</span>
+          <span class="kpi-item warn">🆔 学生证：0/20~22</span>
+        </div>
+        <div class="other-items">📌 待报量数据</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 普江林（金虎） -->
+  <div class="card" style="background:#e3f2fd;border:2px solid #1565c0">
+    <h2 style="color:#1565c0;border-bottom-color:#90caf9">🐯 普江林（金虎团队）</h2>
+    <div class="person-card" style="border-color:#1565c0">
+      <div class="ph" style="background:#e3f2fd"><span>普江林（：））🐯 金虎核心</span><span class="sum">6月：📱14台 🆔3笔 FTTR41🔥</span></div>
+      <div class="pb">
+        <div class="kpi-row">
+          <span class="kpi-item warn">📱 手机：0/—</span>
+          <span class="kpi-item mid">🆔 学生证：0/—</span>
+        </div>
+        <div class="other-items">📌 其余报量见 🐯 金虎团队看板</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 总合计 -->
+  <div class="card" style="background:#fff8e1;border:2px solid #e65100">
+    <h2 style="color:#e65100">🔥 团队总合计（兰新4人 + 普江林）</h2>
+    <table>
+      <tr>
+        <th style="text-align:left">业务</th>
+        <th>舒捷</th><th>美红</th><th>🍒</th><th>董梦晶</th>
+        <th style="background:#e3f2fd">🐯普江林</th>
+        <th style="background:#0d47a1;color:#fff">🔥 总合计</th>
+      </tr>
+      <tr><td style="text-align:left;font-weight:600">📱 手机</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="background:#e3f2fd">0</td><td class="highlight">0台</td></tr>
+      <tr><td style="text-align:left;font-weight:600">🆔 学生证</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="background:#e3f2fd">0</td><td class="highlight">0笔</td></tr>
+    </table>
+    <div style="font-size:11px;color:#888;margin-top:6px">🔄 报量数据到达后自动更新</div>
+  </div>
+
+  <!-- 上月回顾 -->
+  <div class="card" style="background:#e8f5e9">
+    <h2 style="color:#2e7d32;border-bottom-color:#a5d6a7">💡 上月回顾（6月总合计）</h2>
+    <table>
+      <tr>
+        <th style="text-align:left">业务</th>
+        <th>舒捷</th><th>美红</th><th>🍒</th><th>董梦晶</th>
+        <th style="background:#e3f2fd">🐯普江林</th>
+        <th style="background:#0d47a1;color:#fff">🔥 6月总计</th>
+      </tr>
+      <tr><td style="text-align:left;font-weight:600">📱 手机</td><td>3</td><td>17</td><td>4</td><td>8</td><td style="background:#e3f2fd">14</td><td class="highlight">46台</td></tr>
+      <tr><td style="text-align:left;font-weight:600">🆔 学生证</td><td>4</td><td>11</td><td>3</td><td>6</td><td style="background:#e3f2fd">3</td><td class="highlight">27笔</td></tr>
+    </table>
+    <div style="margin-top:8px;font-size:12px;color:#555">
+      6月全校手机才46台、学生证27笔。<br>
+      7月目标：兰新手机100台 + 金虎125台 = <strong>总计至少225台手机</strong> 🔥🔥
+    </div>
   </div>
 
   <!-- 明细 -->
@@ -123,24 +209,7 @@
     </div>
   </div>
 
-  <div class="card"
-    style="background:#e8f5e9">
-    <h2 style="color:#2e7d32;border-bottom-color:#a5d6a7">💡 上月回顾（6月）</h2>
-    <table style="font-size:11px">
-      <tr><th>成员</th><th>📱手机</th><th>🆔学生证</th></tr>
-      <tr><td>舒捷</td><td style="color:#e53935">3台</td><td style="color:#e53935">4笔</td></tr>
-      <tr><td>美红</td><td>17台</td><td>11笔</td></tr>
-      <tr><td>穆艳梅 🍒</td><td style="color:#e53935">4台</td><td style="color:#e53935">3笔</td></tr>
-      <tr><td>董梦晶</td><td style="color:#e53935">8台</td><td>6笔</td></tr>
-      <tr><td style="font-weight:600">合计</td><td style="font-weight:600">32台</td><td style="font-weight:600">24笔</td></tr>
-    </table>
-    <div style="margin-top:8px;font-size:12px;color:#555">
-      6月手机+学生证双低，7月必须拉起来 🔥<br>
-      美红相对好一点，其他人提升空间很大
-    </div>
-  </div>
-
-  <div class="footer">🦐 2026-07-01</div>
+  <div class="footer">🦐 2026-07-01 · 🐯 普江林数据见金虎团队看板</div>
 </div>
 </body>
 </html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金虎团队 · 7月报量看板</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f0f2f5;color:#333;padding:16px}
+  .container{max-width:1200px;margin:0 auto}
+  .header{background:linear-gradient(135deg,#1565c0,#0d47a1);color:#fff;padding:20px 24px;border-radius:14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
+  .header h1{font-size:22px;font-weight:700}
+  .header .sub{font-size:12px;opacity:.8;margin-top:3px}
+  .header .badge{background:rgba(255,255,255,.2);padding:5px 12px;border-radius:20px;font-size:12px}
+
+  .card{background:#fff;border-radius:12px;padding:16px 18px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:12px}
+  .card h2{font-size:16px;font-weight:600;color:#1565c0;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #e8edf2}
+
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th,td{padding:6px 8px;text-align:center;border-bottom:1px solid #eee}
+  th{background:#e3f2fd;font-weight:600;color:#555;font-size:11px}
+  .num{font-weight:600}
+  .warn{color:#e53935}
+  .ok{color:#43a047}
+  .highlight{background:#fff8e1;font-weight:600}
+
+  .target-box{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+  .target-item{background:#e3f2fd;border-radius:10px;padding:14px;text-align:center}
+  .target-item .num{font-size:28px;font-weight:700;color:#1565c0;display:block}
+  .target-item .lbl{font-size:12px;color:#666;margin-top:2px}
+
+  .person-card{border:1px solid #e0e0e0;border-radius:10px;margin-bottom:8px;overflow:hidden}
+  .person-card .ph{padding:8px 12px;font-weight:700;font-size:14px;background:#e3f2fd;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;align-items:center}
+  .person-card .ph .sum{font-size:11px;font-weight:400;color:#666}
+  .person-card .pb{padding:8px 12px}
+  .kpi-row{display:flex;gap:4px;flex-wrap:wrap}
+  .kpi-item{padding:3px 8px;border-radius:5px;font-size:11px;background:#f0f0f0}
+  .kpi-item.ok{background:#e8f5e9}
+  .kpi-item.warn{background:#ffebee}
+  .other-items{font-size:10px;color:#666;margin-top:4px;line-height:1.5}
+
+  .note{font-size:11px;color:#888;padding:8px 0;text-align:center}
+  .empty-state{text-align:center;padding:20px;color:#bbb;font-size:12px}
+  .footer{text-align:center;padding:12px;color:#999;font-size:11px}
+
+  .alert-blue{background:#e3f2fd;border-left:4px solid #1565c0;padding:10px 14px;border-radius:8px;font-size:12px;margin-bottom:10px;line-height:1.6}
+  @media(max-width:768px){.target-box{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <div>
+    <h1>🐯 金虎团队 · 7月报量看板</h1>
+    <div class="sub">核心成员：普江林 · 统计周期：7月1日起 · 🔄 更新于 2026-07-01</div>
+  </div>
+  <span class="badge">🎯 手机至少125台</span>
+</div>
+
+<div class="alert-blue">
+  <strong>📌 说明：</strong>普江林是金虎成员，但报量总数也计入兰新团队总合计。<br>
+  🏪 普江林数据 → 金虎看板（此处）+ 兰新看板（总数含他）
+</div>
+
+<div class="card">
+  <h2>🎯 7月目标</h2>
+  <div class="target-box">
+    <div class="target-item"><span class="num">125</span><div class="lbl">📱 手机目标（至少）</div></div>
+    <div class="target-item"><span class="num">🟡</span><div class="lbl">其他项目 · 待确认</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🏅 核心成员</h2>
+  <div class="person-card" style="border-color:#1565c0">
+    <div class="ph" style="background:#e3f2fd"><span>普江林（：））</span><span class="sum">🔥 6月：📱14台 🆔3笔</span></div>
+    <div class="pb">
+      <div class="kpi-row">
+        <span class="kpi-item warn">📱 手机：0/—</span>
+        <span class="kpi-item mid">🆔 学生证：0/—</span>
+      </div>
+      <div class="other-items">📌 7月报量数据到达后更新</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>📅 7月报量明细</h2>
+  <div class="empty-state">
+    <p>尚未收到7月报量数据</p>
+  </div>
+</div>
+
+<div class="card" style="background:#e8f5e9">
+  <h2 style="color:#2e7d32;border-bottom-color:#a5d6a7">📊 6月回顾（普江林）</h2>
+  <table>
+    <tr><th style="text-align:left">业务</th><th>数量</th></tr>
+    <tr><td style="text-align:left">📱 手机</td><td class="num">14台</td></tr>
+    <tr><td style="text-align:left">🆔 学生证</td><td class="num">3笔</td></tr>
+    <tr><td style="text-align:left">📡 FTTR</td><td class="num ok">41笔 🔥</td></tr>
+    <tr><td style="text-align:left">🖥️ 灵犀屏</td><td class="num ok">33个 🔥</td></tr>
+    <tr><td style="text-align:left">📺 电视Pro</td><td>0</td></tr>
+    <tr><td style="text-align:left">其他</td><td>开户11、宽带14、路由器14、视频彩铃Plus35、19小福袋4、29小福袋6、电饭煲24、88会员19、携转5</td></tr>
+  </table>
+</div>
+
+<div class="footer">🦐 2026-07-01 · 普江林报量同样在兰新看板的总数中体现</div>
+</div>
+</body>
+</html>
