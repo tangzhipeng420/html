@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q3季度综合看板 · 2026年7-9月</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f0f2f5;color:#333;padding:16px}
+  .container{max-width:1200px;margin:0 auto}
+
+  .header{background:linear-gradient(135deg,#6a1b9a,#4a148c);color:#fff;padding:22px 28px;border-radius:14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
+  .header h1{font-size:24px;font-weight:700}
+  .header .sub{font-size:13px;opacity:.8;margin-top:4px}
+  .header .badge{background:rgba(255,255,255,.2);padding:6px 14px;border-radius:20px;font-size:13px;white-space:nowrap}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+  .card{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  .card.full{grid-column:1 / -1}
+  .card h2{font-size:16px;font-weight:600;color:#6a1b9a;margin-bottom:12px;padding-bottom:7px;border-bottom:2px solid #e8edf2}
+  .card h2 .sub{font-size:12px;font-weight:400;color:#999;float:right}
+
+  .renew-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:13px}
+  .renew-item:last-child{border:none}
+  .renew-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .renew-dot.purple{background:#6a1b9a}
+  .renew-dot.orange{background:#ff9800}
+  .renew-dot.green{background:#43a047}
+  .renew-dot.red{background:#e53935}
+
+  .policy-card{background:#f5f5f5;border-radius:10px;padding:14px;margin-bottom:10px}
+  .policy-card h4{font-size:14px;font-weight:600;margin-bottom:6px}
+  .policy-card .detail{font-size:12px;color:#666;line-height:1.6}
+
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th,td{padding:7px 8px;text-align:center;border-bottom:1px solid #eee}
+  th{background:#f3e5f5;font-weight:600;color:#555;font-size:11px}
+  .highlight{background:#fff8e1;font-weight:600}
+
+  .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;margin:1px}
+  .tag-purple{background:#f3e5f5;color:#6a1b9a}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-orange{background:#fff3e0;color:#e65100}
+  .tag-red{background:#ffebee;color:#c62828}
+
+  .empty{text-align:center;padding:30px;color:#bbb;font-size:13px}
+  .empty .icon{font-size:36px;margin-bottom:8px}
+
+  .footer{text-align:center;padding:14px;color:#999;font-size:12px}
+
+  @media(max-width:768px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <div>
+    <h1>📊 Q3季度综合看板</h1>
+    <div class="sub">2026年7月 - 9月 · 🔄 更新于 2026-07-01</div>
+  </div>
+  <span class="badge">暑期换机季 🔥 认筹冲刺</span>
+</div>
+
+<!-- 认筹政策 -->
+<div class="grid">
+
+  <div class="card full">
+    <h2>🎯 Q3渠道认筹项目（5项） <span class="sub">2026年7-9月</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px">
+      <div class="policy-card" style="text-align:center;border-top:3px solid #1a73e8">
+        <div style="font-size:28px;margin-bottom:4px">🆕</div>
+        <h4>新开户</h4>
+        <div class="detail">基础认筹项目</div>
+      </div>
+      <div class="policy-card" style="text-align:center;border-top:3px solid #43a047">
+        <div style="font-size:28px;margin-bottom:4px">🌐</div>
+        <h4>宽带</h4>
+        <div class="detail">搭电视PRO ⭐系数2</div>
+      </div>
+      <div class="policy-card" style="text-align:center;border-top:3px solid #e65100">
+        <div style="font-size:28px;margin-bottom:4px">📦</div>
+        <h4>小福袋</h4>
+        <div class="detail">搭FTTR年包/AI智能体</div>
+      </div>
+      <div class="policy-card" style="text-align:center;border-top:3px solid #6a1b9a">
+        <div style="font-size:28px;margin-bottom:4px">📈</div>
+        <h4>泛升档</h4>
+        <div class="detail">基础认筹项目</div>
+      </div>
+      <div class="policy-card" style="text-align:center;border-top:3px solid #e53935">
+        <div style="font-size:28px;margin-bottom:4px">🛒</div>
+        <h4>爱购商城</h4>
+        <div class="detail">基础认筹项目</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 宽带政策 -->
+  <div class="card">
+    <h2>🌐 宽带+电视PRO <span class="sub">系数叠加2</span></h2>
+    <div class="empty" style="padding:16px">
+      <div style="text-align:left;line-height:1.8;font-size:13px;color:#555">
+        <strong>政策要点：</strong><br>
+        • 办宽带时引导渠道搭载<strong>电视PRO</strong><br>
+        • 电视PRO认筹<strong>系数叠加2</strong><br>
+        • 宽带+电视PRO搭配 = 双倍认筹点数
+      </div>
+    </div>
+  </div>
+
+  <!-- 小福袋政策 -->
+  <div class="card">
+    <h2>📦 小福袋 <span class="sub">含FTTR/AI/全球通</span></h2>
+    <div class="empty" style="padding:16px">
+      <div style="text-align:left;line-height:1.8;font-size:13px;color:#555">
+        <strong>政策要点：</strong><br>
+        • 小福袋搭载<strong>FTTR 360元年包</strong><br>
+        • <strong>100WiFi质差</strong>客户计入小福袋认筹<br>
+        • <strong>全球通客户</strong>办WiFi计2（翻倍）<br>
+        • <strong>AI智能体</strong>计入小福袋，<strong>系数较高</strong>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 暑期换机季 -->
+<div class="card full" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2);border:2px solid #ff9800;margin-bottom:14px">
+  <h2 style="color:#e65100;border-bottom-color:#ffcc80">🌞 暑期换机季（7-8月重点）</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+    <div style="background:#fff;border-radius:10px;padding:14px">
+      <div style="font-size:13px;line-height:1.8">
+        <strong>目标方向：</strong><br>
+        • 🔥 多提货，抓住暑期换机潮<br>
+        • 📱 AI手机优先推广<br>
+        • 🤖 AI智能体优先推广<br>
+        • 📈 提高小福袋搭载率
+      </div>
+    </div>
+    <div style="background:#fff;border-radius:10px;padding:14px">
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px;color:#e65100">📅 重点推进计划</div>
+      <div class="detail" style="font-size:12px;line-height:1.7">
+        7月：启动暑期促销，AI手机备货<br>
+        8月：持续推进换机，加大提货量<br>
+        9月：Q3收尾，备货10月国庆
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 本月追踪 -->
+<div class="grid">
+
+  <div class="card">
+    <h2>📊 7月认筹进度 <span class="sub">待数据</span></h2>
+    <div class="empty">
+      <div class="icon">📋</div>
+      <p>7月报量数据到达后自动更新</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🔔 待办提醒 <span class="sub">Q3</span></h2>
+    <div class="renew-item"><div class="renew-dot orange"></div><div><strong>暑期换机季</strong> — 7-8月重点，多提货推AI手机</div></div>
+    <div class="renew-item"><div class="renew-dot purple"></div><div><strong>Q3认筹启动</strong> — 5项认筹已确认，推进渠道执行</div></div>
+    <div class="renew-item"><div class="renew-dot green"></div><div><strong>宽带+电视PRO</strong> — 系数叠加2，优先推</div></div>
+    <div class="renew-item"><div class="renew-dot purple"></div><div><strong>小福袋+FTTR</strong> — 搭载FTTR年包/AI智能体</div></div>
+    <div class="renew-item"><div class="renew-dot red"></div><div><strong>打印机清库</strong> — 剩4台，7月内清完</div></div>
+  </div>
+
+</div>
+
+<div class="card full">
+  <h2>📌 政策速查</h2>
+  <table>
+    <tr><th style="text-align:left">业务</th><th>认筹系数</th><th>搭载推荐</th><th>备注</th></tr>
+    <tr><td style="text-align:left">宽带</td><td>基础</td><td>电视PRO（系数叠加2）</td><td>—</td></tr>
+    <tr><td style="text-align:left">小福袋</td><td>基础</td><td>FTTR年包</td><td>100WiFi质差计入</td></tr>
+    <tr><td style="text-align:left">全球通WiFi</td><td><strong>计2（翻倍）</strong></td><td>—</td><td>全球通客户专属</td></tr>
+    <tr><td style="text-align:left">AI智能体</td><td><strong>系数较高</strong></td><td>小福袋</td><td>计入小福袋认筹</td></tr>
+    <tr><td style="text-align:left">电视PRO</td><td>叠加2</td><td>宽带</td><td>宽带+电视PRO双倍</td></tr>
+  </table>
+</div>
+
+<div class="footer">🦐 2026-07-01 · 兰新团队跟踪在隔壁看板</div>
+</div>
+</body>
+</html>
