@@ -11,12 +11,32 @@
   .header{background:linear-gradient(135deg,#e65100,#bf360c);color:#fff;padding:24px 32px;border-radius:16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
   .header h1{font-size:26px;font-weight:700}
   .header .sub{font-size:13px;opacity:.8;margin-top:4px}
+  .header .badge{background:rgba(255,255,255,.2);padding:6px 14px;border-radius:20px;font-size:13px}
   .card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:16px}
   .card h2{font-size:17px;font-weight:600;color:#e65100;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #e8edf2}
-  .empty-state{padding:40px;text-align:center;color:#999}
-  .empty-state .icon{font-size:48px;margin-bottom:12px}
-  .empty-state p{font-size:14px;line-height:1.8}
+  
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:8px 10px;text-align:center;border-bottom:1px solid #eee}
+  th{background:#f7f9fc;font-weight:600;color:#555;font-size:12px}
+  .num{font-weight:600}
+  .warn{color:#e53935}
+  .ok{color:#43a047}
+  .highlight{background:#fff8e1;font-weight:600}
+  .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;margin:1px}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-orange{background:#fff3e0;color:#e65100}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+
+  .alert{background:#fff8e1;border-left:4px solid #e65100;padding:12px 16px;border-radius:8px;font-size:13px;margin-bottom:12px;line-height:1.7}
+  .empty-state{padding:30px;text-align:center;color:#999}
+  .empty-state .icon{font-size:40px;margin-bottom:8px}
+  .empty-state p{font-size:13px;line-height:1.8}
+  .focus{background:#fff3e0;border:2px solid #e65100;padding:14px;border-radius:10px;margin-bottom:14px;text-align:center}
+  .focus .num{font-size:32px;font-weight:700;color:#e65100}
+  .focus .lbl{font-size:13px;color:#666;margin-top:2px}
   .footer{text-align:center;padding:16px;color:#999;font-size:12px}
+
+  @media(max-width:768px){body{padding:10px}}
 </style>
 </head>
 <body>
@@ -26,20 +46,75 @@
       <h1>📊 兰新团队 · 7月报量看板</h1>
       <div class="sub">统计周期：7月1日起 · 🔄 更新于 2026-07-01</div>
     </div>
-    <span class="badge" style="background:rgba(255,255,255,.2);padding:6px 14px;border-radius:20px;font-size:13px;color:#fff">2026年7月 · 🆕 新月份</span>
+    <span class="badge">🔥 学生证重点 · 手机起量</span>
   </div>
 
+  <div class="alert">
+    <strong>🎯 7月团队目标已定：</strong><br>
+    📱 手机 <strong>100台</strong> · 🆔 学生证 <strong>80~90笔</strong> ⭐本月重点<br>
+    🟡 考核金/扣款标准及其他考核项目待唐确认
+  </div>
+
+  <!-- 目标 -->
   <div class="card">
-    <h2>📢 等待唐确认</h2>
-    <div class="empty-state">
-      <div class="icon">📋</div>
-      <p>
-        7月考核指标待唐确认<br>
-        报量数据到达后自动更新
-      </p>
+    <h2>🎯 月度目标</h2>
+    <table>
+      <tr><th>业务</th><th>团队目标</th><th>人均目标</th><th>考核金</th><th>未完成扣</th></tr>
+      <tr><td style="text-align:left;font-weight:600">📱 手机</td><td class="num">100台</td><td>25台</td><td>🟡待定</td><td>🟡待定</td></tr>
+      <tr><td style="text-align:left;font-weight:600">🆔 学生证 ⭐</td><td class="num">80~90笔</td><td>20~22笔</td><td>🟡待定</td><td>🟡待定</td></tr>
+      <tr><td style="text-align:left">其他项目</td><td colspan="4">🟡 待唐确认</td></tr>
+    </table>
+  </div>
+
+  <!-- 重点提示 -->
+  <div class="card" style="background:#fff3e0;border:2px solid #e65100">
+    <h2 style="color:#e65100;border-bottom-color:#ffcc80">⭐ 本月重点：学生证起量</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div class="focus">
+        <div class="num">80~90</div>
+        <div class="lbl">📝 学生证目标笔数</div>
+      </div>
+      <div class="focus">
+        <div class="num">100</div>
+        <div class="lbl">📱 手机目标台数</div>
+      </div>
+    </div>
+    <div style="font-size:13px;line-height:1.8;padding:8px 0">
+      <strong>为什么是学生证？</strong><br>
+      6月学生证总共才24笔（舒捷4、美红11、🍒2、董梦晶6、普江林3），太低了。<br>
+      7月人均要做到20笔以上，每天至少1笔才追得上。<br><br>
+      <strong>配合策略：</strong><br>
+      • 学生证+手机捆绑提成180元（外呼:兰新=90:90）<br>
+      • 客户出29+10=39元/月 + 首付300元<br>
+      • 学生证不要可单独做手机（80元/台）
     </div>
   </div>
 
+  <!-- 个人目标框架 -->
+  <div class="card">
+    <h2>🏅 个人目标（框架）</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div style="border:1px solid #e0e0e0;border-radius:10px;padding:12px;text-align:center">
+        <div style="font-weight:700;font-size:14px;margin-bottom:6px">舒捷</div>
+        <div>📱 25台 | 🆔 20~22笔</div>
+      </div>
+      <div style="border:1px solid #e0e0e0;border-radius:10px;padding:12px;text-align:center">
+        <div style="font-weight:700;font-size:14px;margin-bottom:6px">美红</div>
+        <div>📱 25台 | 🆔 20~22笔</div>
+      </div>
+      <div style="border:1px solid #e0e0e0;border-radius:10px;padding:12px;text-align:center">
+        <div style="font-weight:700;font-size:14px;margin-bottom:6px">穆艳梅 🍒</div>
+        <div>📱 25台 | 🆔 20~22笔</div>
+      </div>
+      <div style="border:1px solid #e0e0e0;border-radius:10px;padding:12px;text-align:center">
+        <div style="font-weight:700;font-size:14px;margin-bottom:6px">董梦晶</div>
+        <div>📱 25台 | 🆔 20~22笔</div>
+      </div>
+    </div>
+    <div style="margin-top:10px;font-size:12px;color:#888;text-align:center">普江林（不考核）</div>
+  </div>
+
+  <!-- 明细 -->
   <div class="card">
     <h2>📅 报量明细</h2>
     <div class="empty-state">
@@ -48,7 +123,24 @@
     </div>
   </div>
 
-  <div class="footer">🦐 2026-07-01 · 6月已存档 → archive/2026-06/</div>
+  <div class="card"
+    style="background:#e8f5e9">
+    <h2 style="color:#2e7d32;border-bottom-color:#a5d6a7">💡 上月回顾（6月）</h2>
+    <table style="font-size:11px">
+      <tr><th>成员</th><th>📱手机</th><th>🆔学生证</th></tr>
+      <tr><td>舒捷</td><td style="color:#e53935">3台</td><td style="color:#e53935">4笔</td></tr>
+      <tr><td>美红</td><td>17台</td><td>11笔</td></tr>
+      <tr><td>穆艳梅 🍒</td><td style="color:#e53935">4台</td><td style="color:#e53935">3笔</td></tr>
+      <tr><td>董梦晶</td><td style="color:#e53935">8台</td><td>6笔</td></tr>
+      <tr><td style="font-weight:600">合计</td><td style="font-weight:600">32台</td><td style="font-weight:600">24笔</td></tr>
+    </table>
+    <div style="margin-top:8px;font-size:12px;color:#555">
+      6月手机+学生证双低，7月必须拉起来 🔥<br>
+      美红相对好一点，其他人提升空间很大
+    </div>
+  </div>
+
+  <div class="footer">🦐 2026-07-01</div>
 </div>
 </body>
 </html>
