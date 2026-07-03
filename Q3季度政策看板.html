@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Q3季度政策</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    padding: 12px;
+  }
+  .container { max-width: 820px; margin: 0 auto; }
+
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 50%, #533483 100%);
+    color: #fff;
+    border-radius: 16px;
+    padding: 20px 18px;
+    margin-bottom: 12px;
+  }
+  .header h1 { font-size: 20px; font-weight: 700; }
+  .header .sub { font-size: 13px; opacity: .8; margin-top: 4px; }
+
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  .card h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card h2 .tag {
+    font-size: 11px;
+    background: #e8f0fe;
+    color: #1a73e8;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 400;
+  }
+  .card h2 .tag.new {
+    background: #fce4ec;
+    color: #d93025;
+  }
+
+  .formula-box {
+    background: #f8f9ff;
+    border: 1px solid #e0e3f0;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 12px;
+    word-break: break-all;
+  }
+  .formula-box .hl { color: #d93025; font-weight: 600; }
+  .formula-box .hl2 { color: #1a73e8; font-weight: 600; }
+  .formula-box .new-item { background: #fff3e0; border-radius: 4px; padding: 1px 4px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    background: #f0f2f5;
+    text-align: left;
+    padding: 6px 8px;
+    font-weight: 600;
+    border-bottom: 2px solid #ddd;
+  }
+  td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+  tr:last-child td { border: none; }
+  .num { text-align: center; font-weight: 700; color: #1a73e8; }
+  .new-row td { background: #fff8e1; }
+  .new-row .num { color: #e65100; }
+
+  .note {
+    background: #fff8e1;
+    border-left: 4px solid #f9a825;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-top: 10px;
+  }
+  .note.audit { background: #fce4ec; border-left-color: #e53935; }
+  .note.info { background: #e8f5e9; border-left-color: #43a047; }
+  .note.warn { background: #fff3e0; border-left-color: #ff6d00; }
+
+  .ok { color: #0d904f; }
+  .warn { color: #d93025; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>📊 Q3季度政策</h1>
+  <div class="sub">2026年7-9月 · 取数及稽核口径</div>
+
+<div class="card" style="background:#e3f2fd">
+  <div style="font-size:13px;line-height:1.7">
+    <b>📢 当前状态</b><br>
+    ✅ 已通知开始做<b>宽带+路由</b><br>
+    🟡 <b>目标值（达量目标值）待公司定</b><br>
+    📅 后续有Q3相关文件，自动整理入此看板
+  </div>
+</div>
+</div>
+
+<!-- Broadband -->
+<div class="card">
+  <h2>📶 宽带 <span class="tag">取数口径</span></h2>
+
+  <div class="formula-box">
+    <b>总公式（就高原则）：</b><br>
+    🐂 金牛新装 × <span class="hl">2</span>
+    + 金牛口径2 × 0.5 + 金牛口径3 × 0.5<br>
+    <span class="new-item">🐯 金虎客户宽带 × <span class="hl">2</span> 🆕</span><br>
+    <span class="new-item">📺 新装（电视PRO）× <span class="hl">2</span> 🆕</span><br>
+    存量加装泛屏 × 1 · 新装千兆 × <span class="hl2">1.5</span><br>
+    🌍 全球通宽带 × <span class="hl">2</span><br>
+    📺 宽带搭电视 × <span class="hl2">1.3</span> · 单宽无电视 × 0.4
+  </div>
+
+  <table>
+    <tr><th>场景</th><th>系数</th><th></th></tr>
+    <tr class="new-row"><td>🐂 金牛客户新装宽带</td><td class="num">×2</td><td>✅ 延续</td></tr>
+    <tr><td>🐂 金牛口径2（金虎赢回+家庭关系）</td><td class="num">×0.5</td><td></td></tr>
+    <tr><td>🐂 金牛口径3（家庭+同住+异网已打）</td><td class="num">×0.5</td><td></td></tr>
+    <tr class="new-row"><td>🐯 金虎客户办理宽带</td><td class="num">×2</td><td>🆕 新增</td></tr>
+    <tr class="new-row"><td>📺 新装宽带 + 电视PRO</td><td class="num">×2</td><td>🆕 新增</td></tr>
+    <tr><td>存量宽带加装家庭泛屏</td><td class="num">×1</td><td></td></tr>
+    <tr><td>新装千兆宽带</td><td class="num">×1.5</td><td></td></tr>
+    <tr class="new-row"><td>🌍 全球通客户办理宽带</td><td class="num">×2</td><td>✅ 延续</td></tr>
+    <tr><td>宽带 + 电视</td><td class="num">×1.3</td><td></td></tr>
+    <tr><td>单宽无电视</td><td class="num">×0.4</td><td></td></tr>
+  </table>
+
+  <div class="note warn">
+    <b>⚠️ 注意：</b><br>
+    打过5折的灵犀屏 <span class="warn">不算认筹量</span>
+  </div>
+
+  <div class="note">
+    <b>🐂 金牛口径详解</b><br>
+    <b>口径1：</b>真金牛客户新装宽带（手动打标签不计）<br>
+    <b>口径2：</b>金虎赢回时，赢回号码新装宽带 + 与金牛有家庭关系（合账/共同保底/资源共享）<br>
+    <b>口径3：</b>a)有家庭业务关系 + b)物理同住（家庭模型&夜间基站相同）+ c)异网宽带已打掉（上月已用移动宽带且无非本网DM数据）
+  </div>
+
+  <div class="note audit">
+    <b>🔍 宽带稽核口径</b><br>
+    • 取季度内新开户且回单的有效宽带（流量&gt;100M，期末状态正常）<br>
+    • 剔除：装机次日0流量、拆机重装<br>
+    • 电视要求活跃（流量&gt;0）<br>
+    • 计算金牛占比/全球通占比/电视占比时 ⛔剔除校园宽带<br>
+    • 竣工次日0流量占比 &gt; 15% → <span class="warn">不参与激励</span>
+  </div>
+</div>
+
+<!-- 续约福利 -->
+<div class="card">
+  <h2>♻️ 小福袋到期续约 <span class="tag new">升级</span></h2>
+
+  <table>
+    <tr><th>小福袋档位</th><th>每月领流量</th><th>标签</th></tr>
+    <tr><td>5~10元档</td><td class="num">5GB</td><td>FDDQ05</td></tr>
+    <tr><td>10~19元档</td><td class="num" style="color:#1a73e8">10GB</td><td>FDDQ10</td></tr>
+    <tr><td>20~29元档</td><td class="num" style="color:#e65100">15GB</td><td>FDDQ20</td></tr>
+    <tr style="background:#fff3e0"><td>30元+档</td><td class="num" style="color:#d93025;font-weight:700">20GB</td><td>FDDQ30</td></tr>
+    <tr><td>健康小福袋5元+</td><td class="num">5GB</td><td>JKDQ5</td></tr>
+    <tr><td>健康小福袋10元+</td><td class="num" style="color:#1a73e8">10GB</td><td>JKDQ10</td></tr>
+  </table>
+
+  <div class="note info">
+    <b>💡 升级亮点</b><br>
+    ✅ 之前：所有档位统一每月免费 <b>5GB</b><br>
+    ✅ 现在：按档位领 <b>5~20GB</b> 🆕<br>
+    合约超22个月的客户可办，流量不可转赠、可共享
+  </div>
+
+  <div class="note">
+    <b>🔄 其他续约福利</b><br>
+    <b>硬件升级接续</b> — WiFi/FTTR客户合约超22月 → FTTR 10元/月+200调测费<br>
+    <b>保障服务接续</b> — 安防/门锁/WiFi/音箱/FTTR超12月 → 免费防诈险（保全家10人×5万）<br>
+    <b>安防续约</b> — 超2年客户每月领3GB/10GB流量<br>
+    <b>音箱续约</b> — 超24月 → 全家视频+时光轨迹+云存储+咪咕音乐<br>
+    <b>以旧换新</b> — 摄像头换新 + 安防门锁超12月领3GB
+  </div>
+</div>
+
+<!-- 小福袋 -->
+<div class="card">
+  <h2>🎁 移动爱家生态小福袋 <span class="tag">取数口径</span></h2>
+
+  <table>
+    <tr><th>产品</th><th>系数</th><th></th></tr>
+    <tr><td>全家WIFI（智能组网）</td><td class="num">1</td><td></td></tr>
+    <tr class="new-row"><td>🌍 全球通客户办理WIFI</td><td class="num" style="color:#e65100">×2</td><td>🆕 叠加2</td></tr>
+    <tr style="background:#e8f5e9"><td>📦 FTTR月包</td><td class="num" style="color:#d93025">3</td><td></td></tr>
+    <tr><td>FTTR从路由加装</td><td class="num">1</td><td></td></tr>
+    <tr><td>融合套餐/全家欢/金牛金虎内含FTTR</td><td class="num">1</td><td></td></tr>
+    <tr><td>移动看家</td><td class="num">1</td><td></td></tr>
+    <tr><td>爱家健康10元</td><td class="num">1</td><td></td></tr>
+    <tr><td>爱家健康15元</td><td class="num" style="color:#1a73e8">1.5</td><td></td></tr>
+    <tr style="background:#e8f5e9">
+      <td>🤖 AI家10元权益小福袋</td><td class="num">0.7</td><td></td>
+    </tr>
+    <tr style="background:#e8f5e9">
+      <td>🤖 AI家25元教育小福袋</td><td class="num" style="color:#d93025">2.5</td><td></td>
+    </tr>
+    <tr style="background:#e8f5e9">
+      <td>🤖 AI家35元+教育小福袋</td><td class="num" style="color:#d93025">3</td><td></td>
+    </tr>
+    <tr style="background:#fff3e0">
+      <td>💻 云电脑 45档</td><td class="num" style="color:#e65100">3.75</td><td></td>
+    </tr>
+    <tr style="background:#fff3e0">
+      <td>💻 云电脑 59档</td><td class="num" style="color:#e65100">4</td><td></td>
+    </tr>
+    <tr style="background:#fce4ec">
+      <td>🤖 AI智能体 19档</td><td class="num">1</td><td></td>
+    </tr>
+    <tr style="background:#fce4ec">
+      <td>🤖 AI智能体 29档</td><td class="num">2</td><td></td>
+    </tr>
+    <tr style="background:#fce4ec">
+      <td>🤖 AI智能体 39档</td><td class="num">3</td><td></td>
+    </tr>
+    <tr style="background:#fce4ec">
+      <td>🤖 AI智能体 49档</td><td class="num">4</td><td></td>
+    </tr>
+    <tr style="background:#fce4ec">
+      <td>🤖 AI智能体 59档</td><td class="num">5</td><td></td>
+    </tr>
+  </table>
+
+  <div class="note warn">
+    <b>⚠️ 注意：</b><br>
+    ❌ 100元WiFi质差活动 <span class="warn">3季度依然不算认筹</span><br>
+    ✅ 全球通客户办理WIFI（除质差外的所有WiFi活动）→ <span class="ok">系数叠加2</span>
+  </div>
+
+  <div class="note audit">
+    <b>🔍 小福袋稽核口径</b><br>
+    • 摄像头/血压仪/手环/智控遥控器 → <span class="warn">需绑定和家亲并激活</span><br>
+    • 安装后次月云存不活跃 → <span class="warn">不结算</span><br>
+    • 同一客户3个月内同类退订重录 → 不计<br>
+    • FTTR/WIFI投诉&gt;5笔 且 万投率&gt;150 → 从发展量剔除<br>
+  </div>
+</div>
+
+<div class="card" style="background:#e8f5e9">
+  <div style="font-size:13px;line-height:1.7">
+    <b>📌 三句话总结</b><br>
+    1️⃣ 宽带最划算的：<b>金牛×2、金虎×2、电视PRO×2、全球通×2</b> — 这4个优先推<br>
+    2️⃣ 小福袋最划算的：<b>FTTR月包×3、AI智能体最高×5、教育小福袋×3</b> — 系数高<br>
+    3️⃣ ⛔ 灵犀屏5折不算 · ⛔ WiFi质差不算 · ✅ 全球通WIFI系数×2
+  </div>
+</div>
+
+<div style="text-align:center;font-size:11px;color:#999;padding:8px">
+  来源：省公司文件 · 2026-07-02 下发
+</div>
+</div>
+</body>
+</html>
