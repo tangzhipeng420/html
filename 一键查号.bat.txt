@@ -1,0 +1,107 @@
+@echo off
+chcp 65001 >nul
+title 🦐 BOSS批量查号 · 一键启动
+color 0A
+
+echo ==========================================
+echo   🦐 BOSS批量查号系统 · 一键启动
+echo ==========================================
+echo.
+
+:: ========== 第1步：配置SSH密钥 ==========
+echo [1/6] 配置SSH密钥...
+if not exist "%USERPROFILE%\.ssh\" mkdir "%USERPROFILE%\.ssh\"
+if not exist "%USERPROFILE%\.ssh\oneclick-key" (
+    powershell -Command "[IO.File]::WriteAllText('%USERPROFILE%\.ssh\oneclick-key', '-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+QyNTUxOQAAACDZ1Hp9SFPvzpO4n4CYQaC3jMhrmXzLsjb0Dt6lVjzc4wAAAJCU1K/qlNSv
+6gAAAAtzc2gtZWQyNTUxOQAAACDZ1Hp9SFPvzpO4n4CYQaC3jMhrmXzLsjb0Dt6lVjzc4w
+AAAEDNRx9oZbrtXDqspxQatnZSkT9T3pb2m88Zb9amvKq3dtnUen1IU+/Ok7ifgJhBoLeM
+yGuZfMuyNvQO3qVWPNzjAAAADW9uZWNsaWNrLWJvc3M=
+-----END OPENSSH PRIVATE KEY-----')"
+    powershell -Command "& icacls '%USERPROFILE%\.ssh\oneclick-key' /inheritance:r /grant '%USERNAME%:F'"
+    echo    ✅ SSH密钥已配置
+) else (
+    echo    ✅ SSH密钥已存在
+)
+echo.
+
+:: ========== 第2步：找SafeBrowser路径 ==========
+echo [2/6] 检查SafeBrowser...
+set SAFE_PATH=C:\Program Files\AsiaInfo\SafeBrowser\aisb_safebrowser.exe
+set SAFE_PATH2=C:\Program Files (x86)\AsiaInfo\SafeBrowser\aisb_safebrowser.exe
+set SAFE_PATH3=%LOCALAPPDATA%\AsiaInfo\SafeBrowser\Application\aisb_safebrowser.exe
+
+if exist "%SAFE_PATH%" set SAFE_EXE=%SAFE_PATH%
+if exist "%SAFE_PATH2%" set SAFE_EXE=%SAFE_PATH2%
+if exist "%SAFE_PATH3%" set SAFE_EXE=%SAFE_PATH3%
+
+if not defined SAFE_EXE (
+    echo    ⚠️ 未找到SafeBrowser，请手动选择
+    echo    路径通常在: C:\Program Files\AsiaInfo\SafeBrowser\
+    set /p SAFE_EXE="请输入SafeBrowser完整路径: "
+)
+echo    ✅ SafeBrowser: %SAFE_EXE%
+echo.
+
+:: ========== 第3步：启动SafeBrowser ==========
+echo [3/6] 启动SafeBrowser（调试模式）...
+tasklist /FI "IMAGENAME eq aisb_safebrowser.exe" 2>NUL | find /I /N "aisb_safebrowser.exe" >NUL
+if "%ERRORLEVEL%"=="0" (
+    echo    ✅ SafeBrowser已在运行
+) else (
+    start "" "%SAFE_EXE%" --remote-debugging-port=19222
+    echo    ✅ SafeBrowser已启动
+)
+echo.
+
+:: ========== 第4步：等SafeBrowser就绪 ==========
+echo [4/6] 等待SafeBrowser就绪...
+:wait_ready
+timeout /t 2 /nobreak >nul
+powershell -Command "try { $wc=New-Object Net.WebClient; $d=$wc.DownloadString('http://127.0.0.1:19222/json'); if($d -match 'devtools'){exit 0} } catch {}; exit 1" >nul 2>&1
+if not "%ERRORLEVEL%"=="0" (
+    echo    等待中...
+    goto wait_ready
+)
+echo    ✅ SafeBrowser调试端口就绪 (port 19222)
+echo.
+
+:: ========== 第5步：建立SSH隧道 ==========
+echo [5/6] 建立SSH隧道（免密登录）...
+start /min "SSH隧道" ssh -i "%USERPROFILE%\.ssh\oneclick-key" -o StrictHostKeyChecking=accept-new -o ServerAliveInterval=30 -R 19223:localhost:19222 ubuntu@118.89.78.14 -N
+timeout /t 3 /nobreak >nul
+echo    ✅ SSH隧道已连接 (端口19222 → VPS:19223)
+echo.
+
+:: ========== 第6步：等用户登录 ==========
+echo [6/6] 等待操作
+echo ==========================================
+echo   🎯 全部就绪！
+echo.
+echo   请在打开的SafeBrowser中：
+echo   ① 打开BOSS系统 → 登录工号
+echo   ② 进入CRM客户查询页面
+echo   ③ 登录完成后，回到此窗口按回车键
+echo   系统将自动发现CDP页面并开始批量查号！
+echo ==========================================
+pause >nul
+
+:: ========== 开始查号 ==========
+echo.
+echo ==========================================
+echo   🚀 正在启动批量查号...
+echo   进度将实时显示在此窗口
+echo ==========================================
+echo.
+
+ssh -i "%USERPROFILE%\.ssh\oneclick-key" -o StrictHostKeyChecking=accept-new ubuntu@118.89.78.14 "cd /home/ubuntu/.openclaw/workspace && python3 -u batch_query_v8.py"
+
+echo.
+echo ==========================================
+echo   ✅ 查号已完成！
+echo   结果文件: VPS /home/ubuntu/水池_结果.xlsx
+echo   微信告诉虾，他会分析结果给你
+echo ==========================================
+echo.
+pause
