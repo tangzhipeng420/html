@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-# 综合查号：billing(navframe_135) + 权益金
 import websocket,json,urllib.request,time,openpyxl,os,sys
 CP=19222;SR=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池.xlsx')
 OU=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池_结果.xlsx')
-ST=0;N=3
+ST=0
 lg=lambda m:print(time.strftime('%H:%M:%S'),m,flush=True)
 
 try:
@@ -24,7 +23,7 @@ def js(cd):
                 return rs.get('result',{}).get('value','') if not rs.get('isException') else ''
     except:return ''
 
-# Phase 1: Hardcode billing iframe (navframe_135 from CRM payment page)
+# Phase 1: Hardcode billing iframe
 bid='navframe_135'
 lg('Billing iframe: '+bid)
 
@@ -47,21 +46,16 @@ all_phones=[str(ws.cell(r,1).value or'').strip() for r in range(2,ws.max_row+1) 
 lg(str(len(all_phones))+' phones total')
 
 # Skip processed
-del_old=False
 if os.path.exists(OU):
     try:
         wb2=openpyxl.load_workbook(OU)
         done=wb2.active.max_row-1
         if done>0:ST=done
     except:
-        del_old=True
-if del_old:
-    try:os.remove(OU)
-    except:pass
+        try:os.remove(OU)
+        except:pass
 
-phs=all_phones[ST:ST+N]
-if not phs:lg('DONE!');c.close();exit()
-lg('Batch '+str(ST+1)+'-'+str(ST+len(phs)))
+if ST>=len(all_phones):lg('ALL DONE!');c.close();exit()
 
 # Result workbook
 if ST==0:
@@ -72,10 +66,14 @@ else:
     wb2=openpyxl.load_workbook(OU)
     osx=wb2.active
 
-for idx,ph in enumerate(phs):
-    lg('%d/%d: %s'%(idx+1,len(phs),ph))
-    cust='';offer='';gt='';ya='';bal='';st='';eqb=''
+total=len(all_phones)
+lg('Starting from '+str(ST+1)+'/'+str(total))
 
+for idx,ph in enumerate(all_phones[ST:]):
+    ph=ph.strip()
+    if not ph:continue
+    lg('%d/%d: %s'%(idx+1+ST,total,ph))
+    cust='';offer='';gt='';ya='';bal='';st='';eqb=''
     # Billing
     try:
         js('document.getElementById("'+bid+'").contentDocument.getElementById("ACCESS_NUMBER").value="'+ph+'"')
@@ -95,7 +93,6 @@ for idx,ph in enumerate(phs):
             else:st='无数据'
         else:st='API失败'
     except:st='异常'
-
     # Equity
     try:
         js('document.getElementById("'+eqid+'").contentDocument.getElementById("ACCESS_NUMBER").value="'+ph+'"')
@@ -111,12 +108,11 @@ for idx,ph in enumerate(phs):
                 p=s.split('\uff1a')
                 if len(p)>1:eqb=p[-1].strip()
     except:eqb='err'
-
     osx.append([ph,cust,offer,gt,ya,bal,st,eqb])
     try:wb2.save(OU)
     except:pass
 
 try:wb2.save(OU)
 except:pass
-lg('DONE! '+str(len(phs))+' phones')
+lg('DONE! '+str(len(all_phones[ST:]))+' phones this run')
 c.close()
