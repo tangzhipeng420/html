@@ -45,7 +45,7 @@ def q_billing(ph):
         'for(var i=0;i<es.length;i++){'+
             'try{'+
                 'var d=es[i].contentDocument;'+
-                'if(d&&d.getElementById("ACCESS_NUMBER")&&d.getElementById("PROCESS_TAG")){'+
+                'if(d&&d.getElementById("ACCESS_NUMBER")&&es[i].src.indexOf("payment")>=0){'+
                     'd.getElementById("ACCESS_NUMBER").value="'+ph+'";'+
                     'var w=es[i].contentWindow;'+
                     'w.agentUtil.ajax({'+
