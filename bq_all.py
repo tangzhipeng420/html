@@ -1,80 +1,59 @@
 # -*- coding: utf-8 -*-
-import websocket,json,urllib.request,time,openpyxl,os,sys
+import websocket,json,urllib.request,time,openpyxl,os
 CP=19222;SR=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池.xlsx')
 OU=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池_结果.xlsx')
-ST=0
+N=10
 lg=lambda m:print(time.strftime('%H:%M:%S'),m,flush=True)
 
-try:
-    p=json.loads(urllib.request.urlopen('http://[::1]:%d/json'%CP,timeout=3).read())
+def cdp():
+    p=json.loads(urllib.request.urlopen('http://[::1]:%d/json'%CP,timeout=5).read())
     c=websocket.create_connection('ws://[::1]:%d/devtools/page/'%CP+p[0]['id'],timeout=5)
-except Exception as e:lg('CDPFAIL:'+str(e));exit()
+    return c
 
-n=0
+n=[0];c=cdp()
 def js(cd):
-    global n;n+=1
-    c.send(json.dumps({'id':n,'method':'Runtime.evaluate','params':{'expression':cd,'returnByValue':True}}))
+    n[0]+=1
+    c.send(json.dumps({'id':n[0],'method':'Runtime.evaluate','params':{'expression':cd,'returnByValue':True}}))
     c.settimeout(3)
     try:
         while True:
             r=json.loads(c.recv())
-            if r.get('id')==n:
+            if r.get('id')==n[0]:
                 rs=r.get('result',{})
                 return rs.get('result',{}).get('value','') if not rs.get('isException') else ''
     except:return ''
 
-# Phase 1: Hardcode billing iframe
 bid='navframe_135'
-lg('Billing iframe: '+bid)
-
-# Phase 2: Find equity iframe
+lg('Billing: '+bid)
 eqid=''
-lg('Looking for equity iframe...')
 ejs=js('(function(){var fs=document.querySelectorAll("iframe");for(var i=0;i<fs.length;i++){try{var d=fs[i].contentDocument;if(d&&d.getElementById("LOGIN_USER_ID"))return fs[i].id}catch(e){}}return""})()')
-if ejs:eqid=ejs;lg('Found: '+eqid)
+if ejs:eqid=ejs;lg('Equity: '+eqid)
 else:
-    uid=str(time.time()).replace('.','')
-    eqid='eq_'+uid
-    lg('Creating: '+eqid)
+    eqid='eq_'+str(time.time()).replace('.','')
     js('(function(){var f=document.createElement("iframe");f.id="'+eqid+'";f.style.display="none";f.src="/ordercentre/ordercentre?service=page/oc.person.cs.fusion.Equitypoolquery&listener=onInitBusi&MENU_ID=FUSE20210917";document.body.appendChild(f);return"ok";})()')
     time.sleep(5)
 
-# Phase 3: Load phones
-wb=openpyxl.load_workbook(SR)
-ws=wb.active
+wb=openpyxl.load_workbook(SR);ws=wb.active
 all_phones=[str(ws.cell(r,1).value or'').strip() for r in range(2,ws.max_row+1) if ws.cell(r,1).value]
-lg(str(len(all_phones))+' phones total')
-
-# Skip processed
+lg(str(len(all_phones))+' total')
+ST=0
 if os.path.exists(OU):
     try:
-        wb2=openpyxl.load_workbook(OU)
-        done=wb2.active.max_row-1
+        wb2=openpyxl.load_workbook(OU);done=wb2.active.max_row-1
         if done>0:ST=done
     except:
-        try:os.remove(OU)
+        try:os.remove(OU);ST=0
         except:pass
-
 if ST>=len(all_phones):lg('ALL DONE!');c.close();exit()
-
-# Result workbook
 if ST==0:
-    wb2=openpyxl.Workbook()
-    osx=wb2.active
+    wb2=openpyxl.Workbook();osx=wb2.active
     osx.append(['号码','姓','套餐','全球通','年ARPU','余额','状态','权益金余额'])
 else:
-    wb2=openpyxl.load_workbook(OU)
-    osx=wb2.active
-
-total=len(all_phones)
-lg('Starting from '+str(ST+1)+'/'+str(total))
-
-for idx,ph in enumerate(all_phones[ST:]):
-    ph=ph.strip()
-    if not ph:continue
-    lg('%d/%d: %s'%(idx+1+ST,total,ph))
-    cust='';offer='';gt='';ya='';bal='';st='';eqb=''
-    # Billing
+    wb2=openpyxl.load_workbook(OU);osx=wb2.active
+phs=all_phones[ST:ST+N]
+lg('Batch '+str(ST+1)+'-'+str(ST+len(phs)))
+for ph in phs:
+    ph=ph.strip();cust='';offer='';gt='';ya='';bal='';st='';eqb=''
     try:
         js('document.getElementById("'+bid+'").contentDocument.getElementById("ACCESS_NUMBER").value="'+ph+'"')
         tmp=js('(function(){try{var w=document.getElementById("'+bid+'").contentWindow;window.__CDP_RES__=null;w.agentUtil.ajax({url:"AgentCentre.person.payment.IAgentPaymentSV.queryBaseInfoPayment",refreshCust:true,data:{ACCESS_NUMBER:"'+ph+'",REMOVE_TAG:""},success:function(rr){window.__CDP_RES__=rr;}});return"ok";}catch(e){return"err:"+e.message;}})()')
@@ -93,7 +72,6 @@ for idx,ph in enumerate(all_phones[ST:]):
             else:st='无数据'
         else:st='API失败'
     except:st='异常'
-    # Equity
     try:
         js('document.getElementById("'+eqid+'").contentDocument.getElementById("ACCESS_NUMBER").value="'+ph+'"')
         js('document.getElementById("'+eqid+'").contentDocument.getElementById("LOGIN_USER_ID").value="'+ph+'"')
@@ -111,8 +89,7 @@ for idx,ph in enumerate(all_phones[ST:]):
     osx.append([ph,cust,offer,gt,ya,bal,st,eqb])
     try:wb2.save(OU)
     except:pass
-
 try:wb2.save(OU)
 except:pass
-lg('DONE! '+str(len(all_phones[ST:]))+' phones this run')
 c.close()
+lg('DONE! '+str(len(phs))+' phones')
