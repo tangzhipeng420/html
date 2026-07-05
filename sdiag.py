@@ -8,6 +8,10 @@ def js(n,cd):
     r=json.loads(c.recv())
     return r.get("result",{}).get("result",{}).get("value","")
 
-# test eval
-print(js(1,"location.href"))
-print(js(2,"document.title"))
+print("URL:", js(1,"location.href"))
+print("TITLE:", js(2,"document.title"))
+aids=js(3,"JSON.stringify(Array.from(document.querySelectorAll('iframe'),f=>({id:f.id,src:(f.src||'').slice(0,80)})))")
+print("IFRAMES:", aids)
+for fn in [x["id"] for x in json.loads(aids or "[]")]:
+    v=js(4,"(function(){try{var d=document.getElementById('"+fn+"').contentDocument||document.getElementById('"+fn+"').contentWindow.document;if(!d)return'nope';var e=d.getElementById('ACCESS_NUMBER');return(e?'OK:'+e.value.slice(0,30):'NO_ACCESS: '+d.title.slice(0,120));}catch(e){return'ERR:'+e.message.slice(0,150);}})()")
+    print(fn+": "+v[:120])
