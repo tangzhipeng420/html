@@ -3,7 +3,7 @@
 import websocket,json,urllib.request,time,openpyxl,os,sys
 CP=19222;SR=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池.xlsx')
 OU=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池_结果.xlsx')
-ST=0;N=5
+ST=0;N=3
 lg=lambda m:print(time.strftime('%H:%M:%S'),m,flush=True)
 
 try:
@@ -15,7 +15,7 @@ n=0
 def js(cd):
     global n;n+=1
     c.send(json.dumps({'id':n,'method':'Runtime.evaluate','params':{'expression':cd,'returnByValue':True}}))
-    c.settimeout(10)
+    c.settimeout(3)
     try:
         while True:
             r=json.loads(c.recv())
@@ -47,15 +47,20 @@ all_phones=[str(ws.cell(r,1).value or'').strip() for r in range(2,ws.max_row+1) 
 lg(str(len(all_phones))+' phones total')
 
 # Skip processed
+del_old=False
 if os.path.exists(OU):
     try:
         wb2=openpyxl.load_workbook(OU)
         done=wb2.active.max_row-1
         if done>0:ST=done
+    except:
+        del_old=True
+if del_old:
+    try:os.remove(OU)
     except:pass
+
 phs=all_phones[ST:ST+N]
 if not phs:lg('DONE!');c.close();exit()
-
 lg('Batch '+str(ST+1)+'-'+str(ST+len(phs)))
 
 # Result workbook
@@ -89,8 +94,7 @@ for idx,ph in enumerate(phs):
                 st=dd.get('X_SVCSTATE_EXPLAIN','') or ''
             else:st='无数据'
         else:st='API失败'
-    except Exception as e:
-        st='异常'
+    except:st='异常'
 
     # Equity
     try:
