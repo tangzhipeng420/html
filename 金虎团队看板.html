@@ -7,44 +7,59 @@
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f0f2f5;color:#333;padding:16px}
-  .container{max-width:1200px;margin:0 auto}
-  .header{background:linear-gradient(135deg,#1565c0,#0d47a1);color:#fff;padding:20px 24px;border-radius:14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
+  .container{max-width:1100px;margin:0 auto}
+  .header{background:linear-gradient(135deg,#e65100,#bf360c);color:#fff;padding:20px 24px;border-radius:14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
   .header h1{font-size:22px;font-weight:700}
   .header .sub{font-size:12px;opacity:.8;margin-top:3px}
-  .header .badge{background:rgba(255,255,255,.2);padding:5px 12px;border-radius:20px;font-size:12px}
+  .badge-orange{background:rgba(255,255,255,.2);padding:4px 12px;border-radius:20px;font-size:12px;display:inline-block;margin-right:6px}
+  .badge-green{background:#43a047;color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;display:inline-block}
 
   .card{background:#fff;border-radius:12px;padding:16px 18px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:12px}
-  .card h2{font-size:16px;font-weight:600;color:#1565c0;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #e8edf2}
+  .card h2{font-size:16px;font-weight:600;color:#e65100;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #e8edf2;display:flex;justify-content:space-between;align-items:center}
+  .card h2 .sub{font-size:11px;font-weight:400;color:#888}
 
-  table{width:100%;border-collapse:collapse;font-size:12px}
-  th,td{padding:6px 8px;text-align:center;border-bottom:1px solid #eee}
-  th{background:#e3f2fd;font-weight:600;color:#555;font-size:11px}
-  .num{font-weight:600}
-  .warn{color:#e53935}
-  .ok{color:#43a047}
-  .highlight{background:#fff8e1;font-weight:600}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:7px 10px;text-align:center;border-bottom:1px solid #eee}
+  th{background:#fff3e0;font-weight:600;color:#555;font-size:12px}
+  .num{font-weight:700;font-size:16px}
+  .green{color:#2e7d32}
+  .orange{color:#e65100}
+  .red{color:#c62828}
 
-  .target-box{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
-  .target-item{background:#e3f2fd;border-radius:10px;padding:14px;text-align:center}
-  .target-item .num{font-size:28px;font-weight:700;color:#1565c0;display:block}
-  .target-item .lbl{font-size:12px;color:#666;margin-top:2px}
+  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:12px}
+  .kpi-box{border-radius:10px;padding:14px;text-align:center;background:#f5f5f5}
+  .kpi-box .big{font-size:26px;font-weight:700;display:block}
+  .kpi-box .lbl{font-size:11px;color:#666;margin-top:2px}
+  .kpi-box.blue{background:#e3f2fd}
+  .kpi-box.orange{background:#fff3e0}
+  .kpi-box.green{background:#e8f5e9}
 
   .person-card{border:1px solid #e0e0e0;border-radius:10px;margin-bottom:8px;overflow:hidden}
-  .person-card .ph{padding:8px 12px;font-weight:700;font-size:14px;background:#e3f2fd;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;align-items:center}
+  .person-card .ph{padding:8px 14px;font-weight:700;font-size:14px;background:#fff3e0;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;align-items:center}
   .person-card .ph .sum{font-size:11px;font-weight:400;color:#666}
-  .person-card .pb{padding:8px 12px}
-  .kpi-row{display:flex;gap:4px;flex-wrap:wrap}
-  .kpi-item{padding:3px 8px;border-radius:5px;font-size:11px;background:#f0f0f0}
-  .kpi-item.ok{background:#e8f5e9}
-  .kpi-item.warn{background:#ffebee}
-  .other-items{font-size:10px;color:#666;margin-top:4px;line-height:1.5}
+  .person-card .pb{padding:8px 14px}
+  .kpi-tag{padding:3px 10px;border-radius:5px;font-size:11px;background:#f0f0f0;display:inline-block;margin:2px}
+  .kpi-tag.green{background:#e8f5e9}
+  .kpi-tag.red{background:#ffebee}
 
-  .note{font-size:11px;color:#888;padding:8px 0;text-align:center}
-  .empty-state{text-align:center;padding:20px;color:#bbb;font-size:12px}
+  .eq-formula{font-family:monospace;background:#fff8e1;padding:10px 14px;border-radius:8px;font-size:14px;margin:8px 0;text-align:center;border:1px dashed #e65100}
+  .eq-formula strong{color:#e65100}
+
+  .daily-tasks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  @media(max-width:600px){.daily-tasks{grid-template-columns:1fr}}
+  .task-card{background:#f5f5f5;border-radius:8px;padding:10px 12px}
+  .task-card .t{font-size:12px;color:#666}
+  .task-card .v{font-size:18px;font-weight:700;margin:4px 0}
+  .task-card .r{font-size:11px;color:#888}
+
   .footer{text-align:center;padding:12px;color:#999;font-size:11px}
-
-  .alert-blue{background:#e3f2fd;border-left:4px solid #1565c0;padding:10px 14px;border-radius:8px;font-size:12px;margin-bottom:10px;line-height:1.6}
-  @media(max-width:768px){.target-box{grid-template-columns:1fr}}
+  .alert-box{background:#fff3e0;border-left:4px solid #e65100;padding:10px 14px;border-radius:8px;font-size:12px;margin-bottom:10px;line-height:1.6}
+  .alert-box.green{background:#e8f5e9;border-left-color:#2e7d32}
+  .section{margin-top:4px}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:600px){.two-col{grid-template-columns:1fr}}
+  .mb-8{margin-bottom:8px}
+  .mt-8{margin-top:8px}
 </style>
 </head>
 <body>
@@ -53,59 +68,109 @@
 <div class="header">
   <div>
     <h1>🐯 金虎团队 · 7月报量看板</h1>
-    <div class="sub">核心成员：普江林 · 统计周期：7月1日起 · 🔄 更新于 2026-07-03</div>
+    <div class="sub">3人团队 · 宽带为核心 · 底薪1万 · 🔄 更新于 2026-07-05</div>
   </div>
-  <span class="badge">🎯 手机至少125台</span>
-</div>
-
-<div class="alert-blue">
-  <strong>📌 说明：</strong>普江林是金虎成员，但报量总数也计入兰新团队总合计。<br>
-  🏪 普江林数据 → 金虎看板（此处）+ 兰新看板（总数含他）
-</div>
-
-<div class="card">
-  <h2>🎯 7月目标</h2>
-  <div class="target-box">
-    <div class="target-item"><span class="num">125</span><div class="lbl">📱 手机目标（至少）</div></div>
-    <div class="target-item"><span class="num">🟡</span><div class="lbl">其他项目 · 待确认</div></div>
+  <div>
+    <span class="badge-orange">🎯 达标线≥20</span>
+    <span class="badge-green">💰 底薪1万/月</span>
   </div>
 </div>
 
+<!-- 等值公式 -->
 <div class="card">
-  <h2>🏅 核心成员</h2>
-  <div class="person-card" style="border-color:#1565c0">
-    <div class="ph" style="background:#e3f2fd"><span>普江林（：））</span><span class="sum">🔥 6月：📱14台 🆔3笔</span></div>
+  <h2>📐 宽带等值公式</h2>
+  <div class="eq-formula">
+    宽带等值 = 宽带×<strong>1</strong> + 手机×<strong>2.5</strong> + 学生证×<strong>2.7</strong> + 电饭煲×<strong>0.25</strong>
+  </div>
+  <div style="font-size:12px;color:#888;text-align:center">
+    ✅ 达标线：宽带等值 ≥ 20/天 &nbsp;|&nbsp; 4个电饭煲 = 1条宽带
+  </div>
+</div>
+
+<!-- 收益与提成 -->
+<div class="two-col">
+  <div class="card">
+    <h2>💰 收益与提成 <span class="sub">每件</span></h2>
+    <table>
+      <tr><th>业务</th><th>总收益</th><th>提成</th><th>净营收</th><th>系数</th></tr>
+      <tr><td>🌐 宽带</td><td>30元</td><td>10元</td><td class="num green">20元</td><td>×1</td></tr>
+      <tr><td>📱 手机</td><td>75元</td><td>25元</td><td class="num green">50元</td><td>×2.5</td></tr>
+      <tr><td>🆔 学生证</td><td>80元</td><td>25元</td><td class="num green">55元</td><td>×2.7</td></tr>
+      <tr><td>🍳 电饭煲</td><td>10元</td><td>5元</td><td class="num green">5元</td><td>×0.25</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>✅ 达标参考 <span class="sub">宽带等值≥20</span></h2>
+    <table>
+      <tr><th>方案</th><th>组合</th><th>等值</th><th>净营收</th></tr>
+      <tr><td>🅰 纯宽带</td><td>20条宽带</td><td>20</td><td>400元</td></tr>
+      <tr><td>🅱 混搭</td><td>10宽带+2手机+2学生证</td><td>20.4</td><td>410元</td></tr>
+      <tr><td>🅲 混搭</td><td>8宽带+3手机+2学生证</td><td>20.9</td><td>425元</td></tr>
+      <tr><td>🅳 宽带+电饭煲</td><td>18宽带+8电饭煲</td><td>20</td><td>400元</td></tr>
+    </table>
+    <div style="font-size:11px;color:#888;text-align:center;margin-top:6px">月总净营收≥10,000 = 够发1万底薪 ✅</div>
+  </div>
+</div>
+
+<!-- 每日任务 -->
+<div class="card">
+  <h2>🎯 每日任务分工 <span class="sub">3人·目标宽带等值≥20</span></h2>
+  <div class="person-card">
+    <div class="ph"><span>🅰 主力 · 手机+宽带+学生证</span></div>
     <div class="pb">
-      <div class="kpi-row">
-        <span class="kpi-item ok">📱 手机：<strong>1</strong>/125</span>
-        <span class="kpi-item mid">🆔 学生证：0/—</span>
+      <div class="daily-tasks">
+        <div class="task-card"><div class="t">手机</div><div class="v orange">1台</div></div>
+        <div class="task-card"><div class="t">宽带</div><div class="v orange">3条</div></div>
+        <div class="task-card"><div class="t">学生证</div><div class="v orange">1笔</div><div class="r">或电饭煲4个</div></div>
       </div>
-      <div class="other-items">📌 7月报量数据到达后更新</div>
     </div>
   </div>
-</div>
-
-<div class="card">
-  <h2>📅 7月报量明细</h2>
-  <div class="empty-state">
-    <p><strong>📌 7/1（普江林）：</strong>手机1台 · 儿童手表1个 · 29小福袋1笔</p>
+  <div class="person-card">
+    <div class="ph"><span>🅱 外呼 · 宽带+学生证</span></div>
+    <div class="pb">
+      <div class="daily-tasks">
+        <div class="task-card"><div class="t">宽带</div><div class="v orange">2条</div></div>
+        <div class="task-card"><div class="t">学生证</div><div class="v orange">1笔</div><div class="r">或电饭煲4个</div></div>
+      </div>
+    </div>
   </div>
+  <div class="person-card">
+    <div class="ph"><span>🅲 辅助 · 宽带+学生证</span></div>
+    <div class="pb">
+      <div class="daily-tasks">
+        <div class="task-card"><div class="t">宽带</div><div class="v orange">1条</div></div>
+        <div class="task-card"><div class="t">学生证</div><div class="v orange">1笔</div><div class="r">或电饭煲4个</div></div>
+      </div>
+    </div>
+  </div>
+  <div style="font-size:11px;color:#888;text-align:center;margin-top:6px">合计：宽带6条+手机1台+学生证3笔 → 等值6+2.5+8.1=16.6 ❌ 不足<br>需全员冲刺或调整分工才能达到等值≥20，建议主攻高系数业务</div>
 </div>
 
-<div class="card" style="background:#e8f5e9">
-  <h2 style="color:#2e7d32;border-bottom-color:#a5d6a7">📊 6月回顾（普江林）</h2>
+<!-- 7月报量 -->
+<div class="card">
+  <h2>📋 7月报量追踪</h2>
   <table>
-    <tr><th style="text-align:left">业务</th><th>数量</th></tr>
-    <tr><td style="text-align:left">📱 手机</td><td class="num">14台</td></tr>
-    <tr><td style="text-align:left">🆔 学生证</td><td class="num">3笔</td></tr>
-    <tr><td style="text-align:left">📡 FTTR</td><td class="num ok">41笔 🔥</td></tr>
-    <tr><td style="text-align:left">🖥️ 灵犀屏</td><td class="num ok">33个 🔥</td></tr>
-    <tr><td style="text-align:left">📺 电视Pro</td><td>0</td></tr>
-    <tr><td style="text-align:left">其他</td><td>开户11、宽带14、路由器14、视频彩铃Plus35、19小福袋4、29小福袋6、电饭煲24、88会员19、携转5</td></tr>
+    <tr><th>日期</th><th>宽带</th><th>手机</th><th>学生证</th><th>电饭煲</th><th>等值</th><th>达标?</th></tr>
+    <tr><td>7/1</td><td>—</td><td>1</td><td>—</td><td>—</td><td>2.5</td><td class="red">❌</td></tr>
+    <tr><td>7/2 普江林</td><td>—</td><td>1</td><td>—</td><td>—</td><td>2.5</td><td class="red">❌</td></tr>
+    <tr style="background:#fff3e0;font-weight:700"><td>合计</td><td>0</td><td>2</td><td>0</td><td>0</td><td>5.0</td><td class="red">❌</td></tr>
+    <tr><td colspan="7" style="text-align:left;font-size:11px;color:#888;">📌 注：等值 = 宽带×1 + 手机×2.5 + 学生证×2.7 + 电饭煲×0.25</td></tr>
   </table>
 </div>
 
-<div class="footer">🦐 2026-07-01 · 普江林报量同样在兰新看板的总数中体现</div>
+<!-- 团队公约 -->
+<div class="card" style="background:#fff8e1">
+  <h2 style="color:#bf360c">📋 团队公约</h2>
+  <ul style="font-size:13px;line-height:2;padding-left:18px">
+    <li><strong>每日报量：</strong>当天完成的量当天报，不拖不瞒</li>
+    <li><strong>乐捐规则：</strong>未完成当日任务的按等值缺口乐捐</li>
+    <li><strong>超额奖励：</strong>月超额完成总目标的，额外奖励</li>
+    <li><strong>客户质量：</strong>严禁凑数，投诉扣单</li>
+    <li><strong>底薪1万：</strong>团队3人合计，干满任务保底发放</li>
+  </ul>
+</div>
+
+<div class="footer">🦐 2026-07-05 · 金虎团队方案定稿</div>
 </div>
 </body>
 </html>
