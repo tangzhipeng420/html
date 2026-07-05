@@ -1,7 +1,7 @@
 import websocket,json,urllib.request,time,openpyxl,os,sys
 CP=19222
-SR=os.path.join('C:','Users','Administrator','Desktop','pool.xlsx')
-OU=os.path.join('C:','Users','Administrator','Desktop','pool_r.xlsx')
+SR=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','pool.xlsx')
+OU=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','pool_r.xlsx')
 
 def lg(m):
     t=time.strftime('%H:%M:%S')
@@ -22,7 +22,7 @@ def js(cd):
             if rs.get('isException'):return''
             return rs.get('result',{}).get('value','')
 
-Q='"'  # JS double quote
+Q='"'
 
 v=js('(function(){try{var f=document.getElementById('+Q+'navframe_133'+Q+');if(!f)return"nf";var d=f.contentDocument||f.contentWindow.document;var e=d.getElementById('+Q+'ACCESS_NUMBER'+Q+');return e?"ok:"+e.value:"no"}catch(e){return"err"}})()')
 lg('133:'+v[:40])
@@ -34,7 +34,7 @@ if not v.startswith('ok'):
 if not v.startswith('ok'):lg('FAIL');c.close();exit()
 lg('USE:'+fn)
 
-if not os.path.exists(SR):lg('no pool');c.close();exit()
+if not os.path.exists(SR):lg('nofile:'+SR);c.close();exit()
 wb=openpyxl.load_workbook(SR);ws=wb.active
 phs=[str(ws.cell(r,1).value or'').strip() for r in range(2,ws.max_row+1)if ws.cell(r,1).value and str(ws.cell(r,1).value).strip()]
 lg('total:'+str(len(phs)))
