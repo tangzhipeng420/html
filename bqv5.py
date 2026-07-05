@@ -8,22 +8,29 @@ def lg(m):
     t=time.strftime('%H:%M:%S')
     print(f'[{t}] {m}',flush=True)
 
-p=json.loads(urllib.request.urlopen(f'http://[::1]:{CP}/json',timeout=3).read())
-c=websocket.create_connection(f'ws://[::1]:{CP}/devtools/page/'+p[0]['id'],timeout=5)
+try:
+    p=json.loads(urllib.request.urlopen(f'http://[::1]:{CP}/json',timeout=3).read())
+    c=websocket.create_connection(f'ws://[::1]:{CP}/devtools/page/'+p[0]['id'],timeout=5)
+    lg('CDP OK')
+except Exception as ex:
+    lg(f'CDP FAIL: {ex}')
+    exit()
+
 n=1
 def js(cd):
     global n
     n+=1
     c.send(json.dumps({'id':n,'method':'Runtime.evaluate','params':{'expression':cd,'returnByValue':True}}))
-    while True:
-        r=json.loads(c.recv())
-        if r.get('id')==n:
-            rs=r.get('result',{})
-            if rs.get('isException'):return''
-            return rs.get('result',{}).get('value','')
-
-def dismiss_dlg():
-    js('(function(){try{var es=document.querySelectorAll(".dialog_btn,.message_btn,.btn_cancel,.layui-layer-btn a");for(var i=0;i<es.length;i++){var t=es[i].innerText||"";if(t.indexOf("取消")>=0||t.indexOf("关闭")>=0||t.indexOf("确定")>=0){es[i].click();return"ok"}}var b = document.querySelector(".layui-layer-ico");if(b){b.click();return"ok"}return"nf";}catch(e){return"err"}})()')
+    c.settimeout(5)
+    try:
+        while True:
+            r=json.loads(c.recv())
+            if r.get('id')==n:
+                rs=r.get('result',{})
+                if rs.get('isException'):return''
+                return rs.get('result',{}).get('value','')
+    except:
+        return ''
 
 # Load phones
 wb=openpyxl.load_workbook(SR)
@@ -36,15 +43,21 @@ osx=out.active
 osx.append(['号码','姓','套餐','全球通卡类型','年评ARPU','月评ARPU','权益金余额'])
 
 br={}
-# Phase1: Billing API
-bid=js('(function(){try{var es=document.querySelectorAll("iframe");for(var i=0;i<es.length;i++){try{var d=es[i].contentDocument;if(d&&d.getElementById("ACCESS_NUMBER")&&!d.getElementById("LOGIN_USER_ID")&&es[i].src&&es[i].src.indexOf("payment")>=0){return es[i].id;}}catch(e){}}return"nf";}catch(e){return"err"}})()')
-lg(f'Bill iframe: {bid}')
 
-if bid=='nf':
-    lg('No billing iframe. Trying any iframe with ACCESS_NUMBER...')
+# Find billing iframe
+for attempt in range(3):
     bid=js('(function(){try{var es=document.querySelectorAll("iframe");for(var i=0;i<es.length;i++){try{var d=es[i].contentDocument;if(d&&d.getElementById("ACCESS_NUMBER")){return es[i].id;}}catch(e){}}return"nf";}catch(e){return"err"}})()')
-    lg(f'Fallback iframe: {bid}')
+    if bid not in ('nf','err'):
+        break
+    lg(f'Searching iframes attempt {attempt+1}...')
+    time.sleep(1)
 
+lg(f'Billing iframe: {bid}')
+if bid in ('nf','err'):
+    lg('ERROR: No iframe with ACCESS_NUMBER found! Open CRM page first.')
+    exit()
+
+# Phase1: Billing for 3 numbers
 for idx,ph in enumerate(phs[:3]):
     lg(f'B{idx+1}: {ph}')
     js('window.__CDP_RES__=null;')
@@ -58,9 +71,8 @@ for idx,ph in enumerate(phs[:3]):
         'w.agentUtil.ajax({url:"AgentCentre.person.payment.IAgentPaymentSV.queryBaseInfoPayment",refreshCust:true,data:o,success:function(rr){window.__CDP_RES__=rr;}});'+
         'return"ok";}catch(e){return"err"}})()')
     got=False
-    for _ in range(20):
+    for _ in range(15):
         time.sleep(0.3)
-        dismiss_dlg()
         r=js('window.__CDP_RES__?JSON.stringify(window.__CDP_RES__):null')
         if r and r!='null' and len(r)>20:
             try:
@@ -76,18 +88,23 @@ for idx,ph in enumerate(phs[:3]):
         br[ph]='|||||'
         lg(f'  Billing timeout for {ph}')
 
-# Phase2: Equity - create a new iframe for equity pool directly
-lg('Phase2: Load equity pool iframe...')
-js('(function(){try{var f=document.createElement("iframe");f.id="eqFrame";f.style.display="none";f.src="/ordercentre/ordercentre?service=page/oc.person.cs.fusion.Equitypoolquery&listener=onInitBusi&MENU_ID=FUSE20210917";document.body.appendChild(f);return"ok";}catch(e){return"err"}})()')
-time.sleep(4)
+# Phase2: Equity - inject iframe
+lg('Phase2: Create equity iframe...')
+js('(function(){try{var f=document.createElement("iframe");f.id="eqp";f.style.display="none";f.src="/ordercentre/ordercentre?service=page/oc.person.cs.fusion.Equitypoolquery&listener=onInitBusi&MENU_ID=FUSE20210917";document.body.appendChild(f);return"ok";}catch(e){return"err"}})()')
+time.sleep(5)
 
-eqid=js('(function(){try{var f=document.getElementById("eqFrame");if(f){try{var d=f.contentDocument;if(d&&d.getElementById("LOGIN_USER_ID")){return"eqFrame";}}catch(e){}}var es=document.querySelectorAll("iframe");for(var i=0;i<es.length;i++){try{var d=es[i].contentDocument;if(d&&d.getElementById("LOGIN_USER_ID")&&d.getElementById("ACCESS_NUMBER")){return es[i].id;}}catch(e){}}return"nf";}catch(e){return"err"}})()')
-lg(f'Eq iframe: {eqid}')
+eqid=js('(function(){try{var f=document.getElementById("eqp");if(f){try{var d=f.contentDocument;if(d&&d.getElementById("LOGIN_USER_ID")){return"eqp";}}catch(e){}}return"nf";}catch(e){return"err"}})()')
+
+# Fallback: find any equity iframe
+if eqid=='nf':
+    eqid=js('(function(){try{var es=document.querySelectorAll("iframe");for(var i=0;i<es.length;i++){try{var d=es[i].contentDocument;if(d&&d.getElementById("LOGIN_USER_ID")&&d.getElementById("ACCESS_NUMBER")){return es[i].id;}}catch(e){}}return"nf";}catch(e){return"err"}})()')
+
+lg(f'Equity iframe: {eqid}')
 
 for idx,ph in enumerate(phs[:3]):
     lg(f'E{idx+1}: {ph}')
     eq='---'
-    if eqid!='nf':
+    if eqid!='nf' and eqid!='err':
         try:
             js('(function(){try{'+
                 'var d=document.getElementById("'+eqid+'").contentDocument;'+
@@ -95,22 +112,20 @@ for idx,ph in enumerate(phs[:3]):
                 'd.getElementById("LOGIN_USER_ID").value="'+ph+'";'+
                 'd.getElementById("LOGIN_USER_ID").dispatchEvent(new Event("input",{bubbles:true}));'+
                 'return"ok";}catch(e){return"err"}})()')
-            time.sleep(0.5)
+            time.sleep(1)
             js('document.getElementById("'+eqid+'").contentWindow.checkBaseQuery()')
-            time.sleep(2)
+            time.sleep(3)
             txt=js('document.getElementById("'+eqid+'").contentDocument.body.innerText')
             for line in txt.split('\n'):
                 s=line.strip()
-                if '权益池额' in s or '权益金' in s:
-                    p=s.split('：')
+                if '\u6743\u76ca\u6c60\u989d' in s or '\u6743\u76ca\u91d1' in s:
+                    p=s.split('\uff1a')
                     if len(p)>1:eq=p[-1].strip();break
         except Exception as ex:
             eq=str(ex)[:30]
-        dismiss_dlg()
-
     bi=br.get(ph,'|||||')
     osx.append([ph]+bi.split('|')+[eq])
 
 out.save(OU)
-lg('Done all 3 numbers! Check 水池_结果.xlsx')
+lg('Done! Check 水池_结果.xlsx')
 c.close()
