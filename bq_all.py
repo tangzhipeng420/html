@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
-# 综合查号：billing + 权益金，每日上限130个，Pause文件暂停
-import websocket,json,urllib.request,time,openpyxl,os
+# 综合查号：billing + 权益金，→键暂停，每日上限130
+import websocket,json,urllib.request,time,openpyxl,os,msvcrt
 CP=19222;SR=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池.xlsx')
 OU=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池_结果.xlsx')
-PAUSE_FILE=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','暂停.txt')
 DAILY_LIMIT=130
 lg=lambda m:print(time.strftime('%H:%M:%S'),m,flush=True)
 
 def check_pause():
-    if os.path.exists(PAUSE_FILE):
-        try:os.remove(PAUSE_FILE)
-        except:pass
-        return True
+    if msvcrt.kbhit():
+        k=msvcrt.getch()
+        if k==b'\xe0':
+            k2=msvcrt.getch()
+            if k2==b'M':
+                lg('→ PAUSE')
+                return True
     return False
 
 def cdp_conn():
@@ -106,13 +108,13 @@ else:
     wb2=openpyxl.load_workbook(OU);osx=wb2.active
 phs=all_phones[ST:ST+ph_count]
 lg('Run: '+str(ST+1)+'-'+str(ST+len(phs))+' ('+str(len(phs))+'/'+str(DAILY_LIMIT)+')')
+lg('→ 按键盘 → 键暂停')
 paused=False
 try:
     c=cdp_conn();bid,eqid,js=setup(c)
     fail_bi=0
     for i,ph in enumerate(phs):
         if check_pause():
-            lg('PAUSED by user request')
             paused=True;break
         ph=ph.strip()
         lg('%d/%d: %s'%(i+1+ST,total,ph))
@@ -136,6 +138,9 @@ except Exception as e:
     lg('Error: '+str(e)[:60])
     try:wb2.save(OU)
     except:pass
-reach=ST+len(phs)-(1 if paused else 0)
-lg('DONE '+str(len(phs))+' today' if not paused else 'PAUSED at '+str(reach))
-if reach<total:lg('Remaining: '+str(total-reach))
+reach=ST+len(phs)-1 if paused else ST+len(phs)
+if paused:
+    lg('已暂停（→键），进度已保存。下次重跑自动继续')
+else:
+    lg('今日已完成 '+str(len(phs))+' 个')
+if reach<total:lg('还剩 '+str(total-reach)+' 个，明天继续')
