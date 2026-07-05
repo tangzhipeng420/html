@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# 综合查号：billing + 权益金，支持弹窗关闭和重载，全量循环
+# 综合查号：billing + 权益金，每日上限130个
 import websocket,json,urllib.request,time,openpyxl,os
 CP=19222;SR=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池.xlsx')
 OU=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池_结果.xlsx')
+DAILY_LIMIT=130
 lg=lambda m:print(time.strftime('%H:%M:%S'),m,flush=True)
 
 def cdp_conn():
@@ -79,56 +80,58 @@ def query_one(ph,bid,eqid,js):
     except:eqb='err'
     return [ph,cust,offer,gt,ya,bal,st,eqb]
 
-# Main loop
+# Main - single run, max DAILY_LIMIT phones
 wb0=openpyxl.load_workbook(SR);ws0=wb0.active
 all_phones=[str(ws0.cell(r,1).value or'').strip() for r in range(2,ws0.max_row+1) if ws0.cell(r,1).value]
 total=len(all_phones)
 lg(str(total)+' total')
 
-while True:
-    ST=0
-    if os.path.exists(OU):
-        try:
-            wb2=openpyxl.load_workbook(OU);done=wb2.active.max_row-1
-            if done>0:ST=done
-        except:
-            try:os.remove(OU);ST=0
-            except:pass
-    if ST>=total:lg('ALL DONE!');break
-    if ST==0:
-        wb2=openpyxl.Workbook();osx=wb2.active
-        osx.append(['号码','姓','套餐','全球通','年ARPU','余额','状态','权益金余额'])
-    else:
-        wb2=openpyxl.load_workbook(OU);osx=wb2.active
-    # Next 10 phones
-    phs=all_phones[ST:ST+10]
-    lg('Batch '+str(ST+1)+'-'+str(ST+len(phs)))
+ST=0
+if os.path.exists(OU):
     try:
-        c=cdp_conn();bid,eqid,js=setup(c)
-        fail_bi=0
-        for i,ph in enumerate(phs):
-            ph=ph.strip()
-            lg('%d/%d: %s'%(i+1+ST,total,ph))
-            row=query_one(ph,bid,eqid,js)
-            osx.append(row)
-            if row[6] in ('API失败','异常'):
-                fail_bi+=1
-                if fail_bi>=3:
-                    lg('Reloading billing...')
-                    dismiss(js)
-                    js('try{document.getElementById("'+bid+'").src="/agentcentre/agentcentre?service=page/person.payment.vc.Payment&listener=onInitBusi&MENU_ID=1"}catch(e){}')
-                    time.sleep(3)
-                    fail_bi=0
-            else:fail_bi=0
-            try:wb2.save(OU)
-            except:pass
-            if (i+1)%5==0 and i+1<len(phs):
-                lg('Reconnecting CDP...')
-                c.close();c=cdp_conn();bid,eqid,js=setup(c)
-        c.close()
-    except Exception as e:
-        lg('Batch error: '+str(e)[:60])
+        wb2=openpyxl.load_workbook(OU);done=wb2.active.max_row-1
+        if done>0:ST=done
+    except:
+        try:os.remove(OU);ST=0
+        except:pass
+if ST>=total:lg('ALL DONE!');exit()
+
+# Limit to DAILY_LIMIT per run
+ph_count=min(DAILY_LIMIT,total-ST)
+if ST==0:
+    wb2=openpyxl.Workbook();osx=wb2.active
+    osx.append(['号码','姓','套餐','全球通','年ARPU','余额','状态','权益金余额'])
+else:
+    wb2=openpyxl.load_workbook(OU);osx=wb2.active
+
+phs=all_phones[ST:ST+ph_count]
+lg('Today: '+str(ST+1)+'-'+str(ST+len(phs))+' ('+str(len(phs))+'/'+str(DAILY_LIMIT)+')')
+try:
+    c=cdp_conn();bid,eqid,js=setup(c)
+    fail_bi=0
+    for i,ph in enumerate(phs):
+        ph=ph.strip()
+        lg('%d/%d: %s'%(i+1+ST,total,ph))
+        row=query_one(ph,bid,eqid,js)
+        osx.append(row)
+        if row[6] in ('API失败','异常'):
+            fail_bi+=1
+            if fail_bi>=3:
+                lg('Reloading billing...')
+                dismiss(js)
+                js('try{document.getElementById("'+bid+'").src="/agentcentre/agentcentre?service=page/person.payment.vc.Payment&listener=onInitBusi&MENU_ID=1"}catch(e){}')
+                time.sleep(3);fail_bi=0
+        else:fail_bi=0
         try:wb2.save(OU)
         except:pass
-        time.sleep(3)
-    lg('Done '+str(len(phs))+' phones, '+str(ST+len(phs))+'/'+str(total))
+        if (i+1)%5==0 and i+1<len(phs):
+            lg('Reconnecting CDP...')
+            c.close();c=cdp_conn();bid,eqid,js=setup(c)
+    c.close()
+except Exception as e:
+    lg('Error: '+str(e)[:60])
+    try:wb2.save(OU)
+    except:pass
+reach=ST+len(phs)
+lg('DONE '+str(len(phs))+' today, '+str(reach)+'/'+str(total)+' remain')
+if reach<total:lg('明天继续！还剩 '+str(total-reach)+' 个')
