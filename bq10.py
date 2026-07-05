@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# 每5号断连重连，防止CDP超时
+# 综合查号：billing + 权益金，支持弹窗自动关闭和iframe重载
 import websocket,json,urllib.request,time,openpyxl,os
 CP=19222;SR=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池.xlsx')
 OU=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池_结果.xlsx')
@@ -8,8 +8,7 @@ lg=lambda m:print(time.strftime('%H:%M:%S'),m,flush=True)
 
 def cdp_conn():
     p=json.loads(urllib.request.urlopen('http://[::1]:%d/json'%CP,timeout=5).read())
-    c=websocket.create_connection('ws://[::1]:%d/devtools/page/'%CP+p[0]['id'],timeout=5)
-    return c
+    return websocket.create_connection('ws://[::1]:%d/devtools/page/'%CP+p[0]['id'],timeout=5)
 
 def setup(c):
     n=[0]
@@ -25,6 +24,8 @@ def setup(c):
                     return rs.get('result',{}).get('value','') if not rs.get('isException') else ''
         except:return ''
     bid='navframe_135'
+    # Dismiss any popups first
+    js('try{var es=document.querySelectorAll(".dialog-close,.closeBtn,.layui-layer-close");for(var i=0;i<es.length;i++)es[i].click()}catch(e){}')
     eqid=''
     ejs=js('(function(){var fs=document.querySelectorAll("iframe");for(var i=0;i<fs.length;i++){try{var d=fs[i].contentDocument;if(d&&d.getElementById("LOGIN_USER_ID"))return fs[i].id}catch(e){}}return""})()')
     if ejs:eqid=ejs
@@ -34,8 +35,23 @@ def setup(c):
         time.sleep(5)
     return bid,eqid,js
 
+def dismiss_dlg(js):
+    # Close any error dialogs
+    js('try{var es=document.querySelectorAll(".dialog-close,.closeBtn,.layui-layer-close");for(var i=0;i<es.length;i++)es[i].click()}catch(e){}')
+    # Also click 取消 buttons
+    js('try{var bs=document.querySelectorAll(".layui-layer-btn0,.layui-layer-btn1");for(var i=0;i<bs.length;i++)bs[i].click()}catch(e){}')
+
+def reload_bill(js):
+    # Reload billing iframe
+    bid='navframe_135'
+    js('try{document.getElementById("'+bid+'").src="/agentcentre/agentcentre?service=page/person.payment.vc.Payment&listener=onInitBusi&MENU_ID=1";document.getElementById("'+bid+'").contentDocument.location.reload(true)}catch(e){}')
+    time.sleep(3)
+
 def query_one(ph,bid,eqid,js):
     cust='';offer='';gt='';ya='';bal='';st='';eqb=''
+    # Dismiss dialogs first
+    dismiss_dlg(js)
+    # Billing
     try:
         js('document.getElementById("'+bid+'").contentDocument.getElementById("ACCESS_NUMBER").value="'+ph+'"')
         tmp=js('(function(){try{var w=document.getElementById("'+bid+'").contentWindow;window.__CDP_RES__=null;w.agentUtil.ajax({url:"AgentCentre.person.payment.IAgentPaymentSV.queryBaseInfoPayment",refreshCust:true,data:{ACCESS_NUMBER:"'+ph+'",REMOVE_TAG:""},success:function(rr){window.__CDP_RES__=rr;}});return"ok";}catch(e){return"err:"+e.message;}})()')
@@ -54,6 +70,8 @@ def query_one(ph,bid,eqid,js):
             else:st='无数据'
         else:st='API失败'
     except:st='异常'
+    dismiss_dlg(js)
+    # Equity
     try:
         js('document.getElementById("'+eqid+'").contentDocument.getElementById("ACCESS_NUMBER").value="'+ph+'"')
         js('document.getElementById("'+eqid+'").contentDocument.getElementById("LOGIN_USER_ID").value="'+ph+'"')
@@ -91,18 +109,27 @@ else:
 phs=all_phones[ST:ST+N]
 lg('Batch '+str(ST+1)+'-'+str(ST+len(phs)))
 c=cdp_conn();bid,eqid,js=setup(c)
+fail_count=0
 for i,ph in enumerate(phs):
     ph=ph.strip()
     lg('%d/%d: %s'%(i+1+ST,min(ST+N,len(all_phones)),ph))
     row=query_one(ph,bid,eqid,js)
     osx.append(row)
+    st=row[6]
+    if st=='API失败' or st=='异常':
+        fail_count+=1
+        if fail_count>=3:
+            lg('Too many fails, reloading billing iframe...')
+            reload_bill(js)
+            fail_count=0
+    else:
+        fail_count=0
     try:wb2.save(OU)
     except:pass
     # Reconnect every 5 phones
     if (i+1)%5==0 and i+1<len(phs):
         lg('Reconnecting CDP...')
-        c.close()
-        c=cdp_conn();bid,eqid,js=setup(c)
+        c.close();c=cdp_conn();bid,eqid,js=setup(c)
 c.close()
 try:wb2.save(OU)
 except:pass
