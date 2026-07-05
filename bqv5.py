@@ -24,8 +24,20 @@ def js(cd):
 
 Q='"'
 
-# ---- STEP 1: Navigate to equity pool page ----
-lg('Loading equity pool page...')
+lg('Step1: Restore billing page (navframe_133)...')
+# Search and click billing to restore navframe_133
+js('(function(){try{'+
+    'var w=document.getElementById("navframe_def").contentWindow;'+
+    'w.$.search.gotoNav('+
+        '"代收话费",'+
+        '"/agentcentre/agentcentre?service=page/oc.person.payment.customer.paymentquery&listener=init&MENU_ID=20210914",'+
+        '"",'+
+        '{MENU_ID:"20210914"}'+
+    ');return"ok";'+
+    '}catch(e){return"err"}})()')
+time.sleep(3)
+
+lg('Step2: Navigate to equity pool page...')
 js('(function(){try{'+
     'var w=document.getElementById("navframe_def").contentWindow;'+
     'w.$.search.gotoNav('+
@@ -33,13 +45,12 @@ js('(function(){try{'+
         Q+'/ordercentre/ordercentre?service=page/oc.person.cs.fusion.Equitypoolquery&listener=onInitBusi&MENU_ID=FUSE20210917'+Q+','+
         Q+Q+','+
         '{MENU_ID:'+Q+'FUSE20210917'+Q+'}'+
-    ');'+
-    'return"ok";'+
-'}catch(e){return"err"}})()')
+    ');return"ok";'+
+    '}catch(e){return"err"}})()')
 time.sleep(3)
 
-# ---- STEP 2: Find equity iframe ----
-eq_win=js('(function(){try{'+
+# Find equity iframe
+eq_id=js('(function(){try{'+
     'var es=document.querySelectorAll("iframe");'+
     'for(var i=0;i<es.length;i++){'+
         'try{'+
@@ -51,95 +62,75 @@ eq_win=js('(function(){try{'+
     '}'+
     'return"nf";'+
 '}catch(e){return"err"}})()')
-lg(f'Equity iframe: {eq_win}')
+lg(f'Equity iframe: {eq_id}')
 
-# ---- STEP 3: Test query ----
-def query_cust_billing(ph):
-    """Original billing API query via navframe_133"""
+def query_billing(ph):
+    """Query billing API from navframe_133"""
     js('window.__CDP_RES__=null;')
-    # Set phone in navframe_133
+    # Set phone
     js('(function(){try{'+
-        'document.getElementById('+Q+'navframe_133'+Q+').contentDocument.getElementById('+Q+'ACCESS_NUMBER'+Q+').value='+Q+ph+Q+';'+
+        'document.getElementById("navframe_133").contentDocument.getElementById("ACCESS_NUMBER").value="'+ph+'";'+
         'return"ok";}catch(e){return"err"}})()')
     time.sleep(0.3)
     # Call API
     js('(function(){try{'+
-        'var w=document.getElementById('+Q+'navframe_133'+Q+').contentWindow;'+
+        'var w=document.getElementById("navframe_133").contentWindow;'+
         'w.agentUtil.ajax({'+
             'url:"AgentCentre.person.payment.IAgentPaymentSV.queryBaseInfoPayment",'+
             'refreshCust:true,'+
-            'data:{ACCESS_NUMBER:'+Q+ph+Q+',REMOVE_TAG:""},'+
-            'success:function(res){window.__CDP_RES__=res;}'+
-        '});'+
-        'return"ok";}catch(e){return"err"}})()')
-    # Wait for result
+            'data:{ACCESS_NUMBER:"'+ph+'",REMOVE_TAG:""},'+
+            'success:function(r){window.__CDP_RES__=r;}'+
+        '});return"ok";}catch(e){return"err"}})()')
     for _ in range(30):
         time.sleep(0.3)
-        r=js('(function(){try{var v=window.__CDP_RES__;return v?JSON.stringify(v):null;}catch(e){return"null"}})()')
+        r=js('window.__CDP_RES__?JSON.stringify(window.__CDP_RES__):null')
         if r and r!='null' and len(r)>10:
             try:
-                data=json.loads(r).get('DATA',{})
-                if not data.get('CUST_NAME'):return None
-                info={}
-                info['name']=(data.get('CUST_NAME','') or '')[:1]
-                info['plan']=data.get('OFFER_NAME','') or ''
-                info['card']=data.get('GOTONE_LEVEL_NAME','') or ''
-                info['arpu_m']=str(data.get('GOTONE_MONTH_ARPU','') or '')
-                info['arpu_y']=str(data.get('GOTONE_YEAR_ARPU','') or '')
-                return info
+                dd=json.loads(r).get('DATA',{})
+                if not dd.get('CUST_NAME'):return None
+                return {
+                    'name':(dd.get('CUST_NAME','') or '')[:1],
+                    'plan':dd.get('OFFER_NAME','') or '',
+                    'card':dd.get('GOTONE_LEVEL_NAME','') or '',
+                    'arpu_m':str(dd.get('GOTONE_MONTH_ARPU','') or ''),
+                    'arpu_y':str(dd.get('GOTONE_YEAR_ARPU','') or ''),
+                }
             except:
                 pass
     return None
 
 def query_equity(ph, fid):
-    """Query equity balance from the equity pool iframe"""
-    # Set phone
+    """Query equity balance"""
     js('(function(){try{'+
-        'var f=document.getElementById('+Q+fid+Q+');'+
+        'var f=document.getElementById("'+fid+'");'+
         'var d=f.contentDocument;'+
-        'd.getElementById("ACCESS_NUMBER").value='+Q+ph+Q+';'+
-        'var li=d.getElementById("LOGIN_USER_ID");li.value='+Q+ph+Q+';'+
+        'd.getElementById("ACCESS_NUMBER").value="'+ph+'";'+
+        'var li=d.getElementById("LOGIN_USER_ID");li.value="'+ph+'";'+
         'li.dispatchEvent(new Event("input",{bubbles:true}));'+
         'return"ok";}catch(e){return"err"}})()')
     time.sleep(0.5)
-    # Call checkBaseQuery in equity iframe
     js('(function(){try{'+
-        'document.getElementById('+Q+fid+Q+').contentWindow.checkBaseQuery();'+
+        'document.getElementById("'+fid+'").contentWindow.checkBaseQuery();'+
         'return"ok";}catch(e){return"err"}})()')
     time.sleep(2)
-    # Read result
-    txt=js('(function(){try{'+
-        'var d=document.getElementById('+Q+fid+Q+').contentDocument;'+
-        'return d.body.innerText.substring(0,3000);'+
-    '}catch(e){return""}})()')
-    # Parse equity values
+    txt=js('document.getElementById("'+fid+'").contentDocument.body.innerText')
     for line in txt.split('\n'):
         s=line.strip()
         if '权益金余额' in s:
-            # Look for number after "权益金余额："
             parts=s.split('：')
             if len(parts)>1:
-                val=parts[-1].strip()
-                return val
+                return parts[-1].strip()
     return '---'
 
-# Test
-lg('Testing billing + equity...')
-b=query_cust_billing('15108742724')
-e=query_equity('15108742724',eq_win)
-lg(f'Billing: {b}')
-lg(f'Equity: {e}')
-
-# Batch
+# Load phones
 if not os.path.exists(SR):
     lg('No file:'+SR)
-    c.close()
-    exit()
+    c.close();exit()
 
 wb=openpyxl.load_workbook(SR)
 ws=wb.active
 phs=[str(ws.cell(r,1).value or'').strip() for r in range(2,ws.max_row+1) if ws.cell(r,1).value]
-lg('Total:'+str(len(phs)))
+lg(f'Total:{len(phs)}')
 
 out=openpyxl.Workbook()
 osx=out.active
@@ -149,18 +140,19 @@ ok=fail=0
 for idx,ph in enumerate(phs[:10]):
     lg(f'[{idx+1}] {ph}')
     try:
-        b=query_cust_billing(ph)
-        e=query_equity(ph,eq_win)
-        if b is None:
-            osx.append([ph,'','','','','',''])
+        bi=query_billing(ph)
+        eq=query_equity(ph,eq_id)
+        if bi is None:
+            osx.append([ph,'','','','','',eq])
             fail+=1
         else:
-            osx.append([ph,b['name'],b['plan'],b['card'],b['arpu_y'],b['arpu_m'],e])
+            osx.append([ph,bi['name'],bi['plan'],bi['card'],bi['arpu_y'],bi['arpu_m'],eq])
             ok+=1
     except Exception as ex:
         osx.append([ph,'','','','','',str(ex)[:80]])
         fail+=1
 
 out.save(OU)
-lg(f'{ok}ok {fail}fail saved to {OU}')
+lg(f'{ok}ok {fail}fail')
+lg(f'Saved to {OU}')
 c.close()
