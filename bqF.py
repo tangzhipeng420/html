@@ -1,7 +1,7 @@
 import websocket,json,urllib.request,time,openpyxl,os,sys
 CP=19222
-SR=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','pool.xlsx')
-OU=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','pool_r.xlsx')
+SR=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池.xlsx')
+OU=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池_结果.xlsx')
 
 def lg(m):
     t=time.strftime('%H:%M:%S')
