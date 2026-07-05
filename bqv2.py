@@ -27,10 +27,6 @@ Q='"'
 v=js('(function(){try{var f=document.getElementById('+Q+'navframe_133'+Q+');if(!f)return"nf";var d=f.contentDocument||f.contentWindow.document;var e=d.getElementById('+Q+'ACCESS_NUMBER'+Q+');return e?"ok:"+e.value:"no"}catch(e){return"err"}})()')
 lg('133:'+v[:40])
 fn='navframe_133'
-if not v.startswith('ok'):
-    v=js('(function(){try{var f=document.getElementById('+Q+'navframe_161'+Q+');var d=f.contentDocument||f.contentWindow.document;var e=d.getElementById('+Q+'ACCESS_NUMBER'+Q+');return e?"ok:"+e.value:"no"}catch(e){return"err"}})()')
-    lg('161:'+v[:40])
-    if v.startswith('ok'):fn='navframe_161'
 if not v.startswith('ok'):lg('FAIL');c.close();exit()
 lg('USE:'+fn)
 
@@ -43,7 +39,7 @@ out=openpyxl.Workbook();osx=out.active
 osx.append(['phone','result','status'])
 ok=fail=0
 
-for idx,ph in enumerate(phs[:3]):
+for idx,ph in enumerate(phs[:150]):
     lg(f'[{ok+fail+1}] {ph}')
     try:
         r=js('(function(){try{var f=document.getElementById('+Q+fn+Q+');var d=f.contentDocument||f.contentWindow.document;d.getElementById('+Q+'ACCESS_NUMBER'+Q+').value='+Q+ph+Q+';return"ok";}catch(e){return"err"}})()')
