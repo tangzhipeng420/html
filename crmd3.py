@@ -31,7 +31,7 @@ print('=== QUERY BUTTON HTML ===')
 print(js_btn[:500])
 
 # Check main page for target frame info
-main_links=js('(function(){try{var as=document.querySelectorAll(\"a\");var r=[];for(var i=0;i<as.length;i++){var t=as[i].innerText.trim();if(t&&t.length>1)r.push(t+\":\"+as[i].href);}return r.join('\n').substring(0,3000);}catch(e){return\"err\"}})()')
+main_links=js('(function(){try{var as=document.querySelectorAll(\"a\");var r=[];for(var i=0;i<as.length;i++){var t=as[i].innerText.trim();if(t&&t.length>1)r.push(t+\":\"+as[i].href);}return r.join(String.fromCharCode(10)).substring(0,3000);}catch(e){return\"err\"}})()')
 print('\n=== MAIN PAGE LINKS ===')
 for line in main_links.split('\n'):
     if line.strip():
