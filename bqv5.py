@@ -39,18 +39,27 @@ time.sleep(3)
 
 def q_billing(ph):
     js('window.__CDP_RES__=null;')
+    # Find billing iframe dynamically
     js('(function(){try{'+
-        'document.getElementById("navframe_133").contentDocument.getElementById("ACCESS_NUMBER").value="'+ph+'";'+
-        'return"ok";}catch(e){return"err"}})()')
-    time.sleep(0.3)
-    js('(function(){try{'+
-        'var w=document.getElementById("navframe_133").contentWindow;'+
-        'w.agentUtil.ajax({'+
-            'url:"AgentCentre.person.payment.IAgentPaymentSV.queryBaseInfoPayment",'+
-            'refreshCust:true,'+
-            'data:{ACCESS_NUMBER:"'+ph+'",REMOVE_TAG:""},'+
-            'success:function(r){window.__CDP_RES__=r;}'+
-        '});return"ok";}catch(e){return"err"}})()')
+        'var es=document.querySelectorAll("iframe");'+
+        'for(var i=0;i<es.length;i++){'+
+            'try{'+
+                'var d=es[i].contentDocument;'+
+                'if(d&&d.getElementById("ACCESS_NUMBER")&&d.getElementById("PROCESS_TAG")){'+
+                    'd.getElementById("ACCESS_NUMBER").value="'+ph+'";'+
+                    'var w=es[i].contentWindow;'+
+                    'w.agentUtil.ajax({'+
+                        'url:"AgentCentre.person.payment.IAgentPaymentSV.queryBaseInfoPayment",'+
+                        'refreshCust:true,'+
+                        'data:{ACCESS_NUMBER:"'+ph+'",REMOVE_TAG:""},'+
+                        'success:function(r){window.__CDP_RES__=r;}'+
+                    '});'+
+                    'return"ok";'+
+                '}'+
+            '}catch(e){}'+
+        '}'+
+        'return"nf";'+
+    '}catch(e){return"err"}})()')
     for _ in range(20):
         time.sleep(0.3)
         r=js('window.__CDP_RES__?JSON.stringify(window.__CDP_RES__):null')
