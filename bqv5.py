@@ -1,4 +1,5 @@
-import websocket,json,urllib.request,time,openpyxl,os,sys
+# -*- coding: utf-8 -*-
+import websocket,json,urllib.request,time,openpyxl,os
 CP=19222
 SR=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池.xlsx')
 OU=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池_结果.xlsx')
@@ -10,7 +11,6 @@ def lg(m):
 p=json.loads(urllib.request.urlopen(f'http://[::1]:{CP}/json',timeout=3).read())
 c=websocket.create_connection(f'ws://[::1]:{CP}/devtools/page/'+p[0]['id'],timeout=5)
 n=1
-
 def js(cd):
     global n
     n+=1
@@ -22,135 +22,95 @@ def js(cd):
             if rs.get('isException'):return''
             return rs.get('result',{}).get('value','')
 
-Q='"'
-
-# Phase 1: Query billing info for ALL numbers
-lg('Phase1: Load billing page...')
-js('(function(){try{'+
-    'var w=document.getElementById("navframe_def").contentWindow;'+
-    'w.$.search.gotoNav('+
-        Q+'代收话费'+Q+','+
-        Q+'/agentcentre/agentcentre?service=page/oc.person.payment.customer.paymentquery&listener=init&MENU_ID=20210914'+Q+','+
-        Q+Q+','+
-        '{MENU_ID:'+Q+'20210914'+Q+'}'+
-    ');return"ok";'+
-'}catch(e){return"err"}})()')
-time.sleep(3)
-
-def q_billing(ph):
-    js('window.__CDP_RES__=null;')
-    # Find billing iframe dynamically
-    js('(function(){try{'+
-        'var es=document.querySelectorAll("iframe");'+
-        'for(var i=0;i<es.length;i++){'+
-            'try{'+
-                'var d=es[i].contentDocument;'+
-                'if(d&&d.getElementById("ACCESS_NUMBER")&&es[i].src.indexOf("payment")>=0){'+
-                    'd.getElementById("ACCESS_NUMBER").value="'+ph+'";'+
-                    'var w=es[i].contentWindow;'+
-                    'w.agentUtil.ajax({'+
-                        'url:"AgentCentre.person.payment.IAgentPaymentSV.queryBaseInfoPayment",'+
-                        'refreshCust:true,'+
-                        'data:{ACCESS_NUMBER:"'+ph+'",REMOVE_TAG:""},'+
-                        'success:function(r){window.__CDP_RES__=r;}'+
-                    '});'+
-                    'return"ok";'+
-                '}'+
-            '}catch(e){}'+
-        '}'+
-        'return"nf";'+
-    '}catch(e){return"err"}})()')
-    for _ in range(20):
-        time.sleep(0.3)
-        r=js('window.__CDP_RES__?JSON.stringify(window.__CDP_RES__):null')
-        if r and r!='null' and len(r)>20:
-            try:
-                dd=json.loads(r).get('DATA',{})
-                if not dd.get('CUST_NAME'):return None
-                return f'{dd.get("CUST_NAME","")[:1]}|{dd.get("OFFER_NAME","")}|{dd.get("GOTONE_LEVEL_NAME","")}|{dd.get("GOTONE_YEAR_ARPU","")}|{dd.get("GOTONE_MONTH_ARPU","")}'
-            except:
-                pass
-    return None
+def dismiss_dlg():
+    js('(function(){try{var es=document.querySelectorAll(".dialog_btn,.message_btn,.btn_cancel,.layui-layer-btn a");for(var i=0;i<es.length;i++){var t=es[i].innerText||"";if(t.indexOf("取消")>=0||t.indexOf("关闭")>=0||t.indexOf("确定")>=0){es[i].click();return"ok"}}var b = document.querySelector(".layui-layer-ico");if(b){b.click();return"ok"}return"nf";}catch(e){return"err"}})()')
 
 # Load phones
 wb=openpyxl.load_workbook(SR)
 ws=wb.active
 phs=[str(ws.cell(r,1).value or'').strip() for r in range(2,ws.max_row+1) if ws.cell(r,1).value]
-lg(f'Total:{len(phs)}, batch=10')
+lg(f'{len(phs)} phones')
 
 out=openpyxl.Workbook()
 osx=out.active
 osx.append(['号码','姓','套餐','全球通卡类型','年评ARPU','月评ARPU','权益金余额'])
-ok=fail=0
 
-# Phase1: Billing for first 10
-results={}
-for idx,ph in enumerate(phs[:10]):
-    lg(f'Billing [{idx+1}] {ph}')
-    bi=q_billing(ph)
-    if bi:results[ph]=bi+'|'
-    else:results[ph]='|||||'
-    ok+=1
+br={}
+# Phase1: Billing API
+bid=js('(function(){try{var es=document.querySelectorAll("iframe");for(var i=0;i<es.length;i++){try{var d=es[i].contentDocument;if(d&&d.getElementById("ACCESS_NUMBER")&&!d.getElementById("LOGIN_USER_ID")&&es[i].src&&es[i].src.indexOf("payment")>=0){return es[i].id;}}catch(e){}}return"nf";}catch(e){return"err"}})()')
+lg(f'Bill iframe: {bid}')
 
-# Phase2: Equity page
-lg('Phase2: Load equity page...')
-js('(function(){try{'+
-    'var w=document.getElementById("navframe_def").contentWindow;'+
-    'w.$.search.gotoNav('+
-        Q+'家庭抵用券（权益池）'+Q+','+
-        Q+'/ordercentre/ordercentre?service=page/oc.person.cs.fusion.Equitypoolquery&listener=onInitBusi&MENU_ID=FUSE20210917'+Q+','+
-        Q+Q+','+
-        '{MENU_ID:'+Q+'FUSE20210917'+Q+'}'+
-    ');return"ok";'+
-'}catch(e){return"err"}})()')
-time.sleep(3)
+if bid=='nf':
+    lg('No billing iframe. Trying any iframe with ACCESS_NUMBER...')
+    bid=js('(function(){try{var es=document.querySelectorAll("iframe");for(var i=0;i<es.length;i++){try{var d=es[i].contentDocument;if(d&&d.getElementById("ACCESS_NUMBER")){return es[i].id;}}catch(e){}}return"nf";}catch(e){return"err"}})()')
+    lg(f'Fallback iframe: {bid}')
 
-# Find equity iframe
-eq_id=js('(function(){try{'+
-    'var es=document.querySelectorAll("iframe");'+
-    'for(var i=0;i<es.length;i++){'+
-        'try{'+
-            'var d=es[i].contentDocument;'+
-            'if(d&&d.getElementById("ACCESS_NUMBER")&&d.getElementById("LOGIN_USER_ID")){'+
-                'return es[i].id;'+
-            '}'+
-        '}catch(e){}'+
-    '}'+
-    'return"nf";'+
-'}catch(e){return"err"}})()')
-lg(f'Equity iframe:{eq_id}')
+for idx,ph in enumerate(phs[:3]):
+    lg(f'B{idx+1}: {ph}')
+    js('window.__CDP_RES__=null;')
+    js('(function(){try{'+
+        'document.getElementById("'+bid+'").contentDocument.getElementById("ACCESS_NUMBER").value="'+ph+'";'+
+        'return"ok";}catch(e){return"err"}})()')
+    time.sleep(0.3)
+    js('(function(){try{'+
+        'var w=document.getElementById("'+bid+'").contentWindow;'+
+        'var o={};o.ACCESS_NUMBER="'+ph+'";o.REMOVE_TAG="";'+
+        'w.agentUtil.ajax({url:"AgentCentre.person.payment.IAgentPaymentSV.queryBaseInfoPayment",refreshCust:true,data:o,success:function(rr){window.__CDP_RES__=rr;}});'+
+        'return"ok";}catch(e){return"err"}})()')
+    got=False
+    for _ in range(20):
+        time.sleep(0.3)
+        dismiss_dlg()
+        r=js('window.__CDP_RES__?JSON.stringify(window.__CDP_RES__):null')
+        if r and r!='null' and len(r)>20:
+            try:
+                dd=json.loads(r).get('DATA',{})
+                nm=dd.get('CUST_NAME','')
+                if nm:
+                    br[ph]=f'{nm[:1]}|{dd.get("OFFER_NAME","")}|{dd.get("GOTONE_LEVEL_NAME","")}|{dd.get("GOTONE_YEAR_ARPU","")}|{dd.get("GOTONE_MONTH_ARPU","")}'
+                else:
+                    br[ph]='|不存在|||'
+                got=True;break
+            except:pass
+    if not got:
+        br[ph]='|||||'
+        lg(f'  Billing timeout for {ph}')
 
-for idx,ph in enumerate(phs[:10]):
-    lg(f'Equity [{idx+1}] {ph}')
-    try:
-        js('(function(){try{'+
-            'var f=document.getElementById("'+eq_id+'");'+
-            'var d=f.contentDocument;'+
-            'd.getElementById("ACCESS_NUMBER").value="'+ph+'";'+
-            'var li=d.getElementById("LOGIN_USER_ID");li.value="'+ph+'";'+
-            'li.dispatchEvent(new Event("input",{bubbles:true}));'+
-            'return"ok";}catch(e){return"err"}})()')
-        time.sleep(0.5)
-        js('(function(){try{'+
-            'document.getElementById("'+eq_id+'").contentWindow.checkBaseQuery();'+
-            'return"ok";}catch(e){return"err"}})()')
-        time.sleep(2)
-        txt=js('document.getElementById("'+eq_id+'").contentDocument.body.innerText')
-        eq_val='---'
-        for line in txt.split('\n'):
-            s=line.strip()
-            if '权益金余额' in s:
-                p=s.split('：')
-                if len(p)>1:eq_val=p[-1].strip();break
-        # Combine with billing result
-        bi=results.get(ph,'|||||')
-        parts=bi.split('|')
-        row=[ph]+parts+[eq_val]
-        osx.append(row)
-    except Exception as ex:
-        bi=results.get(ph,'|||||')
-        osx.append([ph]+bi.split('|')+[str(ex)[:50]])
+# Phase2: Equity - create a new iframe for equity pool directly
+lg('Phase2: Load equity pool iframe...')
+js('(function(){try{var f=document.createElement("iframe");f.id="eqFrame";f.style.display="none";f.src="/ordercentre/ordercentre?service=page/oc.person.cs.fusion.Equitypoolquery&listener=onInitBusi&MENU_ID=FUSE20210917";document.body.appendChild(f);return"ok";}catch(e){return"err"}})()')
+time.sleep(4)
+
+eqid=js('(function(){try{var f=document.getElementById("eqFrame");if(f){try{var d=f.contentDocument;if(d&&d.getElementById("LOGIN_USER_ID")){return"eqFrame";}}catch(e){}}var es=document.querySelectorAll("iframe");for(var i=0;i<es.length;i++){try{var d=es[i].contentDocument;if(d&&d.getElementById("LOGIN_USER_ID")&&d.getElementById("ACCESS_NUMBER")){return es[i].id;}}catch(e){}}return"nf";}catch(e){return"err"}})()')
+lg(f'Eq iframe: {eqid}')
+
+for idx,ph in enumerate(phs[:3]):
+    lg(f'E{idx+1}: {ph}')
+    eq='---'
+    if eqid!='nf':
+        try:
+            js('(function(){try{'+
+                'var d=document.getElementById("'+eqid+'").contentDocument;'+
+                'd.getElementById("ACCESS_NUMBER").value="'+ph+'";'+
+                'd.getElementById("LOGIN_USER_ID").value="'+ph+'";'+
+                'd.getElementById("LOGIN_USER_ID").dispatchEvent(new Event("input",{bubbles:true}));'+
+                'return"ok";}catch(e){return"err"}})()')
+            time.sleep(0.5)
+            js('document.getElementById("'+eqid+'").contentWindow.checkBaseQuery()')
+            time.sleep(2)
+            txt=js('document.getElementById("'+eqid+'").contentDocument.body.innerText')
+            for line in txt.split('\n'):
+                s=line.strip()
+                if '权益池额' in s or '权益金' in s:
+                    p=s.split('：')
+                    if len(p)>1:eq=p[-1].strip();break
+        except Exception as ex:
+            eq=str(ex)[:30]
+        dismiss_dlg()
+
+    bi=br.get(ph,'|||||')
+    osx.append([ph]+bi.split('|')+[eq])
 
 out.save(OU)
-lg(f'Saved to {OU}')
+lg('Done all 3 numbers! Check 水池_结果.xlsx')
 c.close()
