@@ -24,11 +24,11 @@ def js(cd):
 
 Q='"'  # JS double quote
 
-v=js('(function(){try{var f=document.getElementById('+Q++navframe_133'+Q+');if(!f)return"nf";var d=f.contentDocument||f.contentWindow.document;var e=d.getElementById('+Q+'ACCESS_NUMBER'+Q+');return e?"ok:"+e.value:"no"}catch(e){return"err"}})()')
+v=js('(function(){try{var f=document.getElementById('+Q+'navframe_133'+Q+');if(!f)return"nf";var d=f.contentDocument||f.contentWindow.document;var e=d.getElementById('+Q+'ACCESS_NUMBER'+Q+');return e?"ok:"+e.value:"no"}catch(e){return"err"}})()')
 lg('133:'+v[:40])
 fn='navframe_133'
 if not v.startswith('ok'):
-    v=js('(function(){try{var f=document.getElementById('+Q++navframe_161'+Q+');var d=f.contentDocument||f.contentWindow.document;var e=d.getElementById('+Q+'ACCESS_NUMBER'+Q+');return e?"ok:"+e.value:"no"}catch(e){return"err"}})()')
+    v=js('(function(){try{var f=document.getElementById('+Q+'navframe_161'+Q+');var d=f.contentDocument||f.contentWindow.document;var e=d.getElementById('+Q+'ACCESS_NUMBER'+Q+');return e?"ok:"+e.value:"no"}catch(e){return"err"}})()')
     lg('161:'+v[:40])
     if v.startswith('ok'):fn='navframe_161'
 if not v.startswith('ok'):lg('FAIL');c.close();exit()
