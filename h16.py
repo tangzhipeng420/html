@@ -1,0 +1,82 @@
+import websocket,json,urllib.request,time
+CP=19222
+p=json.loads(urllib.request.urlopen(f'http://[::1]:{CP}/json',timeout=3).read())
+c=websocket.create_connection(f'ws://[::1]:{CP}/devtools/page/'+p[0]['id'],timeout=5)
+n=1
+def js(cd):
+    global n
+    n+=1
+    c.send(json.dumps({'id':n,'method':'Runtime.evaluate','params':{'expression':cd,'returnByValue':True}}))
+    while True:
+        r=json.loads(c.recv())
+        if r.get('id')==n:
+            rs=r.get('result',{})
+            if rs.get('isException'):return 'EX:'+str(rs.get('exceptionDetails',{}).get('text',''))
+            return str(rs.get('result',{}).get('value',''))
+Q='"'
+
+# Search with event trigger
+r=js('(function(){try{'+
+    'var d=document.getElementById("navframe_def").contentDocument;'+
+    'var e=d.getElementById("menu_search");'+
+    'e.value="家庭抵用券（权益池）";'+
+    'var ev=new Event("input",{bubbles:true,cancelable:true});e.dispatchEvent(ev);'+
+    'var ek=new Event("keyup",{bubbles:true,cancelable:true});e.dispatchEvent(ek);'+
+    'return"ok";'+
+'}catch(e){return"ex:"+e.message;}})()')
+print('search:',r)
+time.sleep(2)
+
+# Check what's in navframe_def search results
+txt=js('(function(){try{'+
+    'var d=document.getElementById("navframe_def").contentDocument;'+
+    'return d.body.innerText.substring(0,3000);'+
+'}catch(e){return"ex:"+e.message;}})()')
+print('\n=== NAVFRAME_DEF ===')
+for line in txt.split('\n'):
+    s=line.strip()
+    if s:print(s[:200])
+
+# Try to find and click
+r=js('(function(){try{'+
+    'var d=document.getElementById("navframe_def").contentDocument;'+
+    'var es=d.querySelectorAll("a,li,button,span,div");'+
+    'for(var i=0;i<es.length;i++){'+
+        'var t=(es[i].innerText||"").trim();'+
+        'if(t.indexOf("家庭抵用券")>=0&&t.length<20){es[i].click();return"clicked_"+t;}'+
+    '}'+
+    'return"nf";'+
+'}catch(e){return"ex:"+e.message;}})()')
+print('\nclick:',r)
+time.sleep(3)
+
+# List iframes again
+ifs=js('(function(){try{'+
+    'var es=document.querySelectorAll("iframe");'+
+    'var r=[];'+
+    'for(var i=0;i<es.length;i++){'+
+        'var e=es[i];'+
+        'r.push(e.id+" disp="+(e.style.display||"vis")+" src="+(e.src||"").substring(0,70));'+
+    '}'+
+    'return r.join("|BR|");'+
+'}catch(e){return"ex:"+e.message;}})()')
+print('\nIFRAMES:',ifs[:2000])
+
+# Search for ACCESS_NUMBER in all iframes with contentDocument
+ph='15108742724'
+r2=js('(function(){try{'+
+    'var es=document.querySelectorAll("iframe");'+
+    'for(var i=0;i<es.length;i++){'+
+        'try{'+
+            'var d=es[i].contentDocument;'+
+            'if(d){'+
+                'var ac=d.getElementById("ACCESS_NUMBER");'+
+                'if(ac){ac.value='+Q+ph+Q+';return"ac_in_"+es[i].id;}'+
+            '}'+
+        '}catch(e){}'+
+    '}'+
+    'return"nf";'+
+'}catch(e){return"ex:"+e.message;}})()')
+print('ACCESS_NUMBER:',r2)
+
+c.close()
