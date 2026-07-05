@@ -1,10 +1,18 @@
 # -*- coding: utf-8 -*-
-# 综合查号：billing + 权益金，每日上限130个
+# 综合查号：billing + 权益金，每日上限130个，Pause文件暂停
 import websocket,json,urllib.request,time,openpyxl,os
 CP=19222;SR=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池.xlsx')
 OU=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','水池_结果.xlsx')
+PAUSE_FILE=os.path.join('C:'+os.sep,'Users','Administrator','Desktop','暂停.txt')
 DAILY_LIMIT=130
 lg=lambda m:print(time.strftime('%H:%M:%S'),m,flush=True)
+
+def check_pause():
+    if os.path.exists(PAUSE_FILE):
+        try:os.remove(PAUSE_FILE)
+        except:pass
+        return True
+    return False
 
 def cdp_conn():
     p=json.loads(urllib.request.urlopen('http://[::1]:%d/json'%CP,timeout=5).read())
@@ -23,7 +31,6 @@ def setup(c):
                     rs=r.get('result',{})
                     return rs.get('result',{}).get('value','') if not rs.get('isException') else ''
         except:return ''
-    # Dismiss any popups
     js('try{var es=document.querySelectorAll(".dialog-close,.closeBtn,.layui-layer-close");for(var i=0;i<es.length;i++)es[i].click()}catch(e){}')
     js('try{var bs=document.querySelectorAll(".layui-layer-btn0,.layui-layer-btn1");for(var i=0;i<bs.length;i++)bs[i].click()}catch(e){}')
     bid='navframe_135'
@@ -43,7 +50,6 @@ def dismiss(js):
 def query_one(ph,bid,eqid,js):
     cust='';offer='';gt='';ya='';bal='';st='';eqb=''
     dismiss(js)
-    # Billing
     try:
         js('document.getElementById("'+bid+'").contentDocument.getElementById("ACCESS_NUMBER").value="'+ph+'"')
         tmp=js('(function(){try{var w=document.getElementById("'+bid+'").contentWindow;window.__CDP_RES__=null;w.agentUtil.ajax({url:"AgentCentre.person.payment.IAgentPaymentSV.queryBaseInfoPayment",refreshCust:true,data:{ACCESS_NUMBER:"'+ph+'",REMOVE_TAG:""},success:function(rr){window.__CDP_RES__=rr;}});return"ok";}catch(e){return"err:"+e.message;}})()')
@@ -63,7 +69,6 @@ def query_one(ph,bid,eqid,js):
         else:st='API失败'
     except:st='异常'
     dismiss(js)
-    # Equity
     try:
         js('document.getElementById("'+eqid+'").contentDocument.getElementById("ACCESS_NUMBER").value="'+ph+'"')
         js('document.getElementById("'+eqid+'").contentDocument.getElementById("LOGIN_USER_ID").value="'+ph+'"')
@@ -80,12 +85,10 @@ def query_one(ph,bid,eqid,js):
     except:eqb='err'
     return [ph,cust,offer,gt,ya,bal,st,eqb]
 
-# Main - single run, max DAILY_LIMIT phones
+# Main
 wb0=openpyxl.load_workbook(SR);ws0=wb0.active
 all_phones=[str(ws0.cell(r,1).value or'').strip() for r in range(2,ws0.max_row+1) if ws0.cell(r,1).value]
-total=len(all_phones)
-lg(str(total)+' total')
-
+total=len(all_phones);lg(str(total)+' total')
 ST=0
 if os.path.exists(OU):
     try:
@@ -95,21 +98,22 @@ if os.path.exists(OU):
         try:os.remove(OU);ST=0
         except:pass
 if ST>=total:lg('ALL DONE!');exit()
-
-# Limit to DAILY_LIMIT per run
 ph_count=min(DAILY_LIMIT,total-ST)
 if ST==0:
     wb2=openpyxl.Workbook();osx=wb2.active
     osx.append(['号码','姓','套餐','全球通','年ARPU','余额','状态','权益金余额'])
 else:
     wb2=openpyxl.load_workbook(OU);osx=wb2.active
-
 phs=all_phones[ST:ST+ph_count]
-lg('Today: '+str(ST+1)+'-'+str(ST+len(phs))+' ('+str(len(phs))+'/'+str(DAILY_LIMIT)+')')
+lg('Run: '+str(ST+1)+'-'+str(ST+len(phs))+' ('+str(len(phs))+'/'+str(DAILY_LIMIT)+')')
+paused=False
 try:
     c=cdp_conn();bid,eqid,js=setup(c)
     fail_bi=0
     for i,ph in enumerate(phs):
+        if check_pause():
+            lg('PAUSED by user request')
+            paused=True;break
         ph=ph.strip()
         lg('%d/%d: %s'%(i+1+ST,total,ph))
         row=query_one(ph,bid,eqid,js)
@@ -132,6 +136,6 @@ except Exception as e:
     lg('Error: '+str(e)[:60])
     try:wb2.save(OU)
     except:pass
-reach=ST+len(phs)
-lg('DONE '+str(len(phs))+' today, '+str(reach)+'/'+str(total)+' remain')
-if reach<total:lg('明天继续！还剩 '+str(total-reach)+' 个')
+reach=ST+len(phs)-(1 if paused else 0)
+lg('DONE '+str(len(phs))+' today' if not paused else 'PAUSED at '+str(reach))
+if reach<total:lg('Remaining: '+str(total-reach))
