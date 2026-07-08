@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:#fff;padding:0;width:820px}
+.container{padding:20px}
+.header{background:linear-gradient(135deg,#1a1a2e,#0f3460);color:#fff;padding:18px 22px;border-radius:14px;margin-bottom:16px}
+.header h1{font-size:22px;font-weight:700}
+.header .sub{font-size:13px;opacity:.8;margin-top:4px}
+.flex-row{display:flex;gap:10px;margin-bottom:10px}
+.person-card{flex:1;border-radius:10px;padding:12px;border:1px solid #e0e0e0;min-width:0}
+.person-card .name{font-size:15px;font-weight:700;margin-bottom:8px;padding-bottom:5px;border-bottom:2px solid #eee}
+.person-card .items{font-size:12px;line-height:1.8;color:#555}
+.person-card .items b{color:#1a1a2e}
+.person-card .total{font-size:12px;color:#888;margin-top:6px;padding-top:5px;border-top:1px solid #eee}
+.card{background:#f8f9ff;border-radius:10px;padding:14px;margin-bottom:10px;border:1px solid #e0e3f0}
+.card h3{font-size:14px;margin-bottom:8px;color:#333}
+.summary-table{width:100%;border-collapse:collapse;font-size:13px}
+.summary-table th{background:#e8edf2;padding:6px 8px;text-align:center;border-bottom:2px solid #ccc;font-weight:600;font-size:11px}
+.summary-table td{padding:6px 8px;text-align:center;border-bottom:1px solid #eee}
+.summary-table .total-row td{background:#fff8e1;font-weight:700}
+.num{font-weight:700;color:#1a73e8}
+.leave{color:#999;font-style:italic}
+.green{background:#e8f5e9;color:#2e7d32}
+.orange{background:#fff3e0;color:#e65100}
+.footer{text-align:center;font-size:11px;color:#999;padding:8px;margin-top:8px}
+.tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:8px;margin-right:2px}
+.tag-red{background:#ffebee;color:#c62828}
+.tag-orange{background:#fff3e0;color:#e65100}
+.tag-green{background:#e8f5e9;color:#2e7d32}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>📊 兰新团队 · 7月1日~7日业务数据</h1>
+  <div class="sub">不含金虎团队其他成员 · 普江林计入</div>
+</div>
+
+<!-- 3人 + 普江林 -->
+<div class="flex-row">
+  <div class="person-card" style="border-color:#43a047">
+    <div class="name" style="color:#2e7d32">美红 🏅</div>
+    <div class="items">
+      📱 手机：<b>3台</b><br>
+      🆔 学生证：<b>4笔</b><br>
+      🌐 宽带：<b>8条</b><br>
+      📋 开户：<b>6户</b><br>
+      🩺 套餐体检：<b>11户</b><br>
+      🎁 小福袋：4笔<br>
+      🍳 电饭煲：3个<br>
+      ⭐ 邀评：12笔
+    </div>
+  </div>
+  <div class="person-card" style="border-color:#ff9800">
+    <div class="name" style="color:#e65100">穆艳梅 🍒 🏅</div>
+    <div class="items">
+      📱 手机：<b>4台</b><br>
+      🆔 学生证：<b>1笔</b><br>
+      🌐 宽带：<b>2条</b><br>
+      📋 开户：<b>5户</b><br>
+      🩺 套餐体检：<b>14户</b> 🔥<br>
+      🎁 小福袋：4笔<br>
+      💳 88会员：7笔
+    </div>
+  </div>
+</div>
+
+<div class="flex-row">
+  <div class="person-card" style="border-color:#1565c0">
+    <div class="name" style="color:#1565c0">李晶晶 🆕 🏅</div>
+    <div class="items">
+      📱 手机：<b>3台</b><br>
+      🆔 学生证：<b>1笔</b><br>
+      🌐 宽带：<b>3条</b><br>
+      📋 开户：<b>7户</b>（含新开户4）<br>
+      🩺 套餐体检：<b>3户</b><br>
+      🎁 小福袋：3笔
+    </div>
+  </div>
+  <div class="person-card" style="border-color:#e65100;background:#fff8e1">
+    <div class="name" style="color:#e65100">普江林 🐯（金虎）</div>
+    <div class="items">
+      📱 手机：<b>3台</b><br>
+      🆔 学生证：<b>1笔</b><br>
+      🌐 宽带：<b>19条</b> 🔥<br>
+      🍳 电饭煲：<b>5个</b><br>
+      🎁 小福袋：3笔
+    </div>
+  </div>
+</div>
+
+<!-- 请假 -->
+<div class="flex-row">
+  <div class="person-card" style="border-color:#bbb;background:#f5f5f5">
+    <div class="name" style="color:#999">舒捷 🏅</div>
+    <div class="items" style="text-align:center;padding:8px 0;color:#999">📌 请假</div>
+  </div>
+  <div class="person-card" style="border-color:#bbb;background:#f5f5f5">
+    <div class="name" style="color:#999">董梦晶 🏅</div>
+    <div class="items" style="text-align:center;padding:8px 0;color:#999">📌 请假</div>
+  </div>
+</div>
+
+<!-- Core business totals -->
+<div class="card">
+  <h3>🔥 核心业务合计</h3>
+  <table class="summary-table">
+    <tr><th>业务</th><th>美红</th><th>🍒穆艳梅</th><th>晶晶🆕</th><th>🐯普江林</th><th style="background:#0d47a1;color:#fff">总合计</th></tr>
+    <tr><td style="text-align:left;font-weight:600">📱 手机</td><td>3</td><td>4</td><td>3</td><td>3</td><td class="num" style="color:#d93025">13台</td></tr>
+    <tr><td style="text-align:left;font-weight:600">🆔 学生证</td><td>4</td><td>1</td><td>1</td><td>1</td><td class="num" style="color:#e65100">7笔</td></tr>
+    <tr><td style="text-align:left;font-weight:600">🌐 宽带</td><td>8</td><td>2</td><td>3</td><td>19</td><td class="num" style="color:#1a73e8">32条</td></tr>
+  </table>
+</div>
+
+<!-- 7月目标对比 -->
+<div class="card" style="background:#fff3e0;border-color:#e65100">
+  <h3>🎯 7月目标对比</h3>
+  <table class="summary-table">
+    <tr><th>业务</th><th>当前进度</th><th>月目标</th><th>完成率</th><th>剩余天数需日均</th></tr>
+    <tr><td style="text-align:left;font-weight:600">📱 手机</td><td class="num">13台</td><td>100台</td><td style="color:#c62828">13%</td><td>2.9台/天</td></tr>
+    <tr><td style="text-align:left;font-weight:600">🆔 学生证</td><td class="num">7笔</td><td>80~90笔</td><td style="color:#c62828">8%</td><td>2.5笔/天</td></tr>
+  </table>
+</div>
+
+<div class="footer">📅 统计周期：2026年7月1日~7日 · 舒捷/董梦晶请假</div>
+
+</div>
+</body>
+</html>
