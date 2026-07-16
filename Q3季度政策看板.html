@@ -23,6 +23,7 @@
   }
   .header h1 { font-size: 20px; font-weight: 700; }
   .header .sub { font-size: 13px; opacity: .8; margin-top: 4px; }
+  .header .ver { font-size: 12px; opacity: .6; margin-top: 6px; }
 
   .card {
     background: #fff;
@@ -46,10 +47,8 @@
     border-radius: 10px;
     font-weight: 400;
   }
-  .card h2 .tag.new {
-    background: #fce4ec;
-    color: #d93025;
-  }
+  .card h2 .tag.danger { background: #fce4ec; color: #d93025; }
+  .card h2 .tag.warn { background: #fff3e0; color: #e65100; }
 
   .formula-box {
     background: #f8f9ff;
@@ -86,6 +85,7 @@
   .num { text-align: center; font-weight: 700; color: #1a73e8; }
   .new-row td { background: #fff8e1; }
   .new-row .num { color: #e65100; }
+  tr.highlight td { background: #e8f5e9; }
 
   .note {
     background: #fff8e1;
@@ -102,6 +102,7 @@
 
   .ok { color: #0d904f; }
   .warn { color: #d93025; }
+  .b { font-weight: 700; }
 </style>
 </head>
 <body>
@@ -109,427 +110,314 @@
 
 <div class="header">
   <h1>📊 Q3季度政策</h1>
-  <div class="sub">2026年7-9月 · 取数及稽核口径</div>
-
-<!-- 峨山认筹统计 -->
-<div class="card" style="border:2px solid #e65100">
-  <h2>🏔️ 峨山7月认筹进度 <span class="tag new">累计1日-13日</span></h2>
-  <table>
-    <tr><th>认筹项目</th><th>笔数</th><th>系数</th><th>认筹值</th></tr>
-    <tr><td>🌐 宽带（全球通×2）</td><td class="num">80条</td><td>×2</td><td class="num" style="color:#d93025">160</td></tr>
-    <tr><td>📶 WiFi（全球通×2，小福袋项）</td><td class="num">73个</td><td>×2</td><td class="num" style="color:#e65100">146</td></tr>
-    <tr><td>🎁 AI小福袋29档</td><td class="num">21笔</td><td>×2</td><td class="num" style="color:#1a73e8">42</td></tr>
-    <tr><td>💰 顺差碎屏险（爱购商城）</td><td class="num">4笔</td><td>×3</td><td class="num" style="color:#1a73e8">12</td></tr>
-    <tr><td>📈 爱家畅享包升级版</td><td class="num">3笔</td><td>×0.8</td><td class="num" style="color:#666">2.4</td></tr>
-    <tr><td>📈 套餐升档119以下</td><td class="num">5笔</td><td>×0.4</td><td class="num" style="color:#666">2.0</td></tr>
-    <tr><td>📈 套餐升档119及以上</td><td class="num">3笔</td><td>×0.6</td><td class="num" style="color:#666">1.8</td></tr>
-    <tr style="background:#fff3e0;font-weight:700"><td>🎯 认筹总计</td><td></td><td></td><td class="num" style="color:#d93025;font-size:18px">366.2</td></tr>
-  </table>
-  <div class="note info" style="margin-top:10px;margin-bottom:0">
-    <b>📌 认筹统计口径</b><br>
-    • 宽带→全球通×2 · WiFi→全球通WiFi×2（小福袋项）<br>
-    • AI小福袋29档→×2 · 碎屏险→×3（爱购商城）<br>
-    • 畅享包不带爱家→不算 · 套餐升档看档次<br>
-    ⏰ 下次报量时自动更新
-  </div>
+  <div class="sub">2026年7-9月 · 最终版</div>
+  <div class="ver">更新：2026-07-16 · 来源：省公司文件</div>
+  <div class="ver" style="color:#ff5252;opacity:1">⚠️ 以这版为准，旧版全部删除</div>
 </div>
 
-<div class="card" style="background:#e3f2fd">
-  <div style="font-size:13px;line-height:1.7">
-    <b>📢 当前状态</b><br>
-    ✅ 已通知开始做<b>宽带+路由</b><br>
-    🟡 <b>目标值（达量目标值）待公司定</b><br>
-    🟡 <b>终端合约（合约率和合约量）、保障业务</b> 目标值正在测算<br>
-    🟡 终端合约率/量 + 保障业务 计划纳入<b>县区星级否决项</b><br>
-    📅 后续有Q3相关文件，自动整理入此看板
-  </div>
-</div>
-
-<!-- 🐯 金虎标杆奖 -->
-<div class="card" style="border:2px solid #1565c0;background:#e3f2fd">
-  <h2 style="color:#1565c0;border-bottom-color:#90caf9">🐯 金虎标杆奖 · 宽带拉新达标 <span class="tag new">7/14新增</span></h2>
-  
-  <div class="formula-box" style="background:#e3f2fd;border-color:#1565c0">
-    <b>激励条件：</b><br>
-    🐯 金虎客户 + 融合套餐 + 新开宽带 + 58元以上套餐<br>
-    📊 搭载信号卡率 ≥ 90%<br>
-    <br>
-    <b>信号卡率公式：</b><br>
-    分子 = 与主卡有共同保底/共享/合账的家庭关系当月新开副卡<br>
-    分母 = 金虎且融合套餐且新开宽带且58以上的客户<br>
-    <br>
-    <b>激励：</b><span class="hl" style="font-size:16px">宽带主卡搭载叠加激励 ≈ 110元</span>
-  </div>
-  
-  <div class="note info" style="margin-top:8px;margin-bottom:0">
-    <b>💡 操作要点：</b><br>
-    ✅ 金虎办58以上融合套餐+宽带（同渠道），记得拉新开卡<br>
-    ✅ 新开卡做保底、共享、合账 → 算信号卡<br>
-    ✅ 信号卡率做够90%以上 → 额外得110元/条<br>
-    ⛔ 只针对渠道<br>
-    📅 已录入Q3看板
-  </div>
-</div>
-
-<!-- 认筹重点 -->
+<!-- ===== 整体打折项 ===== -->
 <div class="card" style="border:2px solid #d93025">
-  <h2>🎯 Q3认筹考核重点 <span class="tag new">核心关注</span></h2>
-  <div class="formula-box" style="background:#fff8e1;border-color:#ff6d00">
-    <b>📌 重点跟进项目（与Q2差别不大）：</b><br>
-    <span class="hl">🆕 新增开户</span> — 按客户发展系数折算<br>
-    <span class="hl">🐯 金虎</span> — 客户发展×2 + 新增快金虎剔除<br>
-    <span class="hl2">📦 畅享包升级版</span> — ×0.8（泛升档指标）<br>
-    <span class="hl2">📈 升档大促</span> — 单升档×0.4~0.6，叠加大促×1~2<br>
-    <span class="hl">🛡️ 保障业务</span> — <b>任选保、安全管家防诈基础版</b><br>
-    <span class="new-item">📱 终端合约（合约率+合约量）🆕</span> — <span class="warn">计划纳入县区星级否决项</span><br>
-    <span class="new-item">🛡️ 保障业务 🆕</span> — <span class="warn">计划纳入县区星级否决项</span>
+  <h2>🎯 整体打折项 <span class="tag danger">折上折</span></h2>
+  <div class="formula-box" style="background:#fff8e1;border-color:#d93025">
+    <b>以下条件未达 → 所有评优激励×对应系数</b>
+  </div>
+  <table>
+    <tr><th>条件</th><th>未达标后果</th></tr>
+    <tr><td>高频骚扰防护办理率&lt;90% 或 短信免打扰触点订购率&lt;90%</td><td class="num" style="color:#d93025">×0.95</td></tr>
+    <tr><td colspan="2" style="background:#f5f5f5;font-size:12px"><b>🐯 金虎完成值：</b>较上季度提升≥3% 且达目标值</td></tr>
+  </table>
+  <div class="note audit">
+    <b>🐯 金虎达标系数：</b><br>
+    目标值：委托加盟外包厅40户 / 六星级<b>28户</b> / 五星级20户 / 四星级14户 / 非星级8户<br>
+    完成50%~100% → ×<b>0.95</b> | 0%~50%或提升&lt;3% → ×<b>0.9</b> | 未破零 → ×<b>0.85</b>
+  </div>
+  <div class="note audit">
+    <b>其他打折项（折上折）：</b><br>
+    ①新入网充值优惠率&lt;30% → ×<b>0.95</b><br>
+    ②靓号占比&lt;5% → ×<b>0.95</b><br>
+    ③季度平均新入网APP活跃占比&lt;53% → ×<b>0.95</b><br>
+    ④套餐费≤20元卡品占比>40% → ×<b>0.95</b>
+  </div>
+</div>
+
+<!-- ===== 客户发展 ===== -->
+<div class="card">
+  <h2>👥 客户发展 <span class="tag">价值系数</span></h2>
+  <table>
+    <tr><th>场景</th><th>系数</th></tr>
+    <tr><td>3级及以上吉祥号码</td><td class="num">×4</td></tr>
+    <tr><td>2级吉祥号码</td><td class="num">×3</td></tr>
+    <tr><td>1级吉祥号码 / 优质号码</td><td class="num">×2</td></tr>
+    <tr class="new-row"><td>🐯 金虎新增（剔除快金虎）</td><td class="num">×2</td></tr>
+    <tr><td>98元及以上套餐</td><td class="num">×1.8</td></tr>
+    <tr><td>59元及以上套餐</td><td class="num">×1.5</td></tr>
+    <tr><td>39元及以上套餐</td><td class="num">×1.3</td></tr>
+    <tr><td>一老一少场景（手环/手表/机器人/学生证/听力宝）</td><td class="num">×1.3</td></tr>
+    <tr><td>19元及以上套餐</td><td class="num">×1.2</td></tr>
+    <tr><td>常规开户 / 插卡话机</td><td class="num">×1</td></tr>
+  </table>
+
+  <div class="note info">
+    <b>📌 副卡折算规则：</b><br>
+    🐯 金虎场景 → ×<b>2</b> · 一老一少/宽带新装/终端重点合约/家庭异网拉新/金虎攻坚 → ×<b>1</b> · 其余 → ×<b>0.5</b>
+  </div>
+
+  <div class="note">
+    <b>📌 叠加计数：</b><br>
+    • 纯新客户（近6个月无号卡）：<b>+0.5户</b><br>
+    • 金虎/金牛满卡拉新（副卡≥2张）：群组额外 <b>+1户</b><br>
+    • 垂类市场100户+：每户 <b>+0.3户</b><br>
+    • 新入网+视频彩铃：<b>+0.1/户</b><br>
+    • AB类集团成员：<b>+0.2/户</b><br>
+    • 充值优惠：30元档<b>+0.2</b> · 50元档<b>+0.3</b> · 100元档<b>+0.5</b>
   </div>
 
   <div class="note warn">
-    <b>⚠️ 县区星级否决项（正在测算目标值）：</b><br>
-    1️⃣ <b>终端合约：</b>合约率 和 合约量 — 计划新增为否决项<br>
-    2️⃣ <b>保障业务：</b>任选保、安全管家防诈基础版 — 计划新增为否决项<br>
-    🟡 目标值待公司测算完成后下发
+    <b>⚡ 就高原则：</b>同一客户多场景取最高，如98套餐又金虎→仅计1户，取×2<br>
+    ⛔ 体验卡/旺铺套餐不计入评优
   </div>
 
-  <div class="note info">
-    <b>⏰ 按时间进度跟进发展</b><br>
-    以上重点项目请按时间进度推进，目标值出来后补填
+  <div class="note audit">
+    <b>🔍 稽核口径：</b><br>
+    • 剔除返销 · 快金虎不算<br>
+    • 稽核周期：开户第3月 · 在网3个月且有通信行为<br>
+    • <span class="warn">低质量管控：</span>开户当月次月离网>10% → 离网量×1扣罚
   </div>
 </div>
+
+<!-- ===== 泛升档及爱购商城 ===== -->
+<div class="card">
+  <h2>📈 泛升档及爱购商城 <span class="tag">计分</span></h2>
+  <table>
+    <tr><th>业务</th><th>计分</th><th>备注</th></tr>
+    <tr><td>套餐升档至119以下</td><td class="num">0.4</td><td></td></tr>
+    <tr><td>套餐升档至119及以上</td><td class="num">0.6</td><td></td></tr>
+    <tr class="new-row"><td>升档119以下 + 升档流量大促</td><td class="num">1</td><td>🆕 重点冲刺</td></tr>
+    <tr class="new-row"><td>升档119及以上 + 升档流量大促</td><td class="num" style="color:#d93025;font-size:15px">2</td><td>⭐ 最高</td></tr>
+    <tr><td>爱家畅享包升级版</td><td class="num">0.8</td><td>重点冲刺</td></tr>
+    <tr><td>10元以下流量包</td><td class="num">0.5</td><td></td></tr>
+    <tr><td>10~20元流量包</td><td class="num">0.8</td><td></td></tr>
+    <tr><td>20元及以上重点流量包</td><td class="num">1</td><td></td></tr>
+    <tr><td>尊享大促</td><td class="num">0.3</td><td></td></tr>
+  </table>
+
+  <div class="note">
+    <b>💰 权益/保障服务折算：</b><br>
+    5~15元月扣费 → ×<b>0.8</b> · 15~25元 → ×<b>1.25</b> · 25元+ → ×<b>1.5</b><br>
+    校园版爱家/铂金会员 → ×<b>14</b> · 一次性权益年包 → ×<b>3.3</b>
+  </div>
+
+  <div class="note audit">
+    <b>🔍 稽核口径：</b><br>
+    • 退订不计 · 升档需套餐费提升<span class="warn">≥5元</span>，否则不计<br>
+    • 需生效主套餐+升档活动 · 办理当月或上月有降档 → 不核算<br>
+    • 权益业务第5个月结算<br>
+    • ⛔ 移动购机礼包（铂金/88/咪咕）<b>不计量</b>
+  </div>
 </div>
 
-<!-- Broadband -->
+<!-- ===== 宽带 ===== -->
 <div class="card">
   <h2>📶 宽带 <span class="tag">取数口径</span></h2>
 
   <div class="formula-box">
     <b>总公式（就高原则）：</b><br>
-    🐂 金牛新装 × <span class="hl">2</span>
-    + 金牛口径2 × 0.5 + 金牛口径3 × 0.5<br>
-    <span class="new-item">🐯 金虎客户宽带 × <span class="hl">2</span> 🆕</span><br>
-    <span class="new-item">📺 新装（电视PRO）× <span class="hl">2</span> 🆕</span><br>
-    存量加装泛屏 × 1 · 新装千兆 × <span class="hl2">1.5</span><br>
+    🐂 金牛新装 × <span class="hl">2</span> + 金牛口径2 × 0.5 + 金牛口径3 × 0.5<br>
+    🐯 金虎客户宽带 × <span class="hl">2</span><br>
+    📺 新装（电视PRO）× <span class="hl">2</span><br>
+    存量加装泛屏 × 1 · 新装千兆 × 1.5<br>
     🌍 全球通宽带 × <span class="hl">2</span><br>
-    📺 宽带搭电视 × <span class="hl2">1.3</span> · 单宽无电视 × 0.4
+    📺 宽带搭电视 × 1.3 · 单宽无电视 × 0.4
   </div>
 
   <table>
-    <tr><th>场景</th><th>系数</th><th></th></tr>
-    <tr class="new-row"><td>🐂 金牛客户新装宽带</td><td class="num">×2</td><td>✅ 延续</td></tr>
-    <tr><td>🐂 金牛口径2（金虎赢回+家庭关系）</td><td class="num">×0.5</td><td></td></tr>
-    <tr><td>🐂 金牛口径3（家庭+同住+异网已打）</td><td class="num">×0.5</td><td></td></tr>
-    <tr class="new-row"><td>🐯 金虎客户办理宽带</td><td class="num">×2</td><td>🆕 新增</td></tr>
-    <tr class="new-row"><td>📺 新装宽带 + 电视PRO</td><td class="num">×2</td><td>🆕 新增</td></tr>
-    <tr><td>存量宽带加装家庭泛屏</td><td class="num">×1</td><td></td></tr>
-    <tr><td>新装千兆宽带</td><td class="num">×1.5</td><td></td></tr>
-    <tr class="new-row"><td>🌍 全球通客户办理宽带</td><td class="num">×2</td><td>✅ 延续</td></tr>
-    <tr><td>宽带 + 电视</td><td class="num">×1.3</td><td></td></tr>
-    <tr><td>单宽无电视</td><td class="num">×0.4</td><td></td></tr>
+    <tr><th>场景</th><th>系数</th></tr>
+    <tr><td>🐂 金牛客户新装宽带（口径1：真金牛）</td><td class="num">×2</td></tr>
+    <tr><td>🐂 金牛口径2（金虎赢回+家庭关系）</td><td class="num">×0.5</td></tr>
+    <tr><td>🐂 金牛口径3（家庭同住+异网已打）</td><td class="num">×0.5</td></tr>
+    <tr><td>🐯 金虎客户办理宽带</td><td class="num">×2</td></tr>
+    <tr><td>📺 新装宽带 + 电视PRO</td><td class="num">×2</td></tr>
+    <tr><td>存量宽带加装家庭泛屏</td><td class="num">×1</td></tr>
+    <tr><td>新装千兆宽带</td><td class="num">×1.5</td></tr>
+    <tr><td>🌍 全球通客户办理宽带</td><td class="num">×2</td></tr>
+    <tr><td>宽带 + 电视</td><td class="num">×1.3</td></tr>
+    <tr><td>单宽无电视</td><td class="num">×0.4</td></tr>
+  </table>
+
+  <div class="note warn">
+    <b>⚠️</b> 打过5折的灵犀屏<span class="warn">不算认筹量</span>
+  </div>
+
+  <div class="note audit">
+    <b>🔍 宽带稽核：</b><br>
+    • 取有效宽带（流量>100M，状态正常）· 剔除次日0流量/拆机重装<br>
+    • 电视要求活跃 · 计算占比时⛔剔除校园宽带<br>
+    • 金牛+全球通占比&lt;50% → 激励打<b>8折</b> · 搭载率&lt;50% → 打<b>9折</b><br>
+    • 300M+占比>90% → 额外+0.2 · 电视搭载率50%~70% → 额外+0~1系数
+  </div>
+</div>
+
+<!-- ===== 移动爱家生态小福袋 ===== -->
+<div class="card">
+  <h2>🎁 移动爱家生态小福袋 <span class="tag">系数</span></h2>
+  <table>
+    <tr><th>产品</th><th>系数</th></tr>
+    <tr><td>全家WiFi（智能组网）</td><td class="num">×1</td></tr>
+    <tr><td>🌍 全球通客户WiFi</td><td class="num">×2</td></tr>
+    <tr><td>FTTR月包</td><td class="num">×3</td></tr>
+    <tr><td>FTTR从路由加装</td><td class="num">×1</td></tr>
+    <tr><td>融合套餐/全家欢/金牛金虎内含FTTR</td><td class="num">×1</td></tr>
+    <tr><td>移动看家</td><td class="num">×1</td></tr>
+    <tr><td>爱家健康10元档</td><td class="num">×1</td></tr>
+    <tr><td>爱家健康15元档</td><td class="num">×1.5</td></tr>
+    <tr><td>🤖 AI家10元教育小福袋</td><td class="num">×0.7</td></tr>
+    <tr><td>🤖 AI家25元教育小福袋</td><td class="num">×2.5</td></tr>
+    <tr><td>🤖 AI家35元+教育小福袋</td><td class="num">×3</td></tr>
   </table>
 
   <div class="note warn">
     <b>⚠️ 注意：</b><br>
-    打过5折的灵犀屏 <span class="warn">不算认筹量</span>
+    ❌ 100元WiFi质差活动 3季度依然<b>不算认筹</b><br>
+    ✅ 全球通客户办理WiFi（除质差外所有WiFi）→ 系数<b>×2</b><br>
+    ❌ <span class="warn">云Pad、AI手机不计入认筹</span>（会申请其他奖项）
   </div>
 
   <div class="note">
-    <b>🐂 金牛口径详解</b><br>
-    <b>口径1：</b>真金牛客户新装宽带（手动打标签不计）<br>
-    <b>口径2：</b>金虎赢回时，赢回号码新装宽带 + 与金牛有家庭关系（合账/共同保底/资源共享）<br>
-    <b>口径3：</b>a)有家庭业务关系 + b)物理同住（家庭模型&夜间基站相同）+ c)异网宽带已打掉（上月已用移动宽带且无非本网DM数据）
-  </div>
-
-  <div class="note audit">
-    <b>🔍 宽带稽核口径</b><br>
-    • 取季度内新开户且回单的有效宽带（流量&gt;100M，期末状态正常）<br>
-    • 剔除：装机次日0流量、拆机重装<br>
-    • 电视要求活跃（流量&gt;0）<br>
-    • 计算金牛占比/全球通占比/电视占比时 ⛔剔除校园宽带<br>
-    • 竣工次日0流量占比 &gt; 15% → <span class="warn">不参与激励</span>
+    <b>📌 年包底限值：</b>= 认筹目标 × 30%，未完成激励打9折<br>
+    年包系数：1年包×2 · 2年包×3 · 3年包×4
   </div>
 </div>
 
-<!-- 续约福利 -->
-<div class="card">
-  <h2>♻️ 小福袋到期续约 <span class="tag new">升级</span></h2>
-
+<!-- ===== 产品激励明细 ===== -->
+<div class="card" style="border:2px solid #1565c0">
+  <h2 style="color:#1565c0">💰 重点产品激励明细 <span class="tag danger">认筹+酬金</span></h2>
+  
+  <h3 style="font-size:14px;margin:10px 0 6px;color:#1565c0">📦 FTTR</h3>
   <table>
-    <tr><th>小福袋档位</th><th>每月领流量</th><th>标签</th></tr>
-    <tr><td>5~10元档</td><td class="num">5GB</td><td>FDDQ05</td></tr>
-    <tr><td>10~19元档</td><td class="num" style="color:#1a73e8">10GB</td><td>FDDQ10</td></tr>
-    <tr><td>20~29元档</td><td class="num" style="color:#e65100">15GB</td><td>FDDQ20</td></tr>
-    <tr style="background:#fff3e0"><td>30元+档</td><td class="num" style="color:#d93025;font-weight:700">20GB</td><td>FDDQ30</td></tr>
-    <tr><td>健康小福袋5元+</td><td class="num">5GB</td><td>JKDQ5</td></tr>
-    <tr><td>健康小福袋10元+</td><td class="num" style="color:#1a73e8">10GB</td><td>JKDQ10</td></tr>
+    <tr><th>活动</th><th>认筹值</th><th>合计激励</th></tr>
+    <tr class="highlight"><td>360元FTTR</td><td class="num">6</td><td class="num" style="color:#d93025">460元</td></tr>
+    <tr><td>30元FTTR小福袋</td><td class="num">3</td><td class="num" style="color:#1a73e8">270元</td></tr>
+    <tr><td>35元FTTR小福袋(WiFi7)</td><td class="num">3.5</td><td class="num" style="color:#1a73e8">285元</td></tr>
+    <tr><td>899元FTTR</td><td class="num">12</td><td class="num" style="color:#e65100">480元</td></tr>
+    <tr><td>缴纳360元续约FTTR</td><td class="num">6</td><td class="num" style="color:#1a73e8">350元</td></tr>
+    <tr><td>新装全家欢/融合得FTTR</td><td class="num">1</td><td class="num">150元</td></tr>
+    <tr><td>10元/月续约FTTR</td><td class="num">1</td><td class="num">30元</td></tr>
   </table>
 
-  <div class="note info">
-    <b>💡 升级亮点</b><br>
-    ✅ 之前：所有档位统一每月免费 <b>5GB</b><br>
-    ✅ 现在：按档位领 <b>5~20GB</b> 🆕<br>
-    合约超22个月的客户可办，流量不可转赠、可共享
-  </div>
-
-  <div class="note">
-    <b>🔄 其他续约福利</b><br>
-    <b>硬件升级接续</b> — WiFi/FTTR客户合约超22月 → FTTR 10元/月+200调测费<br>
-    <b>保障服务接续</b> — 安防/门锁/WiFi/音箱/FTTR超12月 → 免费防诈险（保全家10人×5万）<br>
-    <b>安防续约</b> — 超2年客户每月领3GB/10GB流量<br>
-    <b>音箱续约</b> — 超24月 → 全家视频+时光轨迹+云存储+咪咕音乐<br>
-    <b>以旧换新</b> — 摄像头换新 + 安防门锁超12月领3GB
-  </div>
-</div>
-
-<!-- 小福袋 -->
-<div class="card">
-  <h2>🎁 移动爱家生态小福袋 <span class="tag">取数口径</span></h2>
-
+  <h3 style="font-size:14px;margin:14px 0 6px;color:#1565c0">📶 WiFi / 旅居</h3>
   <table>
-    <tr><th>产品</th><th>系数</th><th></th></tr>
-    <tr><td>全家WIFI（智能组网）</td><td class="num">1</td><td></td></tr>
-    <tr class="new-row"><td>🌍 全球通客户办理WIFI</td><td class="num" style="color:#e65100">×2</td><td>🆕 叠加2</td></tr>
-    <tr style="background:#e8f5e9"><td>📦 FTTR月包</td><td class="num" style="color:#d93025">3</td><td></td></tr>
-    <tr><td>FTTR从路由加装</td><td class="num">1</td><td></td></tr>
-    <tr><td>融合套餐/全家欢/金牛金虎内含FTTR</td><td class="num">1</td><td></td></tr>
-    <tr><td>移动看家</td><td class="num">1</td><td></td></tr>
-    <tr><td>爱家健康10元</td><td class="num">1</td><td></td></tr>
-    <tr><td>爱家健康15元</td><td class="num" style="color:#1a73e8">1.5</td><td></td></tr>
-    <tr style="background:#e8f5e9">
-      <td>🤖 AI家10元权益小福袋</td><td class="num">0.7</td><td></td>
-    </tr>
-    <tr style="background:#e8f5e9">
-      <td>🤖 AI家25元教育小福袋</td><td class="num" style="color:#d93025">2.5</td><td></td>
-    </tr>
-    <tr style="background:#e8f5e9">
-      <td>🤖 AI家35元+教育小福袋</td><td class="num" style="color:#d93025">3</td><td></td>
-    </tr>
-    <tr style="background:#fff3e0">
-      <td>💻 云电脑 45档</td><td class="num" style="color:#e65100">3.75</td><td></td>
-    </tr>
-    <tr style="background:#fff3e0">
-      <td>💻 云电脑 59档</td><td class="num" style="color:#e65100">4</td><td></td>
-    </tr>
-    <tr style="background:#fce4ec">
-      <td>🤖 AI智能体 19档</td><td class="num">1</td><td></td>
-    </tr>
-    <tr style="background:#fce4ec">
-      <td>🤖 AI智能体 29档</td><td class="num">2</td><td></td>
-    </tr>
-    <tr style="background:#fce4ec">
-      <td>🤖 AI智能体 39档</td><td class="num">3</td><td></td>
-    </tr>
-    <tr style="background:#fce4ec">
-      <td>🤖 AI智能体 49档</td><td class="num">4</td><td></td>
-    </tr>
-    <tr style="background:#fce4ec">
-      <td>🤖 AI智能体 59档</td><td class="num">5</td><td></td>
-    </tr>
+    <tr><th>活动</th><th>认筹值</th><th>合计激励</th></tr>
+    <tr class="highlight"><td>旅居宽带包年(含WiFi电视)</td><td class="num">1</td><td class="num" style="color:#1a73e8">195元</td></tr>
+    <tr><td>旅居宽带包年(含WiFi)</td><td class="num">1</td><td class="num">144元</td></tr>
+    <tr><td>100元WiFi质差</td><td class="num" style="color:#999">0</td><td class="num">133元</td></tr>
+    <tr><td>139+套餐100元WiFi</td><td class="num">1</td><td class="num">129元</td></tr>
+    <tr><td>15元WiFi小福袋</td><td class="num">1</td><td class="num">60元</td></tr>
   </table>
 
-  <div class="note warn">
-    <b>⚠️ 注意：</b><br>
-    ❌ 100元WiFi质差活动 <span class="warn">3季度依然不算认筹</span><br>
-    ✅ 全球通客户办理WIFI（除质差外的所有WiFi活动）→ <span class="ok">系数叠加2</span>
-  </div>
-
-  <div class="note audit">
-    <b>🔍 小福袋稽核口径</b><br>
-    • 摄像头/血压仪/手环/智控遥控器 → <span class="warn">需绑定和家亲并激活</span><br>
-    • 安装后次月云存不活跃 → <span class="warn">不结算</span><br>
-    • 同一客户3个月内同类退订重录 → 不计<br>
-    • FTTR/WIFI投诉&gt;5笔 且 万投率&gt;150 → 从发展量剔除<br>
-  </div>
-</div>
-
-<div class="card" style="background:#e8f5e9">
-  <div style="font-size:13px;line-height:1.7">
-    <b>📌 三句话总结</b><br>
-    1️⃣ 宽带最划算的：<b>金牛×2、金虎×2、电视PRO×2、全球通×2</b> — 这4个优先推<br>
-    2️⃣ 小福袋最划算的：<b>FTTR月包×3、AI智能体最高×5、教育小福袋×3</b> — 系数高<br>
-    3️⃣ ⛔ 灵犀屏5折不算 · ⛔ WiFi质差不算 · ✅ 全球通WIFI系数×2
-  </div>
-</div>
-
-<!-- 动感地带暑期大流量卡 -->
-<div class="card">
-  <h2>🎒 动感地带·暑期大流量卡 <span class="tag new">7月主打</span></h2>
-  <div class="note info" style="margin-top:0;margin-bottom:10px">
-    <b>🎯 目标人群：</b>30岁以下年轻人（主要是学生）
-  </div>
-
+  <h3 style="font-size:14px;margin:14px 0 6px;color:#1565c0">📷 摄像头 / 爱家健康</h3>
   <table>
-    <tr><th>卡品</th><th>月费</th><th>流量</th><th>分钟</th><th>权益</th></tr>
-    <tr>
-      <td>29元追番卡</td>
-      <td class="num">29元</td>
-      <td>140GB<br><span style="font-size:11px;color:#666">80G通用+60G B站定向</span></td>
-      <td class="num">150</td>
-      <td>B站大会员</td>
-    </tr>
-    <tr>
-      <td>59元追番卡</td>
-      <td class="num">59元</td>
-      <td>200GB<br><span style="font-size:11px;color:#666">100G通用+100G B站定向</span></td>
-      <td class="num">300</td>
-      <td>B站大会员</td>
-    </tr>
-    <tr>
-      <td>芒果卡</td>
-      <td class="num">59元</td>
-      <td>170GB<br><span style="font-size:11px;color:#666">60G通用+80G夜间+30G定向</span></td>
-      <td class="num">100</td>
-      <td>芒果TVPlus+咪咕钻石</td>
-    </tr>
-    <tr style="background:#fce4ec">
-      <td>世界杯畅看卡</td>
-      <td class="num" style="color:#d93025">37.8元</td>
-      <td>135GB</td>
-      <td class="num">150</td>
-      <td>B站大会员+88会员+咪咕四大会员</td>
-    </tr>
-    <tr style="background:#fce4ec">
-      <td>夏日观影全能卡</td>
-      <td class="num" style="color:#d93025">48.9元</td>
-      <td>110GB</td>
-      <td class="num">150</td>
-      <td>B站大会员+近30款APP会员任选</td>
-    </tr>
+    <tr><th>活动</th><th>认筹值</th><th>合计激励</th></tr>
+    <tr class="highlight"><td>摄像头3年包</td><td class="num">4</td><td class="num" style="color:#1a73e8">235元</td></tr>
+    <tr><td>204元健康两年包</td><td class="num">3</td><td class="num">161元</td></tr>
+    <tr><td>15元健康小福袋</td><td class="num">1.5</td><td class="num">75元</td></tr>
+    <tr><td>10元健康小福袋</td><td class="num">1</td><td class="num">72元</td></tr>
+    <tr><td>摄像头以旧换新</td><td class="num">0.5</td><td class="num">42元</td></tr>
   </table>
+</div>
 
-  <div class="note">
-    <b>🛒 29元/59元追番卡组合方式</b><br>
-    29元追番卡：全家享39套餐(93200056) + B站追番卡开户活动(1001414974) + 0.1元40G<br>
-    59元追番卡：全家享59套餐(93414056) + B站追番卡开户活动(1001416925) + 0.1元40G
+<!-- ===== 渠道目标值 ===== -->
+<div class="card" style="border:2px solid #e65100">
+  <h2 style="color:#e65100">🏪 渠道目标值 <span class="tag danger">公司下发</span></h2>
+
+  <div class="card" style="border:1px solid #e65100;margin:0 0 10px 0;padding:12px">
+    <h3 style="font-size:14px;margin:0 0 8px 0">🏔️ 峨山店（兰新通讯他建店）</h3>
+    <table>
+      <tr><th>项目</th><th>目标值</th></tr>
+      <tr><td>宽带认筹目标值</td><td class="num" style="font-size:16px;color:#d93025">70</td></tr>
+      <tr><td>小福袋底限值</td><td class="num">134.94</td></tr>
+      <tr><td>小福袋认筹目标值</td><td class="num" style="font-size:16px;color:#d93025">300</td></tr>
+    </table>
+  </div>
+
+  <div class="card" style="border:1px solid #1a73e8;margin:0 0 10px 0;padding:12px">
+    <h3 style="font-size:14px;margin:0 0 8px 0">🏪 鑫盛通讯（董梦晶）</h3>
+    <table>
+      <tr><th>项目</th><th>目标值</th></tr>
+      <tr><td>宽带认筹目标值</td><td class="num">20</td></tr>
+      <tr><td>小福袋底限值</td><td class="num">96.20</td></tr>
+      <tr><td>小福袋认筹目标值</td><td class="num">100</td></tr>
+    </table>
   </div>
 
   <div class="note info">
-    <b>📢 门店横幅文案</b><br>
-    ① 动感地带200GB大流量！59元=200GB+B站大会员，青春放肆玩！<br>
-    ② 凭学生证特惠！动感地带200GB大流量套餐，含B站大会员，畅享暑期！<br>
-    ③ 暑期必选！动感地带170GB大流量+芒果会员+咪咕钻石，限时办理！<br>
-    ④ 动感地带200GB大流量来啦！59元=200GB+含B站大会员，青春就是要放肆玩！
-  </div>
-
-  <div class="note warn">
-    <b>💬 门店3句话成交</b><br>
-    第1句：同学你好！动感地带200GB大流量来啦！59元/月！<br>
-    第2句：200GB大流量，还含B站大会员或芒果会员+咪咕钻石！<br>
-    第3句：今天办理可享专属靓号选择，抓紧！
+    <b>兰新六星级整体目标：</b><br>
+    宽带70 · 金虎<b>9笔</b> · 电视<b>49笔</b> · 全球通/金牛<b>35户</b><br>
+    旅居+电视10 · 旅居+WiFi/安防10<br>
+    FTTR：360年包<b>20</b> · 全球通WiFi<b>35</b> · 摄像头3年包<b>20</b> · 30元FTTR<b>60</b> · 旅居WiFi<b>10</b><br>
+    <b>认筹完成量目标合计：365</b>
   </div>
 </div>
 
-<!-- 客户发展 价值系数 -->
-<div class="card">
-  <h2>🏆 客户发展 <span class="tag new">新增</span></h2>
-
+<!-- ===== 星级协同 ===== -->
+<div class="card" style="border:2px solid #7b1fa2">
+  <h2 style="color:#7b1fa2">⭐ 星级协同（Q3新体系） <span class="tag danger">75分</span></h2>
+  <div class="formula-box" style="background:#f3e5f5;border-color:#7b1fa2">
+    ⚠️ 以这版为准，之前全部删除（含系数）
+  </div>
   <table>
-    <tr><th>类型</th><th>系数</th><th></th></tr>
-    <tr><td>3级及以上吉祥号码</td><td class="num" style="color:#e65100">×4</td><td></td></tr>
-    <tr><td>2级吉祥号码</td><td class="num" style="color:#d93025">×3</td><td></td></tr>
-    <tr><td>1级吉祥号码</td><td class="num">×2</td><td></td></tr>
-    <tr><td>优质号码</td><td class="num">×2</td><td></td></tr>
-    <tr class="new-row"><td>🐯 金虎新增</td><td class="num" style="color:#d93025">×2</td><td>⭐ 剔除快金虎</td></tr>
-    <tr><td>98元及以上套餐</td><td class="num">×1.8</td><td></td></tr>
-    <tr><td>59元及以上套餐</td><td class="num">×1.5</td><td></td></tr>
-    <tr><td>39元及以上套餐</td><td class="num">×1.3</td><td></td></tr>
-    <tr><td>一老一少场景（手环/手表/机器人/学生证/听力宝）</td><td class="num">×1.3</td><td></td></tr>
-    <tr><td>19元及以上套餐</td><td class="num">×1.2</td><td></td></tr>
-    <tr><td>常规开户</td><td class="num">×1</td><td></td></tr>
-    <tr><td>插卡话机</td><td class="num">×1</td><td></td></tr>
+    <tr><th>#</th><th>项目</th><th>分值</th><th>内容</th></tr>
+    <tr><td>1</td><td>🆕 新增</td><td class="num">15分</td><td style="font-size:12px">农村：39/59+惠农网；年轻：B站追番、芒果；其他：新入网+亲情网、新入网+首充</td></tr>
+    <tr><td>2</td><td>📱 硬件产品</td><td class="num">15分</td><td style="font-size:12px">组网、5G手机、AI手机、云电脑、看家→计1；打印机+触点、健康养老、儿童手表→计0.8</td></tr>
+    <tr><td>3</td><td>🎫 权益</td><td class="num">10分</td><td style="font-size:12px">云盘、8899权益、其他权益</td></tr>
+    <tr><td>4</td><td>👥 五大客群运营</td><td class="num">10分</td><td style="font-size:12px">资费到期、零低流量激活、预警区域攻坚、风险客户加固、全球通无宽带无硬件</td></tr>
+    <tr><td>5</td><td>📶 流量套餐销售</td><td class="num">10分</td><td style="font-size:12px">套餐升档、爱家畅享包、流量包</td></tr>
+    <tr><td>6</td><td>🤖 Token运营</td><td class="num">15分</td><td style="font-size:12px">智能体产品销售、Token套餐新增</td></tr>
+    <tr style="background:#f3e5f5;font-weight:700"><td></td><td>总分</td><td class="num" style="font-size:18px;color:#7b1fa2">75分</td><td></td></tr>
   </table>
-
-  <div class="note info" style="margin-top:12px">
-    <b>📌 副卡折算规则</b><br>
-    🐯 金虎场景副卡 → <b>×2</b><br>
-    一老一少/宽带新装/终端重点合约/家庭异网拉新/金虎攻坚场景 → ×1<br>
-    其余副卡 → ×0.5
-  </div>
-
-  <div class="note">
-    <b>📌 叠加计数规则</b><br>
-    • 纯新客户（近6个月无移动号卡）：<b>+0.5户</b><br>
-    • 非本网双卡拉新：<b>+0.5户</b><br>
-    • 金虎/金牛满卡拉新（副卡≥2）：<b>群组额外+1户</b><br>
-    • 垂类市场100户以上：每户<b>+0.3户</b><br>
-    • 新入网开通视频彩铃：<b>+0.1户</b><br>
-    • AB类集团成员：<b>+0.2户</b><br>
-    • 充值优惠：30元档<b>+0.2</b>、50元档<b>+0.3</b>、100元档<b>+0.5</b>
-  </div>
-
-  <div class="note warn">
-    <b>⚠️ 就高原则：</b>同一客户多种场景发展取就高（如：98套餐+金虎=>仅计入1户，取×2）
-  </div>
-
-  <div class="note audit">
-    <b>🔍 取数口径</b><br>
-    • 剔除返销部分 · 快金虎不算 · 体验卡/旺铺套餐不计入评优<br>
-    • 金虎新增剔除快金虎<br>
-    • AB类集团成员：开户当月或次月加入，结算时仍是同集团成员<br>
-    • 纯新客户：同一身份证近6个月无移动号卡<br>
-    • 异网双卡拉新：(a)异网双卡变移动双卡 (b)办理金虎小号乐/建立保底/共享/合账<br>
-    • 副卡指：移动牛卡（副卡），全省套餐变更同步
-  </div>
 </div>
 
-<!-- 泛升档及爱购商城 -->
+<!-- ===== 专项激励 ===== -->
 <div class="card">
-  <h2>💳 泛升档及爱购商城 <span class="tag new">新增</span></h2>
+  <h2>🏆 专项激励 <span class="tag">三个奖项</span></h2>
 
-  <table>
-    <tr><th>业务</th><th>系数</th><th></th></tr>
-    <tr><td>套餐升档至119以下</td><td class="num">×0.4</td><td></td></tr>
-    <tr><td>套餐升档至119及以上</td><td class="num">×0.6</td><td></td></tr>
-    <tr class="new-row"><td>套餐升档至119以下+升档流量大促</td><td class="num" style="color:#1a73e8">×1</td><td></td></tr>
-    <tr class="new-row"><td>套餐升档至119及以上+升档流量大促</td><td class="num" style="color:#d93025;font-weight:700">×2</td><td>⭐ 最高</td></tr>
-    <tr><td>爱家畅享包升级版</td><td class="num">×0.8</td><td></td></tr>
-    <tr><td>10元以下流量包</td><td class="num">×0.5</td><td></td></tr>
-    <tr><td>10元(含)~20元以下流量包</td><td class="num">×0.8</td><td></td></tr>
-    <tr><td>20元及以上重点流量包</td><td class="num">×1</td><td></td></tr>
-    <tr><td>尊享大促</td><td class="num">×0.3</td><td></td></tr>
-    <tr class="new-row"><td>💰 顺差增收包</td><td class="num" style="color:#e65100">×3</td><td>⭐ 同串号不重复</td></tr>
-    <tr class="new-row"><td>📱 自备机流量包9.9元档</td><td class="num" style="color:#e65100">×5</td><td></td></tr>
-    <tr class="new-row"><td>📱 自备机流量包19.9元档</td><td class="num" style="color:#d93025;font-weight:700">×10</td><td>⭐ 最高</td></tr>
-  </table>
-
-  <div class="note">
-    <b>💳 权益/保障服务折算</b><br>
-    5~15元月扣费 → ×0.8 · 15~25元月扣费 → ×1.25 · 25+元月扣费 → ×1.5<br>
-    校园版爱家/铂金会员 → ×1.4 · 一次性权益年包 → ×3.3
+  <div class="card" style="border:1px solid #43a047;margin:0 0 10px 0;padding:12px">
+    <h3 style="font-size:14px;margin:0 0 6px 0">🌐 互联网转型能力提升奖</h3>
+    <div style="font-size:13px;line-height:1.6">
+      预算<b>15万元</b> · 新入网/宽带/终端环节APP融合率>70%<br>
+      业务量≥1000→<b>10,000元</b> · ≥700→7,000元 · ≥500→5,000元 · ≥300→3,000元 · ≥20→200元
+    </div>
   </div>
 
-  <div class="note audit">
-    <b>🔍 取数范围</b><br>
-    套餐升档、升档流量大促、爱家畅享包、重点流量包、尊享大促、高价值权益、顺差前置包、移动优选plus会员-守机宝
+  <div class="card" style="border:1px solid #e65100;margin:0 0 10px 0;padding:12px">
+    <h3 style="font-size:14px;margin:0 0 6px 0">⚔️ 区域团战攻坚奖</h3>
+    <div style="font-size:13px;line-height:1.6">
+      预算<b>10万元</b> · 打卡≥4h+战力值≥10分+品质客户≥3笔<br>
+      战力值≥180→<b>1,950元</b> · ≥150→1,500元 · ≥120→1,200元 · ≥90→900元 · ≥60→600元 · ≥30→300元
+    </div>
   </div>
 
-  <div class="note audit">
-    <b>🔍 稽核口径</b><br>
-    • 激励核算周期内退订 → 不计入办理量<br>
-    • 升档后实收套餐费提升≥5元，否则不计<br>
-    • 需稽核当季度是否生效主套餐+升档活动<br>
-    • 办理升档当月或上月办过降档（不限渠道）→ 不核算
+  <div class="card" style="border:1px solid #7b1fa2;margin:0 0 0 0;padding:12px">
+    <h3 style="font-size:14px;margin:0 0 6px 0">🏠 旅居场景团购奖</h3>
+    <div style="font-size:13px;line-height:1.6">
+      全量渠道参与 · 按单店核算 · 旅居宽带达量拿奖<br>
+      含产品量(WiFi+电视+摄像头)/宽带量>1 → 额外+0.2系数<br>
+      1条有效旅居宽带计1 · 可叠加多资管<br>
+      达量档次：90笔→<b>3,420元</b> · 60笔→2,100元 · 30笔→960元 · 10笔→300元
+    </div>
   </div>
 </div>
 
-<!-- 打折项 -->
-<div class="card">
-  <h2>🎯 打折/叠加项 <span class="tag">折上折</span></h2>
-  <table>
-    <tr><th>条件</th><th>折扣</th></tr>
-    <tr><td>新入网充值优惠率低于30%</td><td class="num" style="color:#d93025">9.5折</td></tr>
-    <tr><td>靓号发展占比低于5%</td><td class="num" style="color:#d93025">9.5折</td></tr>
-    <tr><td>季度平均新入网APP活跃占比低于53%</td><td class="num" style="color:#d93025">9.5折</td></tr>
-    <tr><td>套餐费≤20元卡品占比超过40%</td><td class="num" style="color:#d93025">9.5折</td></tr>
-  </table>
-  <div class="note info">
-    ⛔ 泛升档及爱购商城业务无打折项
+<!-- ===== 三句话总结 ===== -->
+<div class="card" style="border:2px solid #d93025;background:#fff8e1">
+  <h2>💡 三句话总结</h2>
+  <div class="formula-box" style="background:#fff8e1;border-color:#d93025;font-size:14px;line-height:2;margin:0">
+    <b>1️⃣ 宽带最划算的：</b>金牛×<span class="hl">2</span>、金虎×<span class="hl">2</span>、电视PRO×<span class="hl">2</span>、全球通×<span class="hl">2</span> — 优先推<br>
+    <b>2️⃣ 小福袋最划算的：</b>FTTR月包×<span class="hl">3</span>、AI智能体最高×<span class="hl">5</span>、教育小福袋×<span class="hl">3</span><br>
+    <b>3️⃣ 产品激励最高的：</b>899元FTTR<b>480元/笔</b> · 360FTTR<b>460元/笔</b> · 续约360FTTR<b>350元/笔</b><br>
+    <b>⛔ 注意：</b>灵犀屏5折不算 · WiFi质差不算 · 云Pad/AI手机不算认筹 · 购机礼包不计量
   </div>
 </div>
 
-<div style="text-align:center;font-size:11px;color:#999;padding:8px">
-  来源：省公司文件 · 2026-07-02 下发 + 2026-07-06 补充
-</div>
 </div>
 </body>
 </html>
