@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兰新团队 · 8月报量看板</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f0f2f5;color:#333;padding:20px}
+  .container{max-width:1200px;margin:0 auto}
+  .header{background:linear-gradient(135deg,#0d47a1,#1a237e);color:#fff;padding:24px 32px;border-radius:16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
+  .header h1{font-size:26px;font-weight:700}
+  .header .sub{font-size:13px;opacity:.8;margin-top:4px}
+  .header .badge{background:rgba(255,255,255,.2);padding:6px 14px;border-radius:20px;font-size:13px}
+  .card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:16px}
+  .card h2{font-size:17px;font-weight:600;color:#0d47a1;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #e8edf2}
+
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:8px 10px;text-align:center;border-bottom:1px solid #eee}
+  th{background:#f7f9fc;font-weight:600;color:#555;font-size:12px}
+  .num{font-weight:600}
+  .warn{color:#e53935}
+  .ok{color:#43a047}
+  .highlight{background:#e3f2fd;font-weight:600}
+  .highlight td{background:#e3f2fd;font-weight:600}
+  .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;margin:1px}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-orange{background:#fff3e0;color:#e65100}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-blue{background:#e3f2fd;color:#1565c0}
+
+  .alert{background:#e3f2fd;border-left:4px solid #1565c0;padding:12px 16px;border-radius:8px;font-size:13px;margin-bottom:12px;line-height:1.7}
+  .empty-state{padding:30px;text-align:center;color:#999}
+  .empty-state .icon{font-size:40px;margin-bottom:8px}
+  .empty-state p{font-size:13px;line-height:1.8}
+  .focus{background:#e3f2fd;border:2px solid #1565c0;padding:14px;border-radius:10px;margin-bottom:14px;text-align:center}
+  .focus .num{font-size:32px;font-weight:700;color:#0d47a1}
+  .focus .lbl{font-size:13px;color:#666;margin-top:2px}
+  .footer{text-align:center;padding:16px;color:#999;font-size:12px}
+
+  .person-card{border:1px solid #e0e0e0;border-radius:10px;margin-bottom:10px;overflow:hidden}
+  .person-card .ph{padding:10px 14px;font-weight:700;font-size:15px;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px}
+  .person-card .ph .sum{font-size:12px;font-weight:400;color:#888}
+  .person-card .pb{padding:10px 14px}
+  .kpi-row{display:flex;gap:5px;flex-wrap:wrap}
+  .kpi-item{padding:4px 10px;border-radius:5px;font-size:12px;background:#f0f0f0}
+  .kpi-item.ok{background:#e8f5e9}
+  .kpi-item.warn{background:#ffebee}
+  .kpi-item.mid{background:#fff8e1}
+  .other-items{font-size:11px;color:#666;margin-top:5px;line-height:1.5}
+
+  .mini-table{font-size:12px}
+  .mini-table th,.mini-table td{padding:5px 6px}
+  .daka{font-size:11px}
+  .daka th,.daka td{padding:4px 5px;font-size:11px}
+
+  @media(max-width:768px){body{padding:10px}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<div>
+<h1>📊 兰新团队 · 8月报量看板</h1>
+<div class="sub">兰新5人（美红/穆艳梅/李晶晶/舒捷/董梦晶）+普江林（金虎） · 🔄 更新于 2026-08-01</div>
+</div>
+<span class="badge">🎯 8月考核新规 · 当量≥1 + 防诈≥1笔/天</span>
+</div>
+
+<!-- 考核方案 -->
+<div class="alert">
+<strong>🎯 8月日考核方案（8/1起执行）：</strong><br>
+    ✅ 达标标准：每人每天必须同时满足 <strong>当量 ≥ 1</strong> 且 <strong>防诈 ≥ 1笔</strong><br>
+    📱 手机1台 = 1当量 · 📈 泛升档5笔 = 1当量（须通过常客外呼平台办理）· 🆔 学生证1笔 = 1当量<br>
+    📢 普江林数据计入兰新总统计，但日考核通报不包含 · 舒捷/董梦晶同考核
+  </div>
+
+<!-- 月度目标 -->
+<div class="card">
+<h2>🎯 8月团队目标</h2>
+<table>
+<tr><th>业务</th><th>兰新团队目标</th><th>考核金</th><th>未完成扣</th></tr>
+<tr><td style="text-align:left;font-weight:600">📱 手机</td><td class="num">🟡待确认</td><td>🟡待确认</td><td>🟡待确认</td></tr>
+<tr><td style="text-align:left;font-weight:600">📈 泛升档（当量口径）</td><td class="num">🟡待确认</td><td>🟡待确认</td><td>🟡待确认</td></tr>
+<tr><td style="text-align:left;font-weight:600">🆔 学生证</td><td class="num">🟡待确认</td><td>🟡待确认</td><td>🟡待确认</td></tr>
+<tr><td style="text-align:left;font-weight:600">🛡️ 安全管家防诈</td><td class="num">每天≥1笔/人</td><td>🟡待确认</td><td>🟡待确认</td></tr>
+<tr><td style="text-align:left">其他项目</td><td colspan="3">🟡 待唐确认</td></tr>
+</table>
+</div>
+
+<!-- 团队合计 -->
+<div class="card">
+<h2>📈 8月团队合计（兰新5人，不含普江林）</h2>
+<table>
+<tr><th>姓名</th><th>📱 手机</th><th>📈 泛升档</th><th>🆔 学生证</th><th>💪 当量合计</th><th>🛡️ 防诈</th><th>📡 宽带（辅助）</th></tr>
+<tr><td style="text-align:left;font-weight:600">美红</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+<tr><td style="text-align:left;font-weight:600">穆艳梅🍒</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+<tr><td style="text-align:left;font-weight:600">李晶晶</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+<tr><td style="text-align:left;font-weight:600">舒捷</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+<tr><td style="text-align:left;font-weight:600">董梦晶</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+<tr class="highlight"><td style="text-align:left;font-weight:600">合计</td><td>0台</td><td>0笔</td><td>0笔</td><td>0</td><td>0笔</td><td>0户</td></tr>
+</table>
+<div style="font-size:11px;color:#999;margin-top:8px">🐯 普江林另计：📱0台 📡0户</div>
+</div>
+
+<!-- 个人卡片 -->
+<div class="card">
+<h2>🏅 兰新考核成员（8月）</h2>
+
+<!-- 美红 -->
+<div class="person-card" style="border-color:#43a047">
+<div class="ph" style="background:#e8f5e9"><span>美红 🏅</span><span class="sum">7月：📱9台 🛡️14笔</span></div>
+<div class="pb">
+<div class="kpi-row">
+<span class="kpi-item warn">📱 手机：0台</span>
+<span class="kpi-item warn">📈 泛升档：0笔</span>
+<span class="kpi-item warn">🆔 学生证：0笔</span>
+<span class="kpi-item warn">💪 当量：0</span>
+<span class="kpi-item warn">🛡️ 防诈：0笔</span>
+</div>
+<div class="other-items">📌 等待8月报量数据</div>
+</div>
+</div>
+
+<!-- 穆艳梅 -->
+<div class="person-card" style="border-color:#43a047">
+<div class="ph" style="background:#e8f5e9"><span>穆艳梅（🍒）🏅</span><span class="sum">7月：📱7台 🛡️13笔</span></div>
+<div class="pb">
+<div class="kpi-row">
+<span class="kpi-item warn">📱 手机：0台</span>
+<span class="kpi-item warn">📈 泛升档：0笔</span>
+<span class="kpi-item warn">🆔 学生证：0笔</span>
+<span class="kpi-item warn">💪 当量：0</span>
+<span class="kpi-item warn">🛡️ 防诈：0笔</span>
+</div>
+<div class="other-items">📌 等待8月报量数据</div>
+</div>
+</div>
+
+<!-- 李晶晶 -->
+<div class="person-card" style="border-color:#43a047">
+<div class="ph" style="background:#e8f5e9"><span>李晶晶 🏅</span><span class="sum">7月：📱10台 🛡️13笔</span></div>
+<div class="pb">
+<div class="kpi-row">
+<span class="kpi-item warn">📱 手机：0台</span>
+<span class="kpi-item warn">📈 泛升档：0笔</span>
+<span class="kpi-item warn">🆔 学生证：0笔</span>
+<span class="kpi-item warn">💪 当量：0</span>
+<span class="kpi-item warn">🛡️ 防诈：0笔</span>
+</div>
+<div class="other-items">📌 等待8月报量数据</div>
+</div>
+</div>
+
+<!-- 舒捷 -->
+<div class="person-card" style="border-color:#1a73e8">
+<div class="ph" style="background:#e3f2fd"><span>舒捷（舒蓝莹）🏅</span><span class="sum">7月：📱0台 🛡️0笔</span></div>
+<div class="pb">
+<div class="kpi-row">
+<span class="kpi-item warn">📱 手机：0台</span>
+<span class="kpi-item warn">📈 泛升档：0笔</span>
+<span class="kpi-item warn">🆔 学生证：0笔</span>
+<span class="kpi-item warn">💪 当量：0</span>
+<span class="kpi-item warn">🛡️ 防诈：0笔</span>
+</div>
+<div class="other-items">📌 7月请假中 · 等待8月报量数据</div>
+</div>
+</div>
+
+<!-- 董梦晶 -->
+<div class="person-card" style="border-color:#1a73e8">
+<div class="ph" style="background:#e3f2fd"><span>董梦晶 🏅</span><span class="sum">7月：📱2台 🛡️0笔</span></div>
+<div class="pb">
+<div class="kpi-row">
+<span class="kpi-item warn">📱 手机：0台</span>
+<span class="kpi-item warn">📈 泛升档：0笔</span>
+<span class="kpi-item warn">🆔 学生证：0笔</span>
+<span class="kpi-item warn">💪 当量：0</span>
+<span class="kpi-item warn">🛡️ 防诈：0笔</span>
+</div>
+<div class="other-items">📌 7月请假中 · 等待8月报量数据</div>
+</div>
+</div>
+</div>
+
+<!-- 防诈打卡 -->
+<div class="card">
+<h2>🛡️ 安全管家防诈 · 8月每日打卡</h2>
+<table class="daka">
+<tr><th style="text-align:left">姓名</th><th>8/1</th><th>8/2</th><th>8/3</th><th>8/4</th><th>8/5</th><th>8/6</th><th>8/7</th><th>8/8</th><th>8/9</th><th>8/10</th><th>8/11</th><th>8/12</th><th>8/13</th><th>8/14</th><th>8/15</th><th>8/16</th><th>8/17</th><th>8/18</th><th>8/19</th><th>8/20</th><th>8/21</th><th>8/22</th><th>8/23</th><th>8/24</th><th>8/25</th><th>8/26</th><th>8/27</th><th>8/28</th><th>8/29</th><th>8/30</th><th>8/31</th><th>8月累计</th><th>状态</th></tr>
+<tr><td style="text-align:left;font-weight:600">美红</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="num warn">0笔</td><td><span class="tag tag-orange">进行中</span></td></tr>
+<tr><td style="text-align:left;font-weight:600">穆艳梅🍒</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="num warn">0笔</td><td><span class="tag tag-orange">进行中</span></td></tr>
+<tr><td style="text-align:left;font-weight:600">李晶晶</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="num warn">0笔</td><td><span class="tag tag-orange">进行中</span></td></tr>
+<tr><td style="text-align:left;font-weight:600">舒捷</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="num warn">0笔</td><td><span class="tag tag-orange">进行中</span></td></tr>
+<tr><td style="text-align:left;font-weight:600">董梦晶</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="num warn">0笔</td><td><span class="tag tag-orange">进行中</span></td></tr>
+</table>
+</div>
+
+<div class="footer">🦐 2026-08-01 · 8月考核：当量≥1 + 防诈≥1笔/天 · 普江林数据计入总统计但日考核通报不包含</div>
+</div>
+</body>
+</html>
