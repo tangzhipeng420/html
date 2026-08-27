@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三门店量计划 · 9月冲刺跟进</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f0f2f5;color:#333;padding:20px}
+  .container{max-width:1250px;margin:0 auto}
+  .header{background:linear-gradient(135deg,#0d47a1,#1a237e);color:#fff;padding:24px 32px;border-radius:16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
+  .header h1{font-size:26px;font-weight:700}
+  .header .sub{font-size:13px;opacity:.85;margin-top:6px;line-height:1.7}
+  .header .badge{background:rgba(255,255,255,.2);padding:6px 14px;border-radius:20px;font-size:13px}
+  .card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:16px}
+  .card h2{font-size:17px;font-weight:600;color:#0d47a1;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #e8edf2}
+  .card h2 .hint{font-size:12px;color:#999;font-weight:400;margin-left:8px}
+
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:8px 10px;text-align:center;border-bottom:1px solid #eee}
+  th{background:#f7f9fc;font-weight:600;color:#555;font-size:12px}
+  .num{font-weight:600}
+  .warn{color:#e53935;font-weight:600}
+  .ok{color:#43a047;font-weight:600}
+  .highlight{background:#e3f2fd;font-weight:600}
+  .highlight td{background:#e3f2fd;font-weight:600}
+
+  .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;margin:1px}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-orange{background:#fff3e0;color:#e65100}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-blue{background:#e3f2fd;color:#1565c0}
+
+  .alert{background:#e3f2fd;border-left:4px solid #1565c0;padding:12px 16px;border-radius:8px;font-size:13px;margin-bottom:12px;line-height:1.7}
+  .alert.warn{background:#fff3e0;border-left-color:#e65100}
+  .alert.danger{background:#ffebee;border-left-color:#c62828}
+  .alert.ok{background:#e8f5e9;border-left-color:#2e7d32}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+  .shop{background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,.08);border-top:4px solid #0d47a1}
+  .shop.huah{background:#fff;border-top-color:#e65100}
+  .shop h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+  .shop .star{font-size:11px;background:#eee;padding:2px 8px;border-radius:8px;color:#555}
+  .kpis{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+  .kpi{flex:1;min-width:80px;text-align:center;background:#f7f9fc;padding:10px 6px;border-radius:10px}
+  .kpi .v{font-size:20px;font-weight:700;color:#0d47a1}
+  .kpi .l{font-size:11px;color:#888;margin-top:2px}
+  .kpi.warn .v{color:#e53935}
+
+  .focus{background:#e3f2fd;border:2px solid #1565c0;padding:14px;border-radius:10px;margin-bottom:14px;text-align:center}
+  .focus .num{font-size:32px;font-weight:700;color:#0d47a1}
+  .focus .lbl{font-size:13px;color:#666;margin-top:2px}
+  .empty-state{padding:30px;text-align:center;color:#999}
+  .footer{text-align:center;padding:16px;color:#999;font-size:12px}
+  @media(max-width:900px){.grid3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div>
+      <h1>📋 三门店量计划 · 9月冲刺跟进</h1>
+      <div class="sub">兰新通讯·6星 | 鑫盛自建·5星 | 化念鑫盛·3星 ★利润店（唐拿75%）<br>
+      截止 9/27 · 唐发报量 → 虾自动更新</div>
+    </div>
+    <div style="text-align:right">
+      <div class="badge">🔑 认筹3倍封顶·独立算·可上调</div>
+      <div class="badge" style="margin-top:6px">⛔ 化念量必挂化念工号</div>
+    </div>
+  </div>
+
+  <div class="alert danger">
+    ⚠️ <b>核心红线</b>：做在 <b>化念鑫盛工号</b> 的量，全部激励合并 × <b>75% 归唐</b>（升档99/FTTR75/宽带135/开户，元/笔），垫资（FTTR 360/宽带 150）由新平公司承担，唐零垫资。严禁把化念量误挂兰新/鑫盛工号（白干送钱）。
+  </div>
+
+  <!-- 三店概览 -->
+  <div class="grid3">
+    <div class="shop">
+      <h3>🏪 化念鑫盛 <span class="star">3星 · ★利润店</span></h3>
+      <div>认筹缺口：泛升档40 / 新入网36 / 宽带11（爱家✅）</div>
+      <div>Token：无门槛 | 保障分：缺643（日均21分）</div>
+      <div class="kpis">
+        <div class="kpi warn"><div class="v">≥2.5万</div><div class="l">月总酬金目标</div></div>
+        <div class="kpi warn"><div class="v">75%</div><div class="l">唐拿比例</div></div>
+        <div class="kpi"><div class="v">7.5笔</div><div class="l">日均总量</div></div>
+      </div>
+    </div>
+    <div class="shop">
+      <h3>🏪 兰新通讯 <span class="star">6星</span></h3>
+      <div>认筹缺口：泛升档199（日均6.7）</div>
+      <div>Token：85（日均2.9笔）| 保障分：缺762（日均25分）</div>
+      <div class="kpis">
+        <div class="kpi warn"><div class="v">3.4笔</div><div class="l">升档/天</div></div>
+        <div class="kpi"><div class="v">2.9笔</div><div class="l">Token/天</div></div>
+        <div class="kpi"><div class="v">5笔</div><div class="l">任选保/天</div></div>
+      </div>
+    </div>
+    <div class="shop huah">
+      <h3>🏪 鑫盛自建 <span class="star">5星</span></h3>
+      <div>认筹缺口：泛升档400 / 小福袋83 / 宽带64 / 新入网14</div>
+      <div>Token：65（日均2.2笔）| 保障分：缺969（日均32分）</div>
+      <div class="kpis">
+        <div class="kpi warn"><div class="v">6.7笔</div><div class="l">升档/天</div></div>
+        <div class="kpi"><div class="v">2.2笔</div><div class="l">Token/天</div></div>
+        <div class="kpi"><div class="v">32分</div><div class="l">保障/天</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 化念利润表 -->
+  <div class="card">
+    <h2>🏪 化念鑫盛 · 利润产品与月度目标 <span class="hint">唐拿75%，做超后申请调认筹封顶</span></h2>
+    <table>
+      <tr><th>业务</th><th>总酬金/笔</th><th>公司垫</th><th>唐净基数</th><th>唐拿75%</th><th>月目标</th><th>日均</th><th>认筹/笔</th></tr>
+      <tr><td class="highlight">升档大促119+</td><td class="num">132</td><td>0</td><td>132</td><td class="ok">99元</td><td class="num">60笔</td><td>2.3</td><td>2(泛升档)</td></tr>
+      <tr><td class="highlight">360FTTR免费送</td><td class="num">460</td><td>360</td><td>100</td><td class="ok">75元</td><td class="num">50笔</td><td>1.9</td><td>6(小福袋)</td></tr>
+      <tr><td class="highlight">全球通宽带+WiFi</td><td class="num">330</td><td>150</td><td>180</td><td class="ok">135元</td><td class="num">50笔</td><td>1.9</td><td>2(宽带)</td></tr>
+      <tr><td class="highlight">牛卡开户</td><td class="num">积分0.5/产能—</td><td>0</td><td>—</td><td>待算</td><td class="num">36笔</td><td>1.4</td><td>1(新入网)</td></tr>
+      <tr class="highlight"><td>合计</td><td></td><td></td><td></td><td></td><td class="num">约196笔</td><td class="num">7.5</td><td>四路认筹冲3倍</td></tr>
+    </table>
+    <div class="focus" style="margin-top:14px">
+      <div class="num">≈ 3.6万</div>
+      <div class="lbl">唐拿75%≈ 月总收入（扣团队底薪1.3万+提成+油钱≈ 到手 1.9-2.1万）</div>
+    </div>
+  </div>
+
+  <!-- 认筹封顶 -->
+  <div class="card">
+    <h2>🔑 认筹3倍封顶（独立算 · 可上调）</h2>
+    <table>
+      <tr><th>项目</th><th>目标</th><th>3倍封顶(当量)</th><th>对应业务</th><th>超额处理</th></tr>
+      <tr><td>泛升档</td><td class="num">40</td><td class="num">120</td><td>升档大促119+(认筹2)</td><td class="ok">升档60笔内拿足</td></tr>
+      <tr><td>小福袋</td><td class="num">60</td><td class="num">180</td><td>360FTTR(认筹6)</td><td class="warn">FTTR做超30笔认筹部分暂不计</td></tr>
+      <tr><td>宽带</td><td class="num">20</td><td class="num">60</td><td>宽带(系数2)</td><td class="warn">宽带做超30笔认筹部分暂不计</td></tr>
+      <tr><td>新入网</td><td class="num">50</td><td class="num">150</td><td>牛卡开户(×1)</td><td class="ok">开户36笔内拿足</td></tr>
+    </table>
+    <div class="alert warn">💡 唐按"报的能量"做（FTTR/宽带各50笔），做超封顶部分认筹酬金暂不计，后续唐申请调整3倍封顶追回。升档60笔已是泛升档顶格。</div>
+  </div>
+
+  <!-- 每日跟进记录 -->
+  <div class="card">
+    <h2>📅 每日报量记录（唐发 → 虾自动更新）</h2>
+    <div class="empty-state">
+      <div class="icon">📥</div>
+      <p>等待今日报量数据传入……<br>唐每天发报量后，本表自动更新各店当日量与累计进度。</p>
+    </div>
+  </div>
+
+  <!-- 否决项 -->
+  <div class="card">
+    <h2>⛔ 否决项缺口（县区星级，不达标扣罚/否决）</h2>
+    <table>
+      <tr><th>门店</th><th>Token门槛</th><th>保障分目标/完成/缺口</th><th>保障分日均需补</th><th>做法</th></tr>
+      <tr><td>兰新(6星)</td><td class="num">85</td><td>980 / 218 / <span class="warn">缺762</span></td><td class="num">25分</td><td>力豆/算力豆 + 任选保/医保宝</td></tr>
+      <tr><td>鑫盛(5星)</td><td class="num">65</td><td>980 / 11 / <span class="warn">缺969</span></td><td class="num">32分</td><td>力豆/算力豆 + 任选保/医保宝</td></tr>
+      <tr><td>化念(3星)</td><td class="num">无</td><td>644 / 1 / <span class="warn">缺643</span></td><td class="num">21分</td><td>任选保/医保宝</td></tr>
+    </table>
+    <div class="alert">✅ 保障分口径：5元任选保5分 / 防诈基础版1分 / 医保宝30分。保底动作：每人每天至少1笔任选保，有条件上医保宝(1笔顶6笔任选保)。</div>
+  </div>
+
+  <!-- 落地执行 -->
+  <div class="card">
+    <h2>⚙️ 落地执行要点</h2>
+    <div class="alert ok">🔹 <b>升档大促</b>：目标客户(<b>标签客户</b>，唐代提供)办理升档到119及以上套餐 + 升档大促（=认筹2当量）。稽核：套餐费提升≥5元、生效主套餐、退订不统计、当月/上月降档不核算。</div>
+    <div class="alert">🔹 <b>360FTTR免费送</b>：垫资360公司出，话术=套餐5折/免费送，需搭5元任选保，台账"灵犀打5折"。稽核：投诉>5笔/万投率>150会剔除。</div>
+    <div class="alert">🔹 <b>宽带</b>：全球通客户办宽带+100元WiFi体验，电视搭载&gt;70%拿满330元（方案A）。</div>
+    <div class="alert warn">🔹 <b>工号分配</b>：兰新→兰新工号 · 鑫盛→鑫盛工号 · 化念→<b>化念工号★</b>。化念量必须挂化念工号才有唐75%。</div>
+  </div>
+
+  <div class="footer">虾 🦐 自动维护 · 数据源：260823预估激励通报 + 8月渠道级完成情况 + Q3积分产能框架 · 2026-08-27</div>
+</div>
+</body>
+</html>
