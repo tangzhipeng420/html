@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兰新团队 · 9月报量看板</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f0f2f5;color:#333;padding:20px}
+  .container{max-width:1200px;margin:0 auto}
+  .header{background:linear-gradient(135deg,#00695c,#004d40);color:#fff;padding:24px 32px;border-radius:16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
+  .header h1{font-size:26px;font-weight:700}
+  .header .sub{font-size:13px;opacity:.8;margin-top:4px}
+  .header .badge{background:rgba(255,255,255,.2);padding:6px 14px;border-radius:20px;font-size:13px}
+  .card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:16px}
+  .card h2{font-size:17px;font-weight:600;color:#00695c;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #e8edf2}
+
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:8px 10px;text-align:center;border-bottom:1px solid #eee}
+  th{background:#f7f9fc;font-weight:600;color:#555;font-size:12px}
+  .num{font-weight:600}
+  .warn{color:#e53935}
+  .ok{color:#43a047}
+  .highlight{background:#e0f2f1;font-weight:600}
+  .highlight td{background:#e0f2f1;font-weight:600}
+  .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;margin:1px}
+  .tag-red{background:#ffebee;color:#c62828}
+  .tag-orange{background:#fff3e0;color:#e65100}
+  .tag-green{background:#e8f5e9;color:#2e7d32}
+  .tag-blue{background:#e3f2fd;color:#1565c0}
+
+  .alert{background:#e0f2f1;border-left:4px solid #00695c;padding:12px 16px;border-radius:8px;font-size:13px;margin-bottom:12px;line-height:1.7}
+  .empty-state{padding:30px;text-align:center;color:#999}
+  .empty-state .icon{font-size:40px;margin-bottom:8px}
+  .empty-state p{font-size:13px;line-height:1.8}
+  .focus{background:#e0f2f1;border:2px solid #00695c;padding:14px;border-radius:10px;margin-bottom:14px;text-align:center}
+  .focus .num{font-size:32px;font-weight:700;color:#004d40}
+  .focus .lbl{font-size:13px;color:#666;margin-top:2px}
+  .footer{text-align:center;padding:16px;color:#999;font-size:12px}
+
+  .person-card{border:1px solid #e0e0e0;border-radius:10px;margin-bottom:10px;overflow:hidden}
+  .person-card .ph{padding:10px 14px;font-weight:700;font-size:15px;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px}
+  .person-card .ph .sum{font-size:12px;font-weight:400;color:#888}
+  .person-card .pb{padding:10px 14px}
+  .kpi-row{display:flex;gap:5px;flex-wrap:wrap}
+  .kpi-item{padding:4px 10px;border-radius:5px;font-size:12px;background:#f0f0f0}
+  .kpi-item.ok{background:#e8f5e9}
+  .kpi-item.warn{background:#ffebee}
+  .kpi-item.mid{background:#fff8e1}
+  .other-items{font-size:11px;color:#666;margin-top:5px;line-height:1.5}
+
+  .mini-table{font-size:12px}
+  .mini-table th,.mini-table td{padding:5px 6px}
+  .daka{font-size:11px}
+  .daka th,.daka td{padding:4px 5px;font-size:11px}
+
+  @media(max-width:768px){body{padding:10px}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<div>
+<h1>📊 兰新团队 · 9月报量看板</h1>
+<div class="sub">兰新5人（美红/穆艳梅/李晶晶/舒捷/董梦晶）+普江林（金虎） · 🔄 更新于 2026-09-02</div>
+</div>
+<span class="badge">📊 9月报量数据</span>
+</div>
+
+<!-- 月度目标 -->
+<div class="card">
+<h2>🎯 9月团队目标</h2>
+<table>
+<tr><th>业务</th><th>兰新团队目标</th><th>考核金</th><th>未完成扣</th></tr>
+<tr><td style="text-align:left;font-weight:600">📱 手机</td><td class="num">🟡待确认</td><td>🟡待确认</td><td>🟡待确认</td></tr>
+<tr><td style="text-align:left;font-weight:600">📈 泛升档（当量口径）</td><td class="num">🟡待确认</td><td>🟡待确认</td><td>🟡待确认</td></tr>
+<tr><td style="text-align:left;font-weight:600">🆔 学生证</td><td class="num">🟡待确认</td><td>🟡待确认</td><td>🟡待确认</td></tr>
+<tr><td style="text-align:left;font-weight:600">📶 FTTR</td><td class="num">🟡待确认</td><td>🟡待确认</td><td>🟡待确认</td></tr>
+<tr><td style="text-align:left;font-weight:600">🛡️ 安全管家防诈</td><td class="num">每天≥1笔/人</td><td>🟡待确认</td><td>🟡待确认</td></tr>
+<tr><td style="text-align:left;font-weight:600">🎁 FTTR360要求</td><td colspan="3">免费送，必须搭载5元任选保；不设总量考核（2026-08-05 唐通知）</td></tr>
+<tr><td style="text-align:left">其他项目</td><td colspan="3">🟡 待唐确认</td></tr>
+</table>
+</div>
+
+<!-- 团队合计 -->
+<div class="card">
+<h2>📈 9月团队报量合计（兰新5人+普江林）</h2>
+<table>
+<tr><th>姓名</th><th>📱 手机</th><th>📈 泛升档</th><th>📶 FTTR</th><th>🆔 学生证</th><th>📡 宽带</th></tr>
+<tr><td style="text-align:left;font-weight:600">美红</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+<tr><td style="text-align:left;font-weight:600">穆艳梅🍒</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+<tr><td style="text-align:left;font-weight:600">李晶晶</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+<tr><td style="text-align:left;font-weight:600">舒捷</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+<tr><td style="text-align:left;font-weight:600">董梦晶</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+<tr><td style="text-align:left;font-weight:600">🐯普江林</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+<tr class="highlight"><td style="text-align:left;font-weight:600">合计</td><td>0台</td><td>0笔</td><td>0笔</td><td>0笔</td><td>0户</td></tr>
+</table>
+</div>
+
+<!-- 个人卡片 -->
+<div class="card">
+<h2>🏅 兰新团队成员报量（9月）</h2>
+
+<!-- 美红 -->
+<div class="person-card" style="border-color:#43a047">
+<div class="ph" style="background:#e8f5e9"><span>美红 🏅</span><span class="sum">8月：📱14台 🛡️14笔</span></div>
+<div class="pb">
+<div class="kpi-row">
+<span class="kpi-item">📱 手机：0台</span>
+<span class="kpi-item">📈 泛升档：0笔</span>
+<span class="kpi-item">🆔 学生证：0笔</span>
+</div>
+<div class="other-items">暂无9月报量</div>
+</div>
+</div>
+
+<!-- 穆艳梅 -->
+<div class="person-card" style="border-color:#43a047">
+<div class="ph" style="background:#e8f5e9"><span>穆艳梅（🍒）🏅</span><span class="sum">8月：📱1台 🛡️13笔</span></div>
+<div class="pb">
+<div class="kpi-row">
+<span class="kpi-item">📱 手机：0台</span>
+<span class="kpi-item">📈 泛升档：0笔</span>
+<span class="kpi-item">🆔 学生证：0笔</span>
+</div>
+<div class="other-items">暂无9月报量</div>
+</div>
+</div>
+
+<!-- 李晶晶 -->
+<div class="person-card" style="border-color:#43a047">
+<div class="ph" style="background:#e8f5e9"><span>李晶晶 🏅</span><span class="sum">8月：📱9台 🛡️13笔</span></div>
+<div class="pb">
+<div class="kpi-row">
+<span class="kpi-item">📱 手机：0台</span>
+<span class="kpi-item">📈 泛升档：0笔</span>
+<span class="kpi-item">🆔 学生证：0笔</span>
+</div>
+<div class="other-items">暂无9月报量</div>
+</div>
+</div>
+
+<!-- 舒捷 -->
+<div class="person-card" style="border-color:#1a73e8">
+<div class="ph" style="background:#e3f2fd"><span>舒捷（舒蓝莹）🏅</span><span class="sum">8月：请假</span></div>
+<div class="pb">
+<div class="kpi-row">
+<span class="kpi-item">📱 手机：0台</span>
+<span class="kpi-item">📈 泛升档：0笔</span>
+<span class="kpi-item">🆔 学生证：0笔</span>
+</div>
+<div class="other-items">暂无9月报量</div>
+</div>
+</div>
+
+<!-- 董梦晶 -->
+<div class="person-card" style="border-color:#1a73e8">
+<div class="ph" style="background:#e3f2fd"><span>董梦晶 🏅</span><span class="sum">8月：📱0台</span></div>
+<div class="pb">
+<div class="kpi-row">
+<span class="kpi-item">📱 手机：0台</span>
+<span class="kpi-item">📈 泛升档：0笔</span>
+<span class="kpi-item">🆔 学生证：0笔</span>
+</div>
+<div class="other-items">暂无9月报量</div>
+</div>
+</div>
+</div>
+
+<div class="footer">🦐 2026-09-02 · 兰新9月报量 · 每晚唐发量自动更新 · 日考核统计单独微信通报</div>
+</div>
+</body>
+</html>
