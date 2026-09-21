@@ -6,55 +6,33 @@
 <title>兰新团队 · 9月报量看板</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f0f2f5;color:#333;padding:20px}
-  .container{max-width:1200px;margin:0 auto}
-  .header{background:linear-gradient(135deg,#00695c,#004d40);color:#fff;padding:24px 32px;border-radius:16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
-  .header h1{font-size:26px;font-weight:700}
-  .header .sub{font-size:13px;opacity:.8;margin-top:4px}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f0f2f5;color:#333;padding:16px}
+  .container{max-width:1400px;margin:0 auto}
+  .header{background:linear-gradient(135deg,#00695c,#004d40);color:#fff;padding:22px 28px;border-radius:16px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
+  .header h1{font-size:24px;font-weight:700}
+  .header .sub{font-size:13px;opacity:.85;margin-top:5px}
   .header .badge{background:rgba(255,255,255,.2);padding:6px 14px;border-radius:20px;font-size:13px}
-  .card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:16px}
-  .card h2{font-size:17px;font-weight:600;color:#00695c;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #e8edf2}
-
-  table{width:100%;border-collapse:collapse;font-size:13px}
-  th,td{padding:8px 10px;text-align:center;border-bottom:1px solid #eee}
-  th{background:#f7f9fc;font-weight:600;color:#555;font-size:12px}
-  .num{font-weight:600}
-  .warn{color:#e53935}
-  .ok{color:#43a047}
-  .highlight{background:#e0f2f1;font-weight:600}
-  .highlight td{background:#e0f2f1;font-weight:600}
-  .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;margin:1px}
-  .tag-red{background:#ffebee;color:#c62828}
-  .tag-orange{background:#fff3e0;color:#e65100}
-  .tag-green{background:#e8f5e9;color:#2e7d32}
-  .tag-blue{background:#e3f2fd;color:#1565c0}
-
-  .alert{background:#e0f2f1;border-left:4px solid #00695c;padding:12px 16px;border-radius:8px;font-size:13px;margin-bottom:12px;line-height:1.7}
-  .empty-state{padding:30px;text-align:center;color:#999}
-  .empty-state .icon{font-size:40px;margin-bottom:8px}
-  .empty-state p{font-size:13px;line-height:1.8}
-  .focus{background:#e0f2f1;border:2px solid #00695c;padding:14px;border-radius:10px;margin-bottom:14px;text-align:center}
-  .focus .num{font-size:32px;font-weight:700;color:#004d40}
-  .focus .lbl{font-size:13px;color:#666;margin-top:2px}
-  .footer{text-align:center;padding:16px;color:#999;font-size:12px}
-
-  .person-card{border:1px solid #e0e0e0;border-radius:10px;margin-bottom:10px;overflow:hidden}
-  .person-card .ph{padding:10px 14px;font-weight:700;font-size:15px;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px}
+  .card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:16px}
+  .card h2{font-size:17px;font-weight:600;color:#00695c;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #e8edf2}
+  .card h2 .hint{font-size:12px;font-weight:400;color:#999;margin-left:8px}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #eceff3;border-radius:10px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;white-space:nowrap}
+  th,td{padding:8px 9px;text-align:center;border-bottom:1px solid #eee}
+  th{background:#f7f9fc;font-weight:600;color:#555;font-size:12px;position:sticky;top:0}
+  td.nm,th:first-child{text-align:left;font-weight:600;background:#fbfcfe;position:sticky;left:0;z-index:2}
+  td.num{font-weight:600}
+  td.zero,.zero{color:#c9ced6}
+  td.tot{font-weight:700;color:#00695c;background:#e0f2f1}
+  .highlight td{background:#e0f2f1;font-weight:700;color:#004d40}
+  .highlight td.nm{background:#d3eceb}
+  .card h3{font-size:14px;color:#00695c;margin:14px 0 8px}
+  .person-card{border:1px solid #e0e0e0;border-radius:10px;margin-bottom:9px;overflow:hidden}
+  .person-card .ph{padding:9px 14px;font-weight:700;font-size:14px;background:#f2f7f6;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px}
   .person-card .ph .sum{font-size:12px;font-weight:400;color:#888}
   .person-card .pb{padding:10px 14px}
-  .kpi-row{display:flex;gap:5px;flex-wrap:wrap}
-  .kpi-item{padding:4px 10px;border-radius:5px;font-size:12px;background:#f0f0f0}
-  .kpi-item.ok{background:#e8f5e9}
-  .kpi-item.warn{background:#ffebee}
-  .kpi-item.mid{background:#fff8e1}
-  .other-items{font-size:11px;color:#666;margin-top:5px;line-height:1.5}
-
-  .mini-table{font-size:12px}
-  .mini-table th,.mini-table td{padding:5px 6px}
-  .daka{font-size:11px}
-  .daka th,.daka td{padding:4px 5px;font-size:11px}
-
-  @media(max-width:768px){body{padding:10px}}
+  .other-items{font-size:12px;color:#555;line-height:1.9}
+  .footer{text-align:center;padding:16px;color:#999;font-size:12px}
+  @media(max-width:768px){body{padding:10px}.header h1{font-size:20px}}
 </style>
 </head>
 <body>
@@ -62,125 +40,42 @@
 <div class="header">
 <div>
 <h1>📊 兰新团队 · 9月报量看板</h1>
-<div class="sub">兰新（美红/穆艳梅/李晶晶/舒捷/董梦晶）+拖把（兰新工号） · 🔄 更新于 2026-09-20</div>
+<div class="sub">兰新（美红/穆艳梅/李晶晶/舒捷/董梦晶）+拖把（兰新工号） · 全部业务量明细</div>
 </div>
-<span class="badge">📊 9/20 已更新</span>
+<span class="badge">📊 更新至 9/20</span>
 </div>
 
-<!-- 月度目标 -->
+<!-- 团队合计 · 全业务 -->
 <div class="card">
-<h2>🎯 9月团队目标</h2>
+<h2>📈 9月团队报量合计（全业务）<span class="hint">→ 左右滑动查看全部业务</span></h2>
+<div class="scroll">
 <table>
-<tr><th>业务</th><th>兰新团队目标</th><th>考核金</th><th>未完成扣</th></tr>
-<tr><td style="text-align:left;font-weight:600">📱 手机</td><td class="num">🟡待确认</td><td>🟡待确认</td><td>🟡待确认</td></tr>
-<tr><td style="text-align:left;font-weight:600">📈 泛升档（当量口径）</td><td class="num">🟡待确认</td><td>🟡待确认</td><td>🟡待确认</td></tr>
-<tr><td style="text-align:left;font-weight:600">🆔 学生证</td><td class="num">🟡待确认</td><td>🟡待确认</td><td>🟡待确认</td></tr>
-<tr><td style="text-align:left;font-weight:600">📶 FTTR</td><td class="num">🟡待确认</td><td>🟡待确认</td><td>🟡待确认</td></tr>
-<tr><td style="text-align:left;font-weight:600">🛡️ 安全管家防诈</td><td class="num">每天≥1笔/人</td><td>🟡待确认</td><td>🟡待确认</td></tr>
-<tr><td style="text-align:left;font-weight:600">🎁 FTTR360要求</td><td colspan="3">免费送，必须搭载5元任选保；不设总量考核（2026-08-05 唐通知）</td></tr>
-<tr><td style="text-align:left">其他项目</td><td colspan="3">🟡 待唐确认</td></tr>
+<tr><th>姓名</th><th>手机</th><th>泛升档</th><th>FTTR</th><th>学生证</th><th>宽带</th><th>5元防诈保</th><th>套餐体检</th><th>5元骑行保</th><th>1元管家</th><th>爱家会员</th><th>邀评</th><th>高频防骚扰</th><th>短信免打扰</th><th>开户</th><th>打印机</th><th>抖音100G流量包</th><th>路由器</th><th>惠农网</th><th>机顶盒</th><th>灵犀屏</th><th>电饭煲</th><th>PLUS会员</th><th>5+1+0.1流量</th><th>10元力豆包</th><th>29小福袋</th><th>29流量包</th><th>Token包</th><th>58畅享包</th><th>V网</th><th>机顶盒包年</th><th>视频彩铃PLUS</th><th>高清盒续费</th><th>29福袋终端+电话手表</th><th>39小福袋</th><th>39流量包</th><th>二宽包年</th><th>携转</th><th>摄像头</th><th>爱家畅享升级包</th><th>高清盒包年</th><th>合计</th></tr>
+<tr><td class="nm">美红</td><td class="num">3</td><td class="num zero">-</td><td class="num">1</td><td class="num zero">-</td><td class="num">4</td><td class="num">36</td><td class="num">22</td><td class="num">8</td><td class="num">22</td><td class="num">25</td><td class="num">27</td><td class="num">2</td><td class="num">2</td><td class="num">6</td><td class="num">2</td><td class="num">1</td><td class="num zero">-</td><td class="num">2</td><td class="num">2</td><td class="num">2</td><td class="num">3</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">3</td><td class="num">3</td><td class="num">1</td><td class="num">2</td><td class="num">1</td><td class="num zero">-</td><td class="num">1</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">1</td><td class="num">1</td><td class="num zero">-</td><td class="num">1</td><td class="tot">184</td></tr>
+<tr><td class="nm">穆艳梅</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">1</td><td class="num">19</td><td class="num">14</td><td class="num">11</td><td class="num">1</td><td class="num">24</td><td class="num zero">-</td><td class="num">1</td><td class="num">1</td><td class="num">4</td><td class="num">3</td><td class="num">1</td><td class="num">1</td><td class="num">3</td><td class="num">1</td><td class="num zero">-</td><td class="num">1</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">1</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="tot">87</td></tr>
+<tr><td class="nm">李晶晶</td><td class="num">1</td><td class="num zero">-</td><td class="num">1</td><td class="num zero">-</td><td class="num">3</td><td class="num">37</td><td class="num">47</td><td class="num">19</td><td class="num">14</td><td class="num">3</td><td class="num zero">-</td><td class="num">2</td><td class="num">2</td><td class="num">1</td><td class="num">3</td><td class="num">5</td><td class="num">3</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">2</td><td class="num">1</td><td class="num">4</td><td class="num zero">-</td><td class="num">3</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">1</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">1</td><td class="num zero">-</td><td class="tot">156</td></tr>
+<tr><td class="nm">舒捷</td><td class="num">1</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">4</td><td class="num">23</td><td class="num">16</td><td class="num">12</td><td class="num">6</td><td class="num">1</td><td class="num zero">-</td><td class="num">7</td><td class="num">4</td><td class="num">2</td><td class="num">2</td><td class="num">1</td><td class="num">2</td><td class="num">1</td><td class="num">2</td><td class="num">1</td><td class="num zero">-</td><td class="num">1</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">2</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">1</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="tot">89</td></tr>
+<tr><td class="nm">董梦晶</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">2</td><td class="num">24</td><td class="num">14</td><td class="num">14</td><td class="num">22</td><td class="num">8</td><td class="num zero">-</td><td class="num">8</td><td class="num">8</td><td class="num">1</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">1</td><td class="num zero">-</td><td class="num">1</td><td class="num zero">-</td><td class="num">1</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">1</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">2</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="tot">107</td></tr>
+<tr><td class="nm">拖把</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">10</td><td class="num zero">-</td><td class="num">10</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">1</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">4</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num">1</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="num zero">-</td><td class="tot">26</td></tr>
+<tr class="highlight"><td class="nm">合计</td><td>5</td><td>0</td><td>2</td><td>0</td><td>14</td><td>149</td><td>113</td><td>74</td><td>65</td><td>61</td><td>27</td><td>20</td><td>17</td><td>14</td><td>10</td><td>8</td><td>7</td><td>6</td><td>6</td><td>6</td><td>6</td><td>5</td><td>4</td><td>3</td><td>3</td><td>3</td><td>3</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>649</td></tr>
 </table>
 </div>
+</div>
 
-<!-- 团队合计 -->
+<!-- 每人全业务明细 -->
 <div class="card">
-<h2>📈 9月团队报量合计（兰新5人+拖把）</h2>
-<table>
-<tr><th>姓名</th><th>📱 手机</th><th>📈 泛升档</th><th>📶 FTTR</th><th>🆔 学生证</th><th>📡 宽带</th></tr>
-<tr><td style="text-align:left;font-weight:600">美红</td><td class="num">3</td><td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num">4</td></tr>
-<tr><td style="text-align:left;font-weight:600">李晶晶</td><td class="num">1</td><td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num">3</td></tr>
-<tr><td style="text-align:left;font-weight:600">穆艳梅🍒</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">3</td></tr>
-<tr><td style="text-align:left;font-weight:600">舒捷</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">1</td></tr>
-<tr><td style="text-align:left;font-weight:600">董梦晶</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">2</td></tr>
-<tr><td style="text-align:left;font-weight:600">拖把（兰新工号）</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
-<tr class="highlight"><td style="text-align:left;font-weight:600">合计</td><td>5台</td><td>0笔</td><td>2笔</td><td>0笔</td><td>13户</td></tr>
-</table>
+<h2>🏅 每人业务明细（9月累计）</h2>
+
+<div class="person-card"><div class="ph"><span>美红</span><span class="sum">合计 184 笔</span></div><div class="pb"><div class="other-items">5元防诈保 36 · 邀评 27 · 爱家会员 25 · 1元管家 22 · 套餐体检 22 · 5元骑行保 8 · 开户 6 · 宽带 4 · 29小福袋 3 · 29流量包 3 · 手机 3 · 电饭煲 3 · 58畅享包 2 · 惠农网 2 · 打印机 2 · 机顶盒 2 · 灵犀屏 2 · 短信免打扰 2 · 高频防骚扰 2 · FTTR 1 · Token包 1 · V网 1 · 抖音100G流量包 1 · 携转 1 · 摄像头 1 · 视频彩铃PLUS 1 · 高清盒包年 1</div></div></div>
+<div class="person-card"><div class="ph"><span>穆艳梅</span><span class="sum">合计 87 笔</span></div><div class="pb"><div class="other-items">爱家会员 24 · 5元防诈保 19 · 套餐体检 14 · 5元骑行保 11 · 开户 4 · 惠农网 3 · 打印机 3 · 1元管家 1 · 宽带 1 · 抖音100G流量包 1 · 机顶盒 1 · 电饭煲 1 · 短信免打扰 1 · 视频彩铃PLUS 1 · 路由器 1 · 高频防骚扰 1</div></div></div>
+<div class="person-card"><div class="ph"><span>李晶晶</span><span class="sum">合计 156 笔</span></div><div class="pb"><div class="other-items">套餐体检 47 · 5元防诈保 37 · 5元骑行保 19 · 1元管家 14 · 抖音100G流量包 5 · PLUS会员 4 · 10元力豆包 3 · 宽带 3 · 打印机 3 · 爱家会员 3 · 路由器 3 · 灵犀屏 2 · 短信免打扰 2 · 高频防骚扰 2 · 39小福袋 1 · 39流量包 1 · FTTR 1 · 二宽包年 1 · 开户 1 · 手机 1 · 机顶盒包年 1 · 爱家畅享升级包 1 · 电饭煲 1</div></div></div>
+<div class="person-card"><div class="ph"><span>舒捷</span><span class="sum">合计 89 笔</span></div><div class="pb"><div class="other-items">5元防诈保 23 · 套餐体检 16 · 5元骑行保 12 · 高频防骚扰 7 · 1元管家 6 · 宽带 4 · 短信免打扰 4 · Token包 2 · 开户 2 · 打印机 2 · 机顶盒 2 · 路由器 2 · PLUS会员 1 · 惠农网 1 · 手机 1 · 抖音100G流量包 1 · 机顶盒包年 1 · 灵犀屏 1 · 爱家会员 1</div></div></div>
+<div class="person-card"><div class="ph"><span>董梦晶</span><span class="sum">合计 107 笔</span></div><div class="pb"><div class="other-items">5元防诈保 24 · 1元管家 22 · 5元骑行保 14 · 套餐体检 14 · 爱家会员 8 · 短信免打扰 8 · 高频防骚扰 8 · 宽带 2 · 高清盒续费 2 · V网 1 · 开户 1 · 机顶盒 1 · 电饭煲 1 · 路由器 1</div></div></div>
+<div class="person-card"><div class="ph"><span>拖把</span><span class="sum">合计 26 笔</span></div><div class="pb"><div class="other-items">5元防诈保 10 · 5元骑行保 10 · 5+1+0.1流量 4 · 29福袋终端+电话手表 1 · 灵犀屏 1</div></div></div>
+
 </div>
 
-<!-- 个人卡片 -->
-<div class="card">
-<h2>🏅 兰新团队成员报量（9月）</h2>
-
-<!-- 美红 -->
-<div class="person-card" style="border-color:#43a047">
-<div class="ph" style="background:#e8f5e9"><span>美红 🏅</span><span class="sum">8月：📱14台 🛡️14笔</span></div>
-<div class="pb">
-<div class="kpi-row">
-<span class="kpi-item ok">📱 手机：3台</span>
-<span class="kpi-item">📈 泛升档：0笔</span>
-<span class="kpi-item">🆔 学生证：0笔</span>
-</div>
-<div class="other-items">9/3：开户3 | 手机3 | 29小福袋3 | 29流量包3 | 58畅享包1 | 套餐体检5 | 邀评3<br/>9/4：开户1 | 5元防诈5 | 1元管家4 | 惠农网1 | 抖音100G1 | 高频防骚扰2 | 免打扰2<br/>9/5：5元防诈6 | 1元管家6 | 抖音100G4(不计) | 电饭煲1 | 高频防骚扰2 | 免打扰2<br/>9/6：宽带1 | 灵犀屏1 | 携转1 | 开户1 | 5元防诈6 | 1元管家6 | 58畅享包1 | 抖音100G1(不计) | Token包1 | 邀评5 | 套餐体检5<br/>9/8：宽带1 | 机顶盒1 | 5元防诈6 | 1元管家6 | 邀评7 | 套餐体检7<br/>9/10：宽带1 | 摄像头1 | FTTR1 | 5元防诈2 | 5元骑行保2 | 邀评3 | 套餐体检3<br/>9/11：5元防诈7 | 5元骑行5 | 邀评7 | 套餐体检7<br/>9/12：灵犀屏1<br/>9/13：5元防诈3 | 5元骑行保1<br/>9/14：宽带1 | 机顶盒1<br/>9/15：开户1 | 惠农网1<br/>9/17：电饭煲2<br/>9/19：电饭煲1 | 高清盒包年1<br/>9/20：爱家会员25 | 打印机1</div>
-</div>
-</div>
-
-<!-- 穆艳梅 -->
-<div class="person-card" style="border-color:#43a047">
-<div class="ph" style="background:#e8f5e9"><span>穆艳梅（🍒）🏅</span><span class="sum">8月：📱1台 🛡️13笔</span></div>
-<div class="pb">
-<div class="kpi-row">
-<span class="kpi-item ok">📱 手机：1台</span>
-<span class="kpi-item">📈 泛升档：0笔</span>
-<span class="kpi-item">🆔 学生证：0笔</span>
-</div>
-<div class="other-items">9/2：开户1 | 手机1 | 宽带1 | 路由器1 | 29小福袋1 | 29流量包1<br/>9/4：开户2 | 惠农网1 | 5元防诈1 | 1元管家1 | 抖音100G1 | 高频防骚扰1 | 免打扰1<br/>9/8：宽带2 | 路由器1 | 电饭煲1 | 机顶盒1 | 5元防诈1 | 套餐体检6<br/>9/9：打印机1 | 5元防诈2 | 5元骑行保1 | 视频彩铃Plus1 | 套餐体检2<br/>9/10：5元防诈3 | 5元骑行保1 | 套餐体检3<br/>9/11：5元防诈4 | 5元骑行4 | 套餐体检5<br/>9/13：5元防诈5 | 5元骑行保5<br/>9/14：5元防诈2<br/>9/15：打印机1 | 套餐体检2<br/>9/17：打印机1 | 5元防诈1 | 套餐体检2<br/>9/20：爱家会员24</div>
-</div>
-</div>
-
-<!-- 李晶晶 -->
-<div class="person-card" style="border-color:#43a047">
-<div class="ph" style="background:#e8f5e9"><span>李晶晶 🏅</span><span class="sum">8月：📱9台 🛡️13笔</span></div>
-<div class="pb">
-<div class="kpi-row">
-<span class="kpi-item">📱 手机：0台</span>
-<span class="kpi-item">📈 泛升档：0笔</span>
-<span class="kpi-item">🆔 学生证：0笔</span>
-</div>
-<div class="other-items">9/2：开户1 | 5元防诈2 | 10元力豆包1 | 100G抖音流量包3 | 宽带1 | 机顶盒1 | 路由器1 | 防骚扰1 | 短信免打扰1 | 套餐体检5<br/>9/3：爱家畅想升级包1 | 机顶盒包2年1 | 防骚扰1 | 短信免打扰1 | 套餐体检2<br/>9/4：5元防诈5 | 1元管家4 | 10元力豆包1 | 100G抖音包5 | 套餐体检6<br/>9/5：5元防诈6 | 10元力豆Token1 | 1元管家5 | 100G抖音包5(不计) | 电饭煲1 | 套餐体检7<br/>9/6：5元防诈4 | 1元管家5 | 10元力豆包1 | 100G抖音流量包3(不计) | 二宽包年1 | 套餐体检6<br/>9/8：宽带1 | 路由器1 | 灵犀屏1 | 5元防诈1 | 套餐体检2<br/>9/9：5元防诈8 | 5元骑行保7 | 套餐体检8<br/>9/10：5元防诈5 | 5元骑行保5 | 套餐体检5<br/>9/11：打印机1 | FTTR1 | 套餐体检2<br/>9/12：开户1 | 手机1 | 39小福袋1 | 39流量包1 | 打印机1 | 防骚扰1 | 短信免打扰1 | 套餐体检2<br/>9/13：灵犀屏1 | 套餐体检1<br/>9/14：宽带1 | 路由器1 | 套餐体检1<br/>9/18：打印机1 | 套餐体检1<br/>9/19：宽带1 | 路由器1 | PLUS会员1 | 套餐体检1<br/>9/20：爱家会员3 | PLUS会员3 | 套餐体检3</div>
-</div>
-</div>
-
-<!-- 舒捷 -->
-<div class="person-card" style="border-color:#1a73e8">
-<div class="ph" style="background:#e3f2fd"><span>舒捷（舒蓝莹）🏅</span><span class="sum">8月：请假</span></div>
-<div class="pb">
-<div class="kpi-row">
-<span class="kpi-item ok">📱 手机：1台</span>
-<span class="kpi-item">📈 泛升档：0笔</span>
-<span class="kpi-item">🆔 学生证：0笔</span>
-</div>
-<div class="other-items">9/2：开户1 | 惠农网1 | 高频防骚扰1<br/>9/3：开户1 | 惠农网1 | 5元防诈1 | 高频防骚扰1 | 免打扰1<br/>9/4：5元防诈2 | 1元管家2 | 机顶盒包年1 | token1 | 抖音100 1 | 高频防骚扰2 | 免打扰2<br/>9/5：5元防诈6 | 1元管家2 | 抖音100G5(不计) | token1 | 高频防骚扰2 | 免打扰2<br/>9/8：宽带1 | 灵犀屏1 | 高频防骚扰1 | 免打扰1 | 5元防诈2 | 1元管家2 | 套餐体检5<br/>9/9：5元防诈6 | 5元骑行保6 | 高频防骚扰3 | 套餐体检5<br/>9/10：5元防诈2 | 5元骑行保2<br/>9/11：5元防诈4 | 5元骑行保4 | 套餐体检2<br/>9/12：打印机1 | 套餐体检4<br/>9/15：打印机1<br/>9/18：手机1 | 开户1 | token1<br/>9/19：宽带1 | 机顶盒1 | 爱家会员1 | PLUS会员1</div>
-</div>
-</div>
-
-<!-- 董梦晶 -->
-<div class="person-card" style="border-color:#1a73e8">
-<div class="ph" style="background:#e3f2fd"><span>董梦晶 🏅</span><span class="sum">8月：📱0台</span></div>
-<div class="pb">
-<div class="kpi-row">
-<span class="kpi-item">📱 手机：0台</span>
-<span class="kpi-item">📈 泛升档：0笔</span>
-<span class="kpi-item">🆔 学生证：0笔</span>
-</div>
-<div class="other-items">9/3：开户1 | 高频防护1 | 短信免打扰1 | 套餐体检2<br/>9/4：电饭煲1 | 高清盒续费2 | 套餐体检2<br/>9/5：5元防诈4 | 1元管家4 | 抖音100G4(不计) | 高频防护3 | 短信免打扰3<br/>9/6：5元防诈6 | 1元管家6 | 抖音100G6(不计) | 高频防护3 | 短信免打扰3<br/>9/9：5元防诈3 | 5元骑行保3 | 1元管家2 | 套餐体检2<br/>9/10：宽带1 | 路由器1 | 高频防护1 | 短信免打扰1 | 套餐体检2<br/>9/11：5元防诈3 | 5元骑行保3 | 1元管理包2 | V网1 | 套餐体检2<br/>9/12：5元防诈保2 | 5元骑行保2 | 1元管理包2 | 套餐体检2<br/>9/13：5元防诈保6 | 5元骑行保6 | 1元管理包6 | 套餐体检2<br/>9/14：宽带1 | 机顶盒1 | 路由器1<br/>9/15：宽带1 | 机顶盒1<br/>9/20：爱家会员8</div>
-</div>
-</div>
-
-<!-- 拖把（金虎·兰新工号） -->
-<div class="person-card" style="border-color:#8541e8">
-<div class="ph" style="background:#f3e8ff"><span>拖把（金虎·兰新工号）</span><span class="sum">9月</span></div>
-<div class="pb">
-<div class="kpi-row">
-<span class="kpi-item">📱 手机：0台</span>
-<span class="kpi-item">📈 泛升档：0笔</span>
-<span class="kpi-item">🆔 学生证：0笔</span>
-</div>
-<div class="other-items">9/4：5+1+0.1流量2 | 29福袋终端+电话手表1<br/>9/5：5+1+0.1流量2 | 电饭煲1<br/>9/6：灵犀1 | 5+1+0.1流量1<br/>9/9：5元防诈10 | 5元骑行保10<br/>9/16：打印机1 | token1</div>
-</div>
-</div>
-</div>
-
-<div class="footer">🦐 2026-09-20 · 兰新9月报量 · 每晚唐发量自动更新 · 日考核统计单独微信通报</div>
+<div class="footer">🦐 2026-09/20 · 兰新9月报量 · 每晚唐发量自动更新 · 含全部业务量（不止核心5项）</div>
 </div>
 </body>
 </html>

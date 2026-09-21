@@ -7,124 +7,63 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f0f2f5;color:#333;padding:16px}
-.container{max-width:1200px;margin:0 auto}
+.container{max-width:1300px;margin:0 auto}
 .header{background:linear-gradient(135deg,#0d47a1,#1a237e);color:#fff;padding:20px 24px;border-radius:14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
 .header h1{font-size:22px;font-weight:700}
 .header .sub{font-size:13px;opacity:.8;margin-top:4px}
 .notice{background:#e8f5e9;border-left:4px solid #2e7d32;padding:10px 14px;border-radius:8px;margin-bottom:12px;font-size:13px}
-.store-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
-.store-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.store-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:14px}
 .store-card .sh{padding:12px 16px;color:#fff;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px}
 .store-card .sh .sn{font-weight:700;font-size:16px}
 .store-card .sh .sr{font-size:12px;opacity:.85}
 .store-card .sb{padding:14px}
 .summary-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
 .summary-tag{font-size:11px;padding:3px 8px;border-radius:5px;background:#f0f0f0;font-weight:600}
-.s-phone{background:#e3f2fd}
-.s-broad{background:#e8f5e9}
-.s-open{background:#fff8e1}
-.day-table{width:100%;border-collapse:collapse;font-size:10px}
-.day-table th{background:#f7f9fc;padding:4px 3px;text-align:center;font-weight:600;color:#555;font-size:9px;white-space:nowrap}
-.day-table td{padding:3px 2px;text-align:center;border-bottom:1px solid #f0f0f0;white-space:nowrap;font-size:10px}
-.day-table tr:hover{background:#fff8e1}
-.day-table td:first-child{font-weight:600;color:#1a73e8;background:#fafafa;font-size:10px}
-tr.aug td{background:#fff8e1;font-weight:600}
+.sc-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #eceff3;border-radius:8px}
+.day-table{width:100%;border-collapse:collapse;font-size:10.5px;white-space:nowrap}
+.day-table th{background:#f7f9fc;padding:6px 5px;text-align:center;font-weight:600;color:#555;font-size:10px}
+.day-table td{padding:5px 4px;text-align:center;border-bottom:1px solid #f0f0f0;font-size:10.5px}
+.day-table td:first-child{font-weight:600;color:#1a73e8;background:#fafafa}
+tr.aug td{background:#fff8e1;font-weight:700}
 .grand{background:#e3f2fd;border:2px solid #1a73e8;border-radius:12px;padding:16px;margin-bottom:16px}
 .grand h2{color:#0d47a1;font-size:17px;margin-bottom:10px}
-.grand table{width:100%;border-collapse:collapse;font-size:11px}
-.grand th,.grand td{padding:5px 6px;text-align:center;border-bottom:1px solid #bbdefb}
+.grand .sc-wrap{background:#fff}
+.grand table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}
+.grand th,.grand td{padding:6px 8px;text-align:center;border-bottom:1px solid #bbdefb}
 .grand th{background:#bbdefb;font-weight:600}
 .grand td:first-child{text-align:left;font-weight:600}
 .footer{text-align:center;padding:12px;color:#999;font-size:12px}
-@media(max-width:768px){.store-grid{grid-template-columns:1fr}}
+@media(max-width:768px){body{padding:10px}}
 </style>
 </head>
 <body>
 <div class="container">
-<div class="notice">
-<strong>📅 9月17日峨山店报量已更新 · 9月开启 🔥</strong>
-<br/>其余门店9月待报量
-</div>
+<div class="notice"><strong>📅 9月报量已更新（全部业务量）</strong><br/>含手机/开户/宽带/FTTR/打印机/灵犀/防诈/管家/体检等所有业务</div>
 <div class="header">
-<div>
-<h1>🏪 各门店九月报量看板</h1>
-<div class="sub">统计周期：9月1日起 · 实时更新</div>
+<div><h1>🏪 各门店九月报量看板</h1><div class="sub">统计周期：9月1日起 · 全部业务量明细</div></div>
+<div style="font-size:12px;background:rgba(255,255,255,.15);padding:4px 12px;border-radius:12px">峨山 · 京东 · 加盟厅</div>
 </div>
-<div style="font-size:12px;background:rgba(255,255,255,.15);padding:4px 12px;border-radius:12px">
-峨山 · 京东 · 加盟厅
-</div>
-</div>
-<div class="store-grid">
-<!-- 峨山店 -->
 <div class="store-card">
-<div class="sh" style="background:linear-gradient(135deg,#1565c0,#1565c0dd)">
-<span class="sn">峨山店</span>
-<span class="sr">唐智鹏 · 9月</span>
-</div>
+<div class="sh" style="background:linear-gradient(135deg,#1565c0,#1565c0dd)"><span class="sn">峨山店</span><span class="sr">唐智鹏 · 9月</span></div>
 <div class="sb">
-<div class="summary-row">
-<span class="summary-tag s-open">📋开户 2</span>
-<span class="summary-tag s-broad">宽带 1</span>
-<span class="summary-tag">路由器 1</span>
-<span class="summary-tag">打印机 1</span>
-<span class="summary-tag">5元防诈 1</span>
-<span class="summary-tag">视频彩铃Plus 1</span>
-<span class="summary-tag">V网 1</span>
-<span class="summary-tag">套餐体检 2</span>
-<span class="summary-tag">邀评 2</span>
-<span class="summary-tag">惠农网 2</span>
-</div>
-<div class="sc-wrap">
-<table class="day-table">
-<tr><th>日期</th><th>开户</th><th>宽带</th><th>路由器</th><th>打印机</th><th>5元防诈</th><th>视频彩铃Plus</th><th>V网</th><th>套餐体检</th><th>邀评</th><th>惠农网</th></tr>
-<tr class="aug"><td>9/1</td><td>2</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>2</td><td>2</td><td>2</td></tr>
-<tr class="aug"><td>9/3</td><td>5</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>9</td><td>3</td><td>1</td></tr></table>
-</div>
-<div style="font-size:10px;color:#e65100;margin-top:6px">9/1峨山店：舒蓝莹 宽带1 路由器1 · 美红 打印机1 5元防诈1 视频彩铃Plus1 V网1 套餐体检2 邀评2 · 穆艳梅 开户2 惠农网2<br/>9/3峨山店：开户5 · 手机3 · 29小福袋3 · 29流量包3 · 58畅享包1 · 惠农网1 · 5元防诈1(其余手机/福袋/畅享走兰新看板同步)<br/>9/12峨山店：灵犀屏1（美红）<br/>9/13峨山店：5元防诈8 · 5元骑行保6 · 灵犀屏1 · 1元管理包6 · 套餐体检3（其余走兰新看板同步）<br/>9/14峨山店：宽带3 · 机顶盒2 · 路由器2 · 5元防诈2 · 套餐体检1<br/>9/15峨山店：开户1 · 宽带1 · 机顶盒1 · 打印机2 · 惠农网1 · 套餐体检2<br/>9/17峨山店：电饭煲2（美红）<br/>9/18峨山店：手机1（舒捷）· 开户1（舒捷）· 打印机1（天若有情）· 套餐体检1（天若有情）· token1（舒捷）<br/>9/19峨山店：电饭煲1（美红）· 高清盒包年1（美红）· 宽带1（舒蓝莹）· 机顶盒1（舒蓝莹）· 爱家会员1（舒蓝莹）· PLUS会员1（舒蓝莹）· 宽带1（天若有情）· 路由器1（天若有情）· PLUS会员1（天若有情）· 套餐体检1（天若有情）<br/>9/20峨山店：爱家会员25 打印机1（美红）· 爱家会员24（穆艳梅）· 爱家会员8（亿尚DF美甲工作室·董梦晶）· 爱家会员3 · PLUS会员3 · 套餐体检3（天若有情·李晶晶）</div>
-</div>
-</div>
-<!-- 京东店 -->
+<div class="summary-row"><span class="summary-tag">套餐体检 18</span><span class="summary-tag">5元防诈保 12</span><span class="summary-tag">开户 9</span><span class="summary-tag">5元骑行保 6</span><span class="summary-tag">1元管家 6</span><span class="summary-tag">宽带 5</span><span class="summary-tag">邀评 5</span><span class="summary-tag">打印机 4</span><span class="summary-tag">惠农网 4</span><span class="summary-tag">手机 4</span><span class="summary-tag">路由器 3</span><span class="summary-tag">29小福袋 3</span><span class="summary-tag">29流量包 3</span><span class="summary-tag">机顶盒 3</span><span class="summary-tag">灵犀屏 2</span><span class="summary-tag">电饭煲 2</span><span class="summary-tag">视频彩铃PLUS 1</span><span class="summary-tag">V网 1</span><span class="summary-tag">58畅享包 1</span><span class="summary-tag">高频防骚扰 1</span><span class="summary-tag">短信免打扰 1</span><span class="summary-tag">爱家畅享升级包 1</span><span class="summary-tag">机顶盒包年 1</span><span class="summary-tag">Token包 1</span></div>
+<div class="sc-wrap"><table class="day-table"><tr><th>日期</th><th>手机</th><th>开户</th><th>宽带</th><th>路由器</th><th>机顶盒</th><th>机顶盒包年</th><th>打印机</th><th>灵犀屏</th><th>电饭煲</th><th>5元防诈保</th><th>5元骑行保</th><th>1元管家</th><th>高频防骚扰</th><th>短信免打扰</th><th>视频彩铃PLUS</th><th>V网</th><th>套餐体检</th><th>邀评</th><th>惠农网</th><th>Token包</th><th>29小福袋</th><th>29流量包</th><th>58畅享包</th><th>爱家畅享升级包</th></tr><tr><td>9/1</td><td>-</td><td>2</td><td>1</td><td>1</td><td>-</td><td>-</td><td>1</td><td>-</td><td>-</td><td>1</td><td>-</td><td>-</td><td>-</td><td>-</td><td>1</td><td>1</td><td>2</td><td>2</td><td>2</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>9/3</td><td>3</td><td>5</td><td>-</td><td>-</td><td>-</td><td>1</td><td>-</td><td>-</td><td>-</td><td>1</td><td>-</td><td>-</td><td>1</td><td>1</td><td>-</td><td>-</td><td>9</td><td>3</td><td>1</td><td>-</td><td>3</td><td>3</td><td>1</td><td>1</td></tr><tr><td>9/12</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>1</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>9/13</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>1</td><td>-</td><td>8</td><td>6</td><td>6</td><td>-</td><td>-</td><td>-</td><td>-</td><td>3</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>9/14</td><td>-</td><td>-</td><td>3</td><td>2</td><td>2</td><td>-</td><td>-</td><td>-</td><td>-</td><td>2</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>1</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>9/15</td><td>-</td><td>1</td><td>1</td><td>-</td><td>1</td><td>-</td><td>2</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>2</td><td>-</td><td>1</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>9/17</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>2</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>9/18</td><td>1</td><td>1</td><td>-</td><td>-</td><td>-</td><td>-</td><td>1</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>1</td><td>-</td><td>-</td><td>1</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr class="aug"><td>合计</td><td>4</td><td>9</td><td>5</td><td>3</td><td>3</td><td>1</td><td>4</td><td>2</td><td>2</td><td>12</td><td>6</td><td>6</td><td>1</td><td>1</td><td>1</td><td>1</td><td>18</td><td>5</td><td>4</td><td>1</td><td>3</td><td>3</td><td>1</td><td>1</td></tr></table></div>
+</div></div>
 <div class="store-card">
-<div class="sh" style="background:linear-gradient(135deg,#2e7d32,#2e7d32dd)">
-<span class="sn">京东店</span>
-<span class="sr">一切真实 · 9月</span>
-</div>
-<div class="sb">
-<div style="font-size:12px;color:#888;padding:8px 0">9月暂无报量</div>
-</div>
-</div>
-<!-- 加盟厅 -->
+<div class="sh" style="background:linear-gradient(135deg,#2e7d32,#2e7d32dd)"><span class="sn">京东店</span><span class="sr">一切真实 · 9月</span></div>
+<div class="sb"><div style="font-size:12px;color:#888;padding:16px 0;text-align:center">9月暂无报量</div></div></div>
 <div class="store-card">
-<div class="sh" style="background:linear-gradient(135deg,#7b1fa2,#7b1fa2dd)">
-<span class="sn">加盟厅</span>
-<span class="sr">樱子ZPY · 9月</span>
-</div>
-<div class="sb">
-<div style="font-size:12px;color:#888;padding:8px 0">9月暂无报量</div>
-</div>
-</div>
-</div>
-<!-- Grand Total -->
+<div class="sh" style="background:linear-gradient(135deg,#7b1fa2,#7b1fa2dd)"><span class="sn">加盟厅</span><span class="sr">樱子ZPY · 9月</span></div>
+<div class="sb"><div style="font-size:12px;color:#888;padding:16px 0;text-align:center">9月暂无报量</div></div></div>
+
 <div class="grand">
-<h2>🔥 9月门店核心业务汇总</h2>
-<div class="sc-wrap">
-<table>
-<tr>
-<th>业务</th>
-<th style="color:#1565c0">峨山店</th>
-<th style="color:#2e7d32">京东店</th>
-<th style="color:#7b1fa2">加盟厅</th>
-<th style="background:#0d47a1;color:#fff">🔥 合计</th>
-</tr>
-<tr><td>📋 开户</td><td style="color:#1565c0">2</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">2</td></tr>
-<tr><td>🌐 宽带</td><td style="color:#1565c0">1</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">1</td></tr>
-<tr><td>🖨️ 打印机</td><td style="color:#1565c0">1</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">1</td></tr>
-<tr><td>🔧 路由器/机顶盒</td><td style="color:#1565c0">1</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">1</td></tr>
-<tr><td>🛡️ 5元防诈</td><td style="color:#1565c0">1</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">1</td></tr>
-<tr><td>📞 视频彩铃Plus</td><td style="color:#1565c0">1</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">1</td></tr>
-</table>
+<h2>🔥 9月门店业务汇总（全业务）</h2>
+<div class="sc-wrap"><table>
+<tr><th>业务</th><th style="color:#1565c0">峨山店</th><th style="color:#2e7d32">京东店</th><th style="color:#7b1fa2">加盟厅</th><th style="background:#0d47a1;color:#fff">🔥 合计</th></tr>
+<tr><td>套餐体检</td><td style="color:#1565c0">18</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">18</td></tr><tr><td>5元防诈保</td><td style="color:#1565c0">12</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">12</td></tr><tr><td>开户</td><td style="color:#1565c0">9</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">9</td></tr><tr><td>5元骑行保</td><td style="color:#1565c0">6</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">6</td></tr><tr><td>1元管家</td><td style="color:#1565c0">6</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">6</td></tr><tr><td>宽带</td><td style="color:#1565c0">5</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">5</td></tr><tr><td>邀评</td><td style="color:#1565c0">5</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">5</td></tr><tr><td>打印机</td><td style="color:#1565c0">4</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">4</td></tr><tr><td>惠农网</td><td style="color:#1565c0">4</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">4</td></tr><tr><td>手机</td><td style="color:#1565c0">4</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">4</td></tr><tr><td>路由器</td><td style="color:#1565c0">3</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">3</td></tr><tr><td>29小福袋</td><td style="color:#1565c0">3</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">3</td></tr><tr><td>29流量包</td><td style="color:#1565c0">3</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">3</td></tr><tr><td>机顶盒</td><td style="color:#1565c0">3</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">3</td></tr><tr><td>灵犀屏</td><td style="color:#1565c0">2</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">2</td></tr><tr><td>电饭煲</td><td style="color:#1565c0">2</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">2</td></tr><tr><td>视频彩铃PLUS</td><td style="color:#1565c0">1</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">1</td></tr><tr><td>V网</td><td style="color:#1565c0">1</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">1</td></tr><tr><td>58畅享包</td><td style="color:#1565c0">1</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">1</td></tr><tr><td>高频防骚扰</td><td style="color:#1565c0">1</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">1</td></tr><tr><td>短信免打扰</td><td style="color:#1565c0">1</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">1</td></tr><tr><td>爱家畅享升级包</td><td style="color:#1565c0">1</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">1</td></tr><tr><td>机顶盒包年</td><td style="color:#1565c0">1</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">1</td></tr><tr><td>Token包</td><td style="color:#1565c0">1</td><td style="color:#2e7d32">0</td><td style="color:#7b1fa2">0</td><td style="background:#e3f2fd;font-weight:700">1</td></tr>
+</table></div>
 </div>
+<div class="footer">🦐 9月21日 · 各门店报量看板 · 全部业务量明细 · 每晚唐发量自动更新</div>
 </div>
-<div class="footer">🦐 9月17日峨山店报量已更新(核心列) · 手机/29福袋等已同步兰新看板</div>
-</div></div></div></body>
+</body>
 </html>
