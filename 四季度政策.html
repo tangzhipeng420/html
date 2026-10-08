@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>四季度政策</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { color-scheme: light; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    padding: 12px;
+  }
+  .container { max-width: 820px; margin: 0 auto; }
+
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 50%, #533483 100%);
+    color: #fff;
+    border-radius: 16px;
+    padding: 20px 18px;
+    margin-bottom: 12px;
+  }
+  .header h1 { font-size: 20px; font-weight: 700; }
+  .header .sub { font-size: 13px; opacity: .8; margin-top: 4px; }
+  .header .ver { font-size: 12px; opacity: .6; margin-top: 6px; }
+
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  .card h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .card h2 .tag {
+    font-size: 11px;
+    background: #e8f0fe;
+    color: #1a73e8;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 400;
+  }
+  .card h2 .tag.danger { background: #fce4ec; color: #d93025; }
+  .card h2 .tag.warn { background: #fff3e0; color: #e65100; }
+  .card h2 .tag.ok { background: #e8f5e9; color: #188038; }
+
+  .formula-box {
+    background: #f8f9ff;
+    border: 1px solid #e0e3f0;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 12px;
+    word-break: break-all;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    background: #f0f2f5;
+    text-align: left;
+    padding: 6px 8px;
+    font-weight: 600;
+    border-bottom: 2px solid #ddd;
+  }
+  td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+  tr:last-child td { border: none; }
+  .num { text-align: center; font-weight: 700; color: #1a73e8; }
+  .new-row td { background: #fff8e1; }
+  .new-row .num { color: #e65100; }
+  tr.highlight td { background: #e8f5e9; }
+
+  .note {
+    background: #fff8e1;
+    border-left: 4px solid #f9a825;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-top: 10px;
+  }
+  .note.audit { background: #fce4ec; border-left-color: #e53935; }
+  .note.info { background: #e8f5e9; border-left-color: #43a047; }
+  .note.warn { background: #fff3e0; border-left-color: #ff6d00; }
+
+  .ok { color: #0d904f; }
+  .warn { color: #d93025; }
+  .b { font-weight: 700; }
+  .muted { color: #999; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>📊 四季度政策</h1>
+  <div class="sub">2026年10-12月 · 渠道评优激励方案（预发版）</div>
+  <div class="ver" style="margin-top:8px">来源：公司下发《2026年4季度渠道评优激励方案·预发版》 · 整理：🦐 2026-10-08</div>
+  <div class="ver" style="color:#ffd54f;font-weight:600">⚠️ 预发版，最终口径以正式下发文件为准</div>
+</div>
+
+<!-- ===== 总览 ===== -->
+<div class="card" style="border:2px solid #0d47a1;background:#e8eaf6">
+  <h2 style="color:#0d47a1">🏆 明星渠道贡献奖 <span class="tag">抢盘 · 364万</span></h2>
+  <div style="overflow-x:auto">
+  <table style="font-size:13px">
+    <tr style="background:#0d47a1;color:#fff">
+      <th style="padding:8px">项目</th><th style="padding:8px">内容</th>
+    </tr>
+    <tr><td class="b">奖项名称</td><td>明星渠道贡献奖</td></tr>
+    <tr><td class="b">类型</td><td>抢盘</td></tr>
+    <tr><td class="b">预算金额</td><td><b style="color:#d93025">364 万元</b></td></tr>
+    <tr><td class="b">参与范围</td><td>普通实体渠道</td></tr>
+  </table>
+  </div>
+  <div class="formula-box" style="margin-top:10px">
+    <b>📐 网格激励金额公式：</b><br>
+    网格激励 =（网格2025全年收入全市占比 × 30% + 网格2025全年实体渠道业务量全市占比 × 50% + 网格实体渠道数量全市占比 × 20%）× 激励总金额<br>
+    <span class="muted">※ 网格销售合作伙伴业务办理量取办理量，不应用业务统计口径中的系数</span>
+  </div>
+  <div class="note info">
+    <b>💰 激励封顶：</b>激励资源优先支撑本网格内使用；当本网格使用不足时，在各激励预算不超过上限的前提下，其余网格可超本网格激励预算使用
+  </div>
+</div>
+
+<!-- ===== 整体打折项 ===== -->
+<div class="card" style="border:2px solid #d93025">
+  <h2 style="color:#d93025">🎯 整体打折项 <span class="tag danger">折上折 · 必看</span></h2>
+  <table>
+    <tr><th style="width:40px">#</th><th>打折项</th><th style="width:90px">系数</th></tr>
+    <tr><td class="num">1</td><td>渠道服务质量系数（见最下方"服务系数"表）</td><td class="num">0.95~1.05</td></tr>
+    <tr><td class="num">2</td><td>触客高频骚扰防护业务办理率 &lt; 90% <span class="muted">或</span> 短信免打扰触点订购率 &lt; 90%</td><td class="num" style="color:#d93025">×0.95</td></tr>
+    <tr class="new-row"><td class="num">3</td><td>🐯 金虎完成值须较上季度提升 <b>3%</b> 且不低于目标值 → 见下表</td><td class="num" style="color:#e65100">0.85~0.95</td></tr>
+  </table>
+
+  <h3 style="font-size:14px;margin:14px 0 6px;color:#e65100">🐯 金虎完成目标值与激励系数</h3>
+  <table>
+    <tr><th>渠道类型</th><th>目标值（户）</th></tr>
+    <tr class="highlight"><td>委托加盟外包厅</td><td class="num">40</td></tr>
+    <tr><td>六星级</td><td class="num">28</td></tr>
+    <tr><td>五星级</td><td class="num">20</td></tr>
+    <tr><td>四星级</td><td class="num">14</td></tr>
+    <tr><td>非星级渠道</td><td class="num">8</td></tr>
+  </table>
+  <div class="note">
+    ⭐ 星级标准按 <b>2026年2季度</b><br>
+    完成目标值 <b>50%-100%</b> → 系数 <b>0.95</b><br>
+    完成目标值 <b>0%-50%</b> 或提升低于3% → 系数 <b>0.9</b><br>
+    未破零 → 系数 <b>0.85</b>
+  </div>
+</div>
+
+<!-- ===== 认筹五大板块总览 ===== -->
+<div class="card">
+  <h2>📋 认筹五大板块 <span class="tag">取数口径</span></h2>
+  <table>
+    <tr><th>板块</th><th>核心产品</th></tr>
+    <tr><td class="b">👥 客户发展</td><td>各类套餐新增/开户（价值系数制）</td></tr>
+    <tr><td class="b">📶 宽带</td><td>新装/千兆/全球通/金牛金虎宽带</td></tr>
+    <tr><td class="b">🎁 移动爱家生态小福袋</td><td>WiFi/FTTR/看家/健康/教育小福袋</td></tr>
+    <tr><td class="b">📈 泛升档及爱购商城</td><td>套餐升档/流量包/权益包</td></tr>
+  </table>
+  <div class="note audit">
+    <b>🔍 通用铁律：</b>统计业务发展量时<b>剔除返销部分</b>；如遇省公司调整口径则同步应用
+  </div>
+</div>
+
+<!-- ===== 客户发展 ===== -->
+<div class="card">
+  <h2>👥 客户发展 <span class="tag">价值系数</span></h2>
+  <table>
+    <tr><th>场景</th><th style="width:90px">系数</th></tr>
+    <tr><td>3级及以上吉祥号码</td><td class="num">×4</td></tr>
+    <tr><td>2级吉祥号码</td><td class="num">×3</td></tr>
+    <tr><td>1级吉祥号码 / 优质号码</td><td class="num">×2</td></tr>
+    <tr><td>🐯 金虎新增（剔除快金虎）</td><td class="num">×2</td></tr>
+    <tr><td>98元及以上套餐</td><td class="num">×1.8</td></tr>
+    <tr><td>59元及以上套餐</td><td class="num">×1.5</td></tr>
+    <tr><td>39元及以上套餐</td><td class="num">×1.3</td></tr>
+    <tr><td>一老一少场景（手环/手表/机器人/学生证/听力宝）</td><td class="num">×1.3</td></tr>
+    <tr><td>19元及以上套餐</td><td class="num">×1.2</td></tr>
+    <tr><td>常规开户 / 插卡话机</td><td class="num">×1</td></tr>
+  </table>
+  <div class="note info">
+    <b>📌 副卡：</b>金虎场景→×<b>2</b> · 一老一少/宽带新装/终端重点合约/家庭异网成员拉新/金虎攻坚拉新→×<b>1</b> · 其余→×<b>0.2</b>
+  </div>
+  <div class="note">
+    <b>📌 叠加计数：</b>纯新客户/非本网双卡拉新 <b>+0.5</b> · 金虎金牛满卡群组 <b>+1</b> · 垂类市场（≥100户，每户）<b>+0.3</b> · 视频彩铃 <b>+0.1</b> · AB类集团成员 <b>+0.2</b> · 新入网充值30元 <b>+0.2</b> / 50元 <b>+0.3</b> / 100元 <b>+0.5</b>
+  </div>
+  <div class="note info">
+    <b>⚖️ 就高原则：</b>同一客户多种场景发展取就高。例：既是98以上套餐又是金虎新增 → 只计1个客户发展，取高系数2
+  </div>
+  <div class="note audit">
+    <b>🔍 稽核口径：</b><br>
+    1. 剔除返销部分<br>
+    2. 稽核周期：开户第 <b>3</b> 月<br>
+    3. 在网3个月且有通信行为才核算激励<br>
+    4. <span class="warn">低质量管控：</span>开户后当月/次月离网占比超 <b>10%</b> → 按离网量×1扣罚<br>
+    5. 体验卡、旺铺套餐不计入取数
+  </div>
+  <div class="note">
+    <b>💡 打折项：</b>新入网充值优惠率&lt;30% → ×0.95 · 靓号占比&lt;5% → ×0.95 · 新入网APP活跃占比&lt;53% → ×0.95 · ≤20元卡品占比&gt;40% → ×0.95
+  </div>
+</div>
+
+<!-- ===== 宽带 ===== -->
+<div class="card">
+  <h2>📶 宽带 <span class="tag">就高原则</span></h2>
+  <div class="formula-box">
+    🐂 金牛新装×<span class="warn b">2</span> + 金牛口径2×0.5 + 金牛口径3×0.5<br>
+    🐯 金虎客户宽带×<span class="warn b">2</span><br>
+    📺 新装宽带（搭载电视PRO）×<span class="warn b">2</span><br>
+    存量加装家庭泛屏×1 · 新装千兆×<span class="warn b">1.5</span><br>
+    🌍 全球通办宽带×<span class="warn b">2</span> · 旅居宽带×1.3 · 宽带搭载电视×1.3<br>
+    单宽无电视×0.4 · 电视PRO续约×1
+  </div>
+  <div class="note audit">
+    <b>🔍 稽核：</b>取季度内新开户且回单的有效家庭宽带（流量&gt;100M且考核期末状态正常）；剔除装机次日0流量、拆机重装；电视需活跃（流量&gt;0）<br>
+    <b>不参与激励：</b>剔除校园宽带后，竣工次日0流量占比&gt;15%
+  </div>
+  <div class="note">
+    <b>💡 打折/叠加：</b>新增宽带中金牛+全球通占比&lt;50% → ×0.8 · 宽带新入网搭载率&lt;50% → ×0.9 · 新装权益金使用占比&lt;10% → 额外+0.2 · 300M及以上占比&gt;90% → 额外+0.2 · 电视搭载率50-70% → 额外+0~1 · 年包占比&gt;50% → 额外+0.2
+  </div>
+</div>
+
+<!-- ===== 移动爱家生态小福袋 ===== -->
+<div class="card" style="border:2px solid #e65100">
+  <h2 style="color:#e65100">🎁 移动爱家生态小福袋 <span class="tag warn">重点板块</span></h2>
+  <table>
+    <tr><th>产品</th><th style="width:90px">系数</th></tr>
+    <tr><td>智能组网 · 全家WIFI</td><td class="num">×1</td></tr>
+    <tr><td>光猫机顶盒以旧换新</td><td class="num">×0.34</td></tr>
+    <tr class="new-row"><td>🤖 智能组网 · FTTR月包</td><td class="num" style="color:#e65100">×3</td></tr>
+    <tr><td>智能组网 · FTTR续约升级</td><td class="num">×1.5</td></tr>
+    <tr><td>智能组网 · FTTR（从路由加装）</td><td class="num">×1</td></tr>
+    <tr><td>融合套餐/全家欢/金虎金牛内含FTTR</td><td class="num">×1</td></tr>
+    <tr><td>移动看家</td><td class="num">×1</td></tr>
+    <tr><td>移动看家 · 双目机</td><td class="num">×1.5</td></tr>
+    <tr><td>智能音箱</td><td class="num">×1.5</td></tr>
+    <tr><td>爱家健康 10元-15元档</td><td class="num">×1</td></tr>
+    <tr class="new-row"><td>🌍 全球通预存得拉新终端 <span class="tag ok">你问的重点</span></td><td class="num" style="color:#e65100">×0.5</td></tr>
+    <tr><td>移动AI家智能家庭 10元权益小福袋</td><td class="num">×0.7</td></tr>
+    <tr class="new-row"><td>🤖 移动AI家 25元教育小福袋</td><td class="num" style="color:#e65100">×2.5</td></tr>
+    <tr class="new-row"><td>🤖 移动AI家 35元及以上教育小福袋</td><td class="num" style="color:#e65100">×3</td></tr>
+  </table>
+  <div class="note warn">
+    <b>⭐ 唐特别关注：</b>「全球通预存终端拉新」= 全球通客户预存<b>200元</b>领的机器人 / 听力宝（活动编码 32002127）<br>
+    <b>✅ 拉新 → 计小福袋认筹 0.5</b><br>
+    <b>❌ 不拉新 → 不计入</b>
+  </div>
+  <div class="note">
+    <b>📌 说明：</b>若后续省公司增加移动爱家生态小福袋产品和年包等一次性计收产品，则根据产品贡献调整计入指标值
+  </div>
+</div>
+
+<!-- ===== 泛升档及爱购商城 ===== -->
+<div class="card">
+  <h2>📈 泛升档及爱购商城 <span class="tag">计分</span></h2>
+  <table>
+    <tr><th>业务</th><th style="width:90px">计分</th></tr>
+    <tr><td>套餐升档至119以下</td><td class="num">0.6</td></tr>
+    <tr class="new-row"><td>套餐升档至119及以上</td><td class="num" style="color:#e65100">0.8</td></tr>
+    <tr><td>升档119以下 + 119以下升档流量大促</td><td class="num">1.7</td></tr>
+    <tr class="new-row"><td>升档119及以上 + 119及以上升档流量大促</td><td class="num" style="color:#e65100">2.5</td></tr>
+    <tr><td>爱家畅享包升级版</td><td class="num">0.8</td></tr>
+    <tr><td>亲情网年包</td><td class="num">0.5</td></tr>
+    <tr><td>10元以下流量包</td><td class="num">0.5</td></tr>
+    <tr><td>10（含）-20元流量包</td><td class="num">0.8</td></tr>
+    <tr><td>20元及以上重点流量包</td><td class="num">1</td></tr>
+    <tr><td>尊享大促</td><td class="num">0.3</td></tr>
+  </table>
+  <div class="note info">
+    <b>💰 权益和保障服务（按月扣费）：</b>月均5-15元 → <b>0.8</b> · 15-25元 → <b>1.25</b> · ≥25元 → <b>1.5</b> · 校园版爱家/铂金会员 → <b>1</b> · 其它一次性扣费年包 → <b>3.3</b>
+  </div>
+  <div class="note">
+    <b>🆕 零低套餐客户：</b>迁出成功再叠加 <b>+0.3</b>（升档/流量包场景）；办理百G包再叠加 <b>+0.5</b>
+  </div>
+  <div class="note audit">
+    <b>🔍 稽核：</b>退订不纳入 · 变更后套餐实收需提升 ≥5元（&lt;5元不计）<br>
+    需稽核当季度办理期内是否生效相应主套餐和升档活动；无套餐变更前置/营销活动未生效不统计<br>
+    办理后返销主套餐但升档大促仍生效的量，也不统计<br>
+    若客户在办理当月或前一个月办过套餐降档（不区分渠道）→ 不核算激励<br>
+    <b>权益业务：</b>生效第5个月结算，且结算当月必须生效
+  </div>
+</div>
+
+<!-- ===== 认筹档次 ===== -->
+<div class="card" style="border:2px solid #533483">
+  <h2 style="color:#533483">🎯 认筹档次 · 金豆标准 <span class="tag">第1档</span></h2>
+  <table>
+    <tr><th>板块</th><th style="width:100px">认筹目标</th><th style="width:100px">金豆标准</th></tr>
+    <tr class="highlight"><td>👥 客户发展</td><td class="num">2000</td><td class="num">12500</td></tr>
+    <tr class="highlight"><td>📶 宽带</td><td class="num">1000</td><td class="num">7500</td></tr>
+    <tr class="highlight"><td>🎁 小福袋</td><td class="num">3000</td><td class="num">22500</td></tr>
+    <tr class="highlight"><td>📈 泛升档及爱购</td><td class="num">4550</td><td class="num">13650</td></tr>
+  </table>
+  <div class="note info">
+    <b>💡 换算：</b>金豆/认筹目标 ≈ <b>6.25 金豆/户</b>（客户发展板块）<br>
+    每个板块共 <b>36-39 档</b>，逐档递减（如客户发展：2000→1900→1800…→50）
+  </div>
+  <div class="note">
+    <b>📌 最低档（尾部参考）：</b><br>
+    客户发展：档39 = 50户 / 312.5金豆<br>
+    宽带：档35 = 10户 / 75金豆<br>
+    小福袋：档37 = 20户 / 150金豆<br>
+    泛升档：档35 = 30户 / 90金豆
+  </div>
+</div>
+
+<!-- ===== 渠道服务质量（附表） ===== -->
+<div class="card" style="border:2px solid #1a73e8">
+  <h2 style="color:#1a73e8">⭐ 渠道服务质量 · 服务系数 <span class="tag">结算系数</span></h2>
+  <div class="formula-box">
+    <b>结算系数：</b>得分 &gt; 95分 → <b style="color:#0d904f">1.05</b> · 得分 &lt; 70分 → <b style="color:#d93025">0.95</b> · 70-95分之间 → <b>0.95-1.05 线性</b>
+  </div>
+  <table>
+    <tr><th>监控维度</th><th style="width:70px">分值</th><th>目标 / 计分</th></tr>
+    <tr><td>渠道触点客户套餐适配率</td><td class="num">30</td><td>目标60%；≥60%满分，30%-60%线性，&lt;30%得0</td></tr>
+    <tr><td>邀评动作到位率</td><td class="num">25</td><td>目标30%；按目标达成率计分</td></tr>
+    <tr><td>低满客户弹窗修复成功率</td><td class="num">20</td><td>目标30%；执行率0%→该项0分</td></tr>
+    <tr><td>渠道新增客户离网率</td><td class="num">15</td><td>≤20%满分，&gt;50%不得分，之间线性</td></tr>
+    <tr><td>渠道触点客户套餐体检率</td><td class="num">5</td><td>目标30%；按达成率计分</td></tr>
+    <tr><td>渠道业务退订率</td><td class="num">5</td><td>≤1.5%满分，&gt;5%不得分，之间线性</td></tr>
+    <tr><td>业务办理规范率</td><td class="num">扣分项</td><td>&lt;90%扣2分 · &lt;80%扣3分 · &lt;70%扣4分</td></tr>
+    <tr><td>预警脱黑</td><td class="num">加分项</td><td>省公司黑点渠道当月脱黑 → 每月+1分</td></tr>
+  </table>
+  <div class="note info">
+    <b>📌 牵头：</b>客体部（史冬梅）· 从触点客户套餐体验、新开卡质量、触点套餐适配率、低满弹窗修复率、业务办理规范性等维度按权重打分
+  </div>
+</div>
+
+<!-- ===== 对咱的影响 ===== -->
+<div class="card" style="border:2px solid #d93025;background:#fff8e1">
+  <h2>💡 对咱们的影响 · 划重点</h2>
+  <div style="background:#fff8e1;font-size:14px;line-height:2">
+    <b>1️⃣ 金虎卡口变了：</b>Q4金虎完成值必须比上季度提升 <b>3%</b> 且不低于目标值（外包厅40户/六星28/五星20/四星14/非星8），达不到直接 ×0.85~0.95，这是最狠的一条<br>
+    <b>2️⃣ 骚扰防护 + 短信免打扰两条都盯：</b>任一项办理率&lt;90% → 全部评优激励 ×0.95，容易漏<br>
+    <b>3️⃣ 最划算的：</b>宽带 金牛×2 / 金虎×2 / 电视PRO×2 / 全球通×2 · 小福袋 FTTR月包×3 / 35元+教育小福袋×3 / 25元×2.5<br>
+    <b>4️⃣ 全球通预存200终端：</b>拉新才计 0.5，不拉新=白做 → 办单时务必做拉新动作<br>
+    <b>5️⃣ 软性指标不能松：</b>套餐适配率(30分)+邀评到位率(25分)占了55分，退订率/离网率也会拉低服务系数
+  </div>
+  <div class="note audit">
+    <b>⛔ 硬红线：</b>剔除返销 · 稽核开户第3月 · 离网&gt;10%扣罚 · 竣工次日0流量占比&gt;15%不参与 · 权益业务第5个月才结算
+  </div>
+</div>
+
+<div style="text-align:center;padding:14px;color:#999;font-size:12px">
+  🦐 四季度政策看板 · 2026-10-08 整理<br>
+  数据来源：《2026年4季度渠道评优激励方案·预发版》
+</div>
+
+</div>
+</body>
+</html>
