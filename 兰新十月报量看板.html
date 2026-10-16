@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>兰新团队 · 10月报量看板</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f0f4f3;color:#333;padding:16px}
-.container{max-width:1400px;margin:0 auto}
-.header{background:linear-gradient(135deg,#004d40,#00695c);color:#fff;padding:20px 24px;border-radius:14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
-.header h1{font-size:22px;font-weight:700}
-.header .sub{font-size:13px;opacity:.85;margin-top:4px}
-.badge{font-size:12px;background:rgba(255,255,255,.18);padding:4px 12px;border-radius:12px}
-.card{background:#fff;border-radius:12px;padding:16px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.07)}
-.card h2{font-size:16px;color:#00695c;margin-bottom:12px}
-.card h2 .hint{font-size:11px;color:#999;font-weight:400;margin-left:8px}
-.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-table{width:100%;border-collapse:collapse;font-size:11.5px;white-space:nowrap}
-th{background:#e0f2f1;padding:7px 6px;text-align:center;font-weight:600;color:#004d40;font-size:11px}
-td{padding:6px 6px;text-align:center;border-bottom:1px solid #eef2f1}
-td.nm{font-weight:700;color:#00695c;background:#f6fbfa;position:sticky;left:0}
-td.num{color:#222}
-td.numzero{color:#ccc}
-td.tot{font-weight:700;color:#00695c;background:#e0f2f1}
-.highlight td{background:#e0f2f1;font-weight:700;color:#004d40}
-.person-card{border:1px solid #e0e0e0;border-radius:10px;margin-bottom:9px;overflow:hidden}
-.person-card .ph{padding:9px 14px;font-weight:700;font-size:14px;background:#f2f7f6;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px}
-.person-card .ph .sum{font-size:12px;font-weight:400;color:#888}
-.person-card .pb{padding:10px 14px}
-.other-items{font-size:12px;color:#555;line-height:1.9}
-.footer{text-align:center;padding:16px;color:#999;font-size:12px}
-@media(max-width:768px){body{padding:10px}.header h1{font-size:20px}}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#f0f2f5;color:#333;padding:16px}
+  .container{max-width:1400px;margin:0 auto}
+  .header{background:linear-gradient(135deg,#00695c,#004d40);color:#fff;padding:22px 28px;border-radius:16px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
+  .header h1{font-size:24px;font-weight:700}
+  .header .sub{font-size:13px;opacity:.85;margin-top:5px}
+  .header .badge{background:rgba(255,255,255,.2);padding:6px 14px;border-radius:20px;font-size:13px}
+  .card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:16px}
+  .card h2{font-size:17px;font-weight:600;color:#00695c;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #e8edf2}
+  .card h2 .hint{font-size:12px;font-weight:400;color:#999;margin-left:8px}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #eceff3;border-radius:10px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;white-space:nowrap}
+  th,td{padding:8px 9px;text-align:center;border-bottom:1px solid #eee}
+  th{background:#f7f9fc;font-weight:600;color:#555;font-size:12px;position:sticky;top:0}
+  td.nm,th:first-child{text-align:left;font-weight:600;background:#fbfcfe;position:sticky;left:0;z-index:2}
+  td.num{font-weight:600}
+  td.zero{color:#c9ced6}
+  td.tot{font-weight:700;color:#00695c;background:#e0f2f1}
+  .highlight td{background:#e0f2f1;font-weight:700;color:#004d40}
+  .highlight td.nm{background:#d3eceb}
+  .person-card{border:1px solid #e0e0e0;border-radius:10px;margin-bottom:9px;overflow:hidden}
+  .person-card .ph{padding:9px 14px;font-weight:700;font-size:14px;background:#f2f7f6;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px}
+  .person-card .ph .sum{font-size:12px;font-weight:400;color:#888}
+  .person-card .pb{padding:10px 14px}
+  .other-items{font-size:12px;color:#555;line-height:1.9}
+  .footer{text-align:center;padding:16px;color:#999;font-size:12px}
+  @media(max-width:768px){body{padding:10px}.header h1{font-size:20px}}
 </style>
 </head>
 <body>
@@ -38,26 +39,25 @@ td.tot{font-weight:700;color:#00695c;background:#e0f2f1}
 <div class="header">
 <div>
 <h1>📊 兰新团队 · 10月报量看板</h1>
-<div class="sub">兰新（美红/穆艳梅/李晶晶/舒捷/董梦晶）+拖把 · 团队合计 + 每人每日明细</div>
+
+<div class="sub">兰新（美红/穆艳梅/李晶晶/舒捷/董梦晶）+拖把（兰新工号） · 团队合计 + 每人每日明细</div>
 </div>
-<span class="badge">📊 更新至 10/15</span>
+<span class="badge">📊 更新至 10/16</span>
 </div>
 
 <div class="card">
 <h2>📈 10月团队报量合计（全业务）<span class="hint">→ 左右滑动查看全部业务</span></h2>
 <div class="scroll">
 <table>
-<tr><th>姓名</th><th>手机</th><th>宽带</th><th>套餐体检</th><th>邀评</th><th>高频防骚扰</th><th>短信免打扰</th><th>开户</th><th>打印机</th><th>路由器</th><th>机顶盒</th><th>电饭煲</th><th>10元力豆包</th><th>29小福袋</th><th>29流量包</th><th>高清盒续费</th><th>39小福袋</th><th>39流量包</th><th>碎屏险</th><th>铂金会员</th><th>9.9力豆尝鲜包</th><th>升档大促</th><th>宽带包年</th><th>平板</th><th>畅享包</th><th>终端</th><th>合计</th></tr>
-<tr><td class="nm">美红</td><td class="num">7</td><td class="num">8</td><td class="num">4</td><td class="num">7</td><td class="num">2</td><td class="num">2</td><td class="num">5</td><td class="num">11</td><td class="num">2</td><td class="num">6</td><td class="num">2</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">1</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">5</td><td class="num">7</td><td class="numzero">-</td><td class="num">1</td><td class="num">1</td><td class="num">2</td><td class="num">1</td><td class="numzero">-</td><td class="tot">74</td></tr><tr><td class="nm">穆艳梅</td><td class="numzero">-</td><td class="num">5</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">7</td><td class="num">4</td><td class="num">1</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="tot">17</td></tr><tr><td class="nm">李晶晶</td><td class="num">5</td><td class="numzero">-</td><td class="num">18</td><td class="numzero">-</td><td class="num">7</td><td class="num">7</td><td class="num">6</td><td class="num">11</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">2</td><td class="num">2</td><td class="num">2</td><td class="numzero">-</td><td class="num">1</td><td class="num">1</td><td class="num">2</td><td class="num">1</td><td class="num">1</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">2</td><td class="numzero">-</td><td class="numzero">-</td><td class="tot">68</td></tr><tr><td class="nm">舒捷</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="tot">0</td></tr><tr><td class="nm">董梦晶</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="tot">0</td></tr><tr><td class="nm">拖把</td><td class="numzero">-</td><td class="num">1</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">2</td><td class="num">6</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">1</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">3</td><td class="num">1</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">1</td><td class="tot">15</td></tr><tr class="highlight"><td class="nm">团队合计</td><td class="num">12</td><td class="num">14</td><td class="num">22</td><td class="num">7</td><td class="num">9</td><td class="num">9</td><td class="num">13</td><td class="num">35</td><td class="num">6</td><td class="num">7</td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td class="num">2</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">7</td><td class="num">8</td><td class="num">1</td><td class="num">4</td><td class="num">2</td><td class="num">4</td><td class="num">1</td><td class="num">1</td><td class="tot">174</td></tr>
-</table>
+<tr><th>姓名</th><th>手机</th><th>宽带</th><th>套餐体检</th><th>邀评</th><th>高频防骚扰</th><th>短信免打扰</th><th>开户</th><th>打印机</th><th>路由器</th><th>机顶盒</th><th>V网</th><th>电饭煲</th><th>10元力豆包</th><th>29小福袋</th><th>29流量包</th><th>高清盒续费</th><th>39小福袋</th><th>39流量包</th><th>碎屏险</th><th>铂金会员</th><th>9.9力豆尝鲜包</th><th>升档大促</th><th>宽带包年</th><th>平板</th><th>畅享包</th><th>终端</th><th>合计</th></tr><tr><td class="nm">美红</td><td class="num">7</td><td class="num">18</td><td class="num">4</td><td class="num">7</td><td class="num">2</td><td class="numzero">-</td><td class="num">5</td><td class="num">11</td><td class="num">2</td><td class="num">16</td><td class="numzero">-</td><td class="num">2</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">1</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">5</td><td class="num">7</td><td class="numzero">-</td><td class="num">1</td><td class="num">1</td><td class="num">2</td><td class="num">1</td><td class="numzero">-</td><td class="tot">94</td></tr><tr><td class="nm">穆艳梅</td><td class="numzero">-</td><td class="num">5</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">7</td><td class="num">4</td><td class="num">1</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="tot">17</td></tr><tr><td class="nm">李晶晶</td><td class="num">5</td><td class="numzero">-</td><td class="num">21</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">6</td><td class="num">14</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">2</td><td class="num">2</td><td class="numzero">-</td><td class="num">1</td><td class="num">1</td><td class="num">2</td><td class="num">1</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">2</td><td class="numzero">-</td><td class="numzero">-</td><td class="tot">74</td></tr><tr><td class="nm">舒捷</td><td class="num">6</td><td class="num">3</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">9</td><td class="numzero">-</td><td class="num">1</td><td class="num">2</td><td class="num">2</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">1</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">4</td><td class="num">4</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">1</td><td class="numzero">-</td><td class="numzero">-</td><td class="tot">46</td></tr><tr><td class="nm">董梦晶</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="tot">0</td></tr><tr><td class="nm">拖把</td><td class="numzero">-</td><td class="num">1</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">3</td><td class="num">8</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">2</td><td class="num">1</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">4</td><td class="num">1</td><td class="numzero">-</td><td class="numzero">-</td><td class="num">1</td><td class="tot">21</td></tr><tr class="highlight"><td class="nm">团队合计</td><td class="num">18</td><td class="num">27</td><td class="num">25</td><td class="num">7</td><td class="num">11</td><td class="numzero">-</td><td class="num">15</td><td class="num">42</td><td class="num">8</td><td class="num">17</td><td class="num">2</td><td class="num">4</td><td class="numzero">-</td><td class="num">2</td><td class="num">2</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">11</td><td class="num">12</td><td class="numzero">-</td><td class="num">5</td><td class="num">2</td><td class="num">5</td><td class="num">1</td><td class="num">1</td><td class="tot">252</td></tr></table>
 </div>
 </div>
 
 <div class="card">
 <h2>📅 每人每日报量明细（哪天做了多少）<span class="hint">→ 按日期排列</span></h2>
-<div class="person-card"><div class="ph"><span>美红</span><span class="sum">合计 74 笔 · 12天有报量</span></div><div class="pb"><div class="other-items">10/1：手机2 铂金会员2 套餐体检2 邀评2 | 10/2：宽带1 机顶盒1 | 10/3：开户1 平板1 畅享包1 套餐体检2 邀评2 | 10/4：手机1 碎屏险1 铂金会员1 | 10/5：升档大促1 开户1 平板1 高频防骚扰2 短信免打扰2 | 10/8：打印机1 手机1 碎屏险1 铂金会员1 宽带包年1 | 10/9：手机1 碎屏险1 铂金会员1 打印机2 宽带1 路由器1 | 10/10：手机1 碎屏险1 铂金会员1 打印机2 宽带1 路由器1 | 10/11：打印机2 | 10/12：手机1 碎屏险1 铂金会员1 打印机2 | 10/13：打印机1 电饭煲1 | 10/15：宽带5 机顶盒5 开户3 打印机1 电饭煲1 高清盒续费1 邀评3</div></div></div><div class="person-card"><div class="ph"><span>穆艳梅</span><span class="sum">合计 17 笔 · 8天有报量</span></div><div class="pb"><div class="other-items">10/2：宽带1 机顶盒1 | 10/5：宽带2 路由器2 | 10/6：打印机1 宽带1 路由器1 | 10/8：宽带1 路由器1 | 10/11：打印机2 | 10/12：打印机2 | 10/14：打印机1 | 10/15：打印机1</div></div></div><div class="person-card"><div class="ph"><span>李晶晶</span><span class="sum">合计 68 笔 · 12天有报量</span></div><div class="pb"><div class="other-items">10/2：打印机1 套餐体检1 | 10/3：开户1 平板1 高频防骚扰1 短信免打扰1 套餐体检1 | 10/4：打印机1 开户1 平板1 高频防骚扰1 短信免打扰1 套餐体检2 | 10/5：打印机2 高频防骚扰1 短信免打扰1 套餐体检2 | 10/7：打印机1 手机1 碎屏险1 套餐体检2 | 10/8：开户1 手机1 39小福袋1 39流量包1 9.9力豆尝鲜包1 高频防骚扰1 短信免打扰1 套餐体检1 | 10/9：开户1 手机1 29小福袋1 29流量包1 10元力豆包1 高频防骚扰1 短信免打扰1 套餐体检1 | 10/10：开户1 手机1 29小福袋1 29流量包1 10元力豆包1 高频防骚扰1 短信免打扰1 套餐体检1 | 10/11：打印机2 套餐体检2 | 10/12：打印机2 套餐体检2 | 10/13：开户1 手机1 碎屏险1 铂金会员1 打印机1 高频防骚扰1 短信免打扰1 套餐体检2 | 10/14：打印机1 套餐体检1</div></div></div><div class="person-card"><div class="ph"><span>舒捷</span><span class="sum">合计 0 笔 · 0天有报量</span></div><div class="pb"><div class="other-items">暂无报量</div></div></div><div class="person-card"><div class="ph"><span>董梦晶</span><span class="sum">合计 0 笔 · 0天有报量</span></div><div class="pb"><div class="other-items">暂无报量</div></div></div><div class="person-card"><div class="ph"><span>拖把</span><span class="sum">合计 15 笔 · 3天有报量</span></div><div class="pb"><div class="other-items">10/12：宽带包年1 电饭煲1 终端1 打印机2 开户1 升档大促1 | 10/13：打印机3 升档大促1 | 10/14：升档大促1 打印机1 宽带1 开户1</div></div></div>
+<div class="person-card"><div class="person-card"><div class="ph"><span>美红</span><span class="sum">合计 94 笔 · 13天有报量</span></div><div class="pb"><div class="other-items">10/1：手机2 铂金会员2 套餐体检2 邀评2 | 10/2：宽带 机顶盒 | 10/3：开户 平板 畅享包 套餐体检2 邀评2 | 10/4：手机 碎屏险 铂金会员 | 10/5：升档大促 开户 平板 高频防骚扰2 免打扰2 | 10/8：打印机 手机 碎屏险 铂金会员 宽带包年 | 10/9：手机 碎屏险 铂金会员 打印机2 宽带 路由器 | 10/10：手机 碎屏险 铂金会员 打印机2 宽带 路由器 | 10/11：打印机2 | 10/12：手机 碎屏险 铂金会员 打印机2 | 10/13：打印机 电饭煲 | 10/15：宽带5 机顶盒5 开户3 打印机 电饭煲 高清盒续费 邀评3 | 10/16：宽带10 机顶盒10</div></div></div><div class="person-card"><div class="ph"><span>穆艳梅</span><span class="sum">合计 17 笔 · 8天有报量</span></div><div class="pb"><div class="other-items">10/2：宽带 机顶盒 | 10/5：宽带2 路由器2 | 10/6：打印机 宽带 路由器 | 10/8：宽带 路由器 | 10/11：打印机2 | 10/12：打印机2 | 10/14：打印机 | 10/15：打印机</div></div></div><div class="person-card"><div class="ph"><span>李晶晶</span><span class="sum">合计 74 笔 · 13天有报量</span></div><div class="pb"><div class="other-items">10/2：打印机 套餐体检 | 10/3：开户 平板 防骚扰 免打扰 套餐体检 | 10/4：打印机 开户 平板 防骚扰 免打扰 套餐体检2 | 10/5：打印机2 防骚扰 免打扰 套餐体检2 | 10/7：打印机 手机 碎屏险 套餐体检2 | 10/8：开户 手机 39小福袋 39流量包 算力豆 防骚扰 免打扰 套餐体检 | 10/9：开户 手机 29小福袋 29流量包 算力豆 防骚扰 免打扰 套餐体检 | 10/10：开户 手机 29小福袋 29流量包 算力豆 防骚扰 免打扰 套餐体检 | 10/11：打印机2 套餐体检2 | 10/12：打印机2 套餐体检2 | 10/13：开户 手机 碎屏险 铂金会员 打印机 防骚扰 免打扰 套餐体检2 | 10/14：打印机 套餐体检 | 10/16：打印机3 套餐体检3</div></div></div><div class="person-card"><div class="ph"><span>舒捷</span><span class="sum">合计 46 笔 · 8天有报量</span></div><div class="pb"><div class="other-items">10/1：手机2 碎屏险 铂金会员 高频防骚扰2 免打扰 | 10/2：手机 宽带 摄像头 碎屏险 铂金会员 高频防骚扰 免打扰 | 10/3：手机 碎屏险 铂金会员 免打扰2 | 10/5：手机2 碎屏险 铂金会员 开户 平板 高频防骚扰2 免打扰2 | 10/6：打印机 机顶盒包年2 电饭煲 高频防骚扰3 免打扰3 | 10/8：打印机 高频防骚扰 免打扰 | 10/9：宽带 路由器 | 10/10：宽带 路由器</div></div></div><div class="person-card"><div class="ph"><span>董梦晶</span><span class="sum">合计 0 笔 · 0天有报量</span></div><div class="pb"><div class="other-items">暂无报量</div></div></div><div class="person-card"><div class="ph"><span>拖把</span><span class="sum">合计 21 笔 · 4天有报量</span></div><div class="pb"><div class="other-items">10/12：宽带包年 电饭煲 终端 打印机2 开户 升档大促 | 10/13：打印机3 升档大促 | 10/14：升档大促 打印机 宽带 开户 | 10/16：开户 升档大促 V网2 打印机2</div></div></div></div>
 </div>
-<div class="footer">🦐 兰新团队十月报量看板 · 更新至 10/15 · 每晚唐发量自动更新</div>
+<div class="footer">🦐 2026-10/11 · 兰新10月报量 · 每晚唐发量自动更新 · 含全部业务量（不止核心5项）</div>
 </div>
 </body>
 </html>
